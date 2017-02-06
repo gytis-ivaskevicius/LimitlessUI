@@ -51,6 +51,9 @@
     <Compile Include="Elipse_WOC.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="FlatButton_WOC.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ProgressBar_WOC.cs">
       <SubType>Component</SubType>
     </Compile>
