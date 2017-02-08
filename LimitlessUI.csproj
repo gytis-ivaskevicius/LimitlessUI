@@ -42,6 +42,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ArchProgressBar_WOC.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="DragControl_WOC.cs">
       <SubType>Component</SubType>
     </Compile>
