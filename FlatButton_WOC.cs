@@ -17,7 +17,6 @@ namespace LimitlessUI
         private System.Drawing.Image image;
         private SizeF imageSize = new SizeF(20, 20);
         public bool selected = false;
-        private bool tab = true;
         private int activationLenght = 150;
 
         private Color selectedBackColor = Color.DarkSeaGreen;
@@ -42,25 +41,17 @@ namespace LimitlessUI
 
         private void onClick(object sender, MouseEventArgs e)
         {
-            if (!selected)
-            {
-                BackColor = selectedBackColor;
-                ForeColor = selectedForeColor;
 
-                if (tab)
-                {
-                    foreach (System.Windows.Forms.Control control in Parent.Controls)
-                        if (control is FlatButton_WOC)
-                            ((FlatButton_WOC)control).unselect();
-                }
-                else
-                {
-                    Thread.Sleep(150);
-                    BackColor = onHoverColor;
-                    ForeColor = onHoverTextColor;
-                }
+            BackColor = selectedBackColor;
+            ForeColor = selectedForeColor;
+
+          
+                foreach (System.Windows.Forms.Control control in Parent.Controls)
+                    if (control is FlatButton_WOC)
+                        ((FlatButton_WOC)control).unselect();
                 selected = true;
-            }
+            
+
 
         }
 
@@ -148,18 +139,6 @@ namespace LimitlessUI
             set
             {
                 selected = value;
-                Invalidate();
-            }
-        }
-        public bool IsTab
-        {
-            get
-            {
-                return tab;
-            }
-            set
-            {
-                tab = value;
                 Invalidate();
             }
         }

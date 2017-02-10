@@ -19,7 +19,6 @@ namespace LimitlessUI
 
 
         private Control control;
-        private Form controForm;
 
         private bool dragType = true;
         private bool maximiseOnDoubleClick = true;

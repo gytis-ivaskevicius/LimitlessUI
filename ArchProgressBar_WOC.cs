@@ -51,7 +51,6 @@ namespace LimitlessUI
             e.Graphics.TranslateTransform(-(line2Thinkness / 2F + radiusByTwo), -(line2Thinkness / 2F + radiusByTwo));
 
             int style = 2;
-            int x, y;
 
             switch (style)
             {
@@ -90,7 +89,7 @@ namespace LimitlessUI
             pe.Graphics.DrawArc(pen1, -radiusByTwo, -radiusByTwo, Width - Line2Thikness, Width - Line2Thikness, 0, angle);
             pe.Graphics.DrawArc(pen2, -radiusByTwo, -radiusByTwo, Width - Line2Thikness, Width - Line2Thikness, 0, progressEndAngle * progress);
 
-            // drawContent(pe, (360 - angle) / 2 + 90);
+            drawContent(pe, (360 - angle) / 2 + 90);
 
             pen1.Dispose();
             pen2.Dispose();
