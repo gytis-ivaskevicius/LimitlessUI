@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
+using System.Drawing.Design;
 using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
@@ -13,6 +15,31 @@ namespace LimitlessUI
 {
     public partial class ArchProgressBar_WOC : Control
     {
+        public enum Style
+        {
+            Style1,
+            Style2,
+            Style3,
+            None
+        }
+
+        #region Collapse Direction
+
+        [Browsable(true), DefaultValue("All"), Description("Direction panel collapses. 0-none, 1-up, 2-right, 3-down, 4-left, 5-all")]
+        [ListBindable(true), Editor(typeof(ComboBox), typeof(UITypeEditor))]
+        private Style style = Style.Style1;
+        public Style Style
+        {
+            get { return style; }
+            set
+            {
+                style = value;
+                Invalidate();
+            }
+        }
+        #endregion
+
+
         private string text1 = "CPU";
         private string text2 = "99%";
         private string text3 = "55C";
@@ -37,6 +64,8 @@ namespace LimitlessUI
             font1 = Font;
             font2 = Font;
             font3 = Font;
+
+
         }
 
         private void drawContent(PaintEventArgs e, int angle)
@@ -50,26 +79,23 @@ namespace LimitlessUI
             int widthByTwo = Width / 2;
             e.Graphics.TranslateTransform(-(line2Thinkness / 2F + radiusByTwo), -(line2Thinkness / 2F + radiusByTwo));
 
-            int style = 2;
+
 
             switch (style)
             {
-                case 0:
+                case Style.Style1:
                     e.Graphics.DrawString(text1, font1, new SolidBrush(text1Color), widthByTwo - string1Size.Width / 2, widthByTwo - string1Size.Height / 2);
                     break;
-                case 1:
+                case Style.Style2:
                     e.Graphics.DrawString(text1, font1, new SolidBrush(text1Color), widthByTwo - string1Size.Width / 2, widthByTwo - string1Size.Height);
                     e.Graphics.DrawString(text2, font2, new SolidBrush(text2Color), widthByTwo - string2Size.Width / 2, widthByTwo);
                     break;
-                case 2:
+                case Style.Style3:
                     e.Graphics.DrawString(text1, font1, new SolidBrush(text1Color), widthByTwo - string1Size.Width / 2, widthByTwo - string1Size.Height);
                     e.Graphics.DrawString(text2, font2, new SolidBrush(text2Color), widthByTwo - string2Size.Width, widthByTwo);
                     e.Graphics.DrawString(text3, font3, new SolidBrush(text3Color), widthByTwo, widthByTwo);
                     break;
             }
-
-
-
         }
 
         protected override void OnPaint(PaintEventArgs pe)
@@ -89,7 +115,8 @@ namespace LimitlessUI
             pe.Graphics.DrawArc(pen1, -radiusByTwo, -radiusByTwo, Width - Line2Thikness, Width - Line2Thikness, 0, angle);
             pe.Graphics.DrawArc(pen2, -radiusByTwo, -radiusByTwo, Width - Line2Thikness, Width - Line2Thikness, 0, progressEndAngle * progress);
 
-            drawContent(pe, (360 - angle) / 2 + 90);
+            if (style != Style.None)
+                drawContent(pe, (360 - angle) / 2 + 90);
 
             pen1.Dispose();
             pen2.Dispose();
