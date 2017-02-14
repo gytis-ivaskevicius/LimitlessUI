@@ -17,7 +17,6 @@ namespace LimitlessUI
         private System.Drawing.Image image;
         private SizeF imageSize = new SizeF(20, 20);
         public bool selected = false;
-        private int activationLenght = 150;
 
         private Color selectedBackColor = Color.DarkSeaGreen;
         private Color selectedForeColor = Color.White;
@@ -45,14 +44,10 @@ namespace LimitlessUI
             BackColor = selectedBackColor;
             ForeColor = selectedForeColor;
 
-          
-                foreach (System.Windows.Forms.Control control in Parent.Controls)
-                    if (control is FlatButton_WOC)
-                        ((FlatButton_WOC)control).unselect();
-                selected = true;
-            
-
-
+            foreach (System.Windows.Forms.Control control in Parent.Controls)
+                if (control is FlatButton_WOC)
+                    ((FlatButton_WOC)control).unselect();
+            selected = true;
         }
 
         public void unselect()

@@ -57,11 +57,17 @@
     <Compile Include="FlatButton_WOC.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="GradientPanel_WOC.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ProgressBar_WOC.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Seperator_WOC.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Slider_WOC.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Switch_WOC.cs">
