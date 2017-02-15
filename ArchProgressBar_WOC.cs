@@ -15,7 +15,7 @@ namespace LimitlessUI
 {
     public partial class ArchProgressBar_WOC : Control
     {
-        public enum Style
+        public enum styleEnum
         {
             Style1,
             Style2,
@@ -27,8 +27,8 @@ namespace LimitlessUI
 
         [Browsable(true), DefaultValue("All"), Description("Direction panel collapses. 0-none, 1-up, 2-right, 3-down, 4-left, 5-all")]
         [ListBindable(true), Editor(typeof(ComboBox), typeof(UITypeEditor))]
-        private Style style = Style.Style1;
-        public Style Style
+        private styleEnum style = styleEnum.Style1;
+        public styleEnum Style
         {
             get { return style; }
             set
@@ -83,14 +83,14 @@ namespace LimitlessUI
 
             switch (style)
             {
-                case Style.Style1:
+                case styleEnum.Style1:
                     e.Graphics.DrawString(text1, font1, new SolidBrush(text1Color), widthByTwo - string1Size.Width / 2, widthByTwo - string1Size.Height / 2);
                     break;
-                case Style.Style2:
+                case styleEnum.Style2:
                     e.Graphics.DrawString(text1, font1, new SolidBrush(text1Color), widthByTwo - string1Size.Width / 2, widthByTwo - string1Size.Height);
                     e.Graphics.DrawString(text2, font2, new SolidBrush(text2Color), widthByTwo - string2Size.Width / 2, widthByTwo);
                     break;
-                case Style.Style3:
+                case styleEnum.Style3:
                     e.Graphics.DrawString(text1, font1, new SolidBrush(text1Color), widthByTwo - string1Size.Width / 2, widthByTwo - string1Size.Height);
                     e.Graphics.DrawString(text2, font2, new SolidBrush(text2Color), widthByTwo - string2Size.Width, widthByTwo);
                     e.Graphics.DrawString(text3, font3, new SolidBrush(text3Color), widthByTwo, widthByTwo);
@@ -115,7 +115,7 @@ namespace LimitlessUI
             pe.Graphics.DrawArc(pen1, -radiusByTwo, -radiusByTwo, Width - Line2Thikness, Width - Line2Thikness, 0, angle);
             pe.Graphics.DrawArc(pen2, -radiusByTwo, -radiusByTwo, Width - Line2Thikness, Width - Line2Thikness, 0, progressEndAngle * progress);
 
-            if (style != Style.None)
+            if (style != styleEnum.None)
                 drawContent(pe, (360 - angle) / 2 + 90);
 
             pen1.Dispose();
