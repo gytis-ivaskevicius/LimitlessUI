@@ -57,7 +57,13 @@
     <Compile Include="FlatButton_WOC.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Form_WOC.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="GradientPanel_WOC.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ListView_WOC.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="ProgressBar_WOC.cs">
