@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 public partial class ListView_WOC : ScrollableControl
 {
-    private bool vertical = true;
-    private bool autoExpand = false;
+    private bool _vertical = true;
+    private bool _autoExpand = false;
     public List<Control> items = new List<Control>();
 
     public ListView_WOC()
@@ -18,14 +15,14 @@ public partial class ListView_WOC : ScrollableControl
 
     public void add(Control item)
     {
-        item.Dock = vertical ? DockStyle.Top : DockStyle.Left;
+        item.Dock = _vertical ? DockStyle.Top : DockStyle.Left;
         items.Add(item);
         this.Controls.Add(item);
         item.BringToFront();
 
-        if (autoExpand && vertical)
+        if (_autoExpand && _vertical)
             Height = items.Last().Location.Y + items.Last().Size.Height;
-        else if (autoExpand && !vertical)
+        else if (_autoExpand && !_vertical)
             Width = items.Last().Location.X + items.Last().Size.Width;
     }
 
@@ -43,13 +40,13 @@ public partial class ListView_WOC : ScrollableControl
 
     public bool Vertical
     {
-        get { return vertical; }
-        set { vertical = value; }
+        get { return _vertical; }
+        set { _vertical = value; }
     }
 
     public bool AutoExpand
     {
-        get { return autoExpand; }
-        set { autoExpand = value; }
+        get { return _autoExpand; }
+        set { _autoExpand = value; }
     }
 }

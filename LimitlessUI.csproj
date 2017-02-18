@@ -45,6 +45,7 @@
     <Compile Include="ArchProgressBar_WOC.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="BottomAnchoredHeightManipulationEffect.cs" />
     <Compile Include="DragControl_WOC.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -78,6 +79,12 @@
     </Compile>
     <Compile Include="Switch_WOC.cs">
       <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="test.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="test.Designer.cs">
+      <DependentUpon>test.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -1,76 +1,128 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace LimitlessUI
+public partial class Switch_WOC : Control
 {
-    public partial class Switch_WOC : Control
+    private bool _textEnabled = true;
+    private bool _isOn = true;
+
+    private Color _onColor = Color.SeaGreen;
+    private Color _offColor = Color.DarkGray;
+
+    private string _onText = "On";
+    private string _offText = "Off";
+
+    public Switch_WOC()
     {
-        private bool isOn = true;
-        private Color onColor = Color.SeaGreen;
-        private Color offColor = Color.DarkGray;
+        Click += click;
+        BackColor = Color.FromArgb(64, 64, 64);
+        ForeColor = Color.FromArgb(224, 224, 224);
+        Width = 51;
+        Height = 18;
+        DoubleBuffered = true;
+    }
 
-        private string onText = "On";
-        private string offText = "Off";
+    private void click(object sender, EventArgs e)
+    {
+        _isOn = !_isOn;
+        Invalidate();
+    }
 
-        private bool textEnabled = true;
+    private void drawString(PaintEventArgs pe, bool isOn)
+    {
+        SizeF stringSize = pe.Graphics.MeasureString(isOn ? _onText : _offText, Font);
+        float drawHeight = Height / 2 - stringSize.Height / 2;
 
-        public Switch_WOC()
+        if (isOn)
         {
-            Click += click;
-            BackColor = Color.FromArgb(64, 64, 64);
-            ForeColor = Color.FromArgb(224, 224, 224);
-            Width = 51;
-            Height = 18;
-            DoubleBuffered = true;
+            float drawWidth = Width / 2 + (Width / 4) - stringSize.Width / 2;
+            pe.Graphics.DrawString(_onText, Font, new SolidBrush(ForeColor), drawWidth, drawHeight);
         }
-
-        private void click(object sender, EventArgs e)
+        else
         {
-            isOn = !isOn;
+            float drawWidth = Width / 2 - (Width / 4) - stringSize.Width / 2;
+            pe.Graphics.DrawString(_offText, Font, new SolidBrush(ForeColor), drawWidth, drawHeight);
+        }
+    }
+    protected override void OnPaint(PaintEventArgs pe)
+    {
+        base.OnPaint(pe);
+
+        Pen pen1 = new Pen(BackColor, Height);
+        Pen pen2 = new Pen(_isOn ? _onColor : _offColor, Height);
+
+        pe.Graphics.DrawLine(pen1, 0, Height / 2, Width, Height / 2);
+        if (_isOn)
+            pe.Graphics.DrawLine(pen2, 0, Height / 2, Width / 2, Height / 2);
+        else
+            pe.Graphics.DrawLine(pen2, Width / 2, Height / 2, Width, Height / 2);
+
+        if (_textEnabled)
+            drawString(pe, _isOn);
+
+        pen1.Dispose();
+        pen2.Dispose();
+    }
+
+    public bool IsOn
+    {
+        get { return _isOn; }
+        set
+        {
+            _isOn = value;
             Invalidate();
         }
+    }
 
-        private void drawString(PaintEventArgs pe, bool isOn)
+    public bool TextEnabled
+    {
+        get { return _textEnabled; }
+        set
         {
-            SizeF stringSize = pe.Graphics.MeasureString(isOn ? onText : offText, Font);
-            float drawHeight = Height / 2 - stringSize.Height / 2;
-
-            if (isOn)
-            {
-                float drawWidth = Width / 2 + (Width / 4) - stringSize.Width / 2;
-                pe.Graphics.DrawString(onText, Font, new SolidBrush(ForeColor), drawWidth, drawHeight);
-            }
-            else
-            {
-                float drawWidth = Width / 2 - (Width / 4) - stringSize.Width / 2;
-                pe.Graphics.DrawString(offText, Font, new SolidBrush(ForeColor), drawWidth, drawHeight);
-            }
+            _textEnabled = value;
+            Invalidate();
         }
-        protected override void OnPaint(PaintEventArgs pe)
+    }
+
+    public Color OnColor
+    {
+        get { return _onColor; }
+        set
         {
-            base.OnPaint(pe);
+            _onColor = value;
+            Invalidate();
+        }
+    }
 
-            Pen pen1 = new Pen(BackColor, Height);
-            Pen pen2 = new Pen(isOn ? onColor : offColor, Height);
+    public Color OffColor
+    {
+        get { return _offColor; }
+        set
+        {
+            _offColor = value;
+            Invalidate();
+        }
+    }
 
-            pe.Graphics.DrawLine(pen1, 0, Height / 2, Width, Height / 2);
-            if (isOn)
-                pe.Graphics.DrawLine(pen2, 0, Height / 2, Width / 2, Height / 2);
-            else
-                pe.Graphics.DrawLine(pen2, Width / 2, Height / 2, Width, Height / 2);
+    public string OnText
+    {
+        get { return _onText; }
+        set
+        {
+            _onText = value;
+            Invalidate();
+        }
+    }
 
-            if (textEnabled)
-                drawString(pe, isOn);
-
-            pen1.Dispose();
-            pen2.Dispose();
+    public string OffText
+    {
+        get { return _offText; }
+        set
+        {
+            _offText = value;
+            Invalidate();
         }
     }
 }
+

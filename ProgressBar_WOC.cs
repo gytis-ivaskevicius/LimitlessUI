@@ -1,138 +1,127 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Drawing.Drawing2D;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace LimitlessUI
+public partial class ProgressBar_WOC : Control
 {
-    public partial class ProgressBar_WOC : Control
+    private Color _progressBackColor = Color.Silver;
+    private int _progress = 50;
+
+    private float _line1Thikness = 10;
+    private float _line2Thikness = 20;
+    private float _extraPadding = 0;
+
+    private bool _rounded = true;
+    private bool _smoothing = true;
+
+    public ProgressBar_WOC()
     {
-        private Color progressBackColor = Color.Silver;
-        private int progress = 50;
-        private float line1Thikness = 10;
-        private float line2Thikness = 20;
-        private bool rounded = true;
-        private bool smoothing = true;
-        private float extraPadding = 0;
+        this.DoubleBuffered = true;
+        ForeColor = Color.Chartreuse;
+    }
 
-        public ProgressBar_WOC()
+    protected override void OnPaint(PaintEventArgs pe)
+    {
+        base.OnPaint(pe);
+        if (_smoothing)
+            pe.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
+
+        float progressWidth = this.Width;
+        float progressToDraw = ((progressWidth - Padding.Left - Padding.Right) / 100) * _progress;
+        float progressNotToDraw = (progressWidth - Padding.Left - Padding.Right) - progressToDraw;
+        float drawHeight = this.Height / 2;
+
+        Pen penOne = new Pen(_progressBackColor, _line1Thikness);
+        Pen penTwo = new Pen(ForeColor, _line2Thikness);
+
+        if (_rounded)
         {
-            this.DoubleBuffered = true;
+            penTwo.StartCap = LineCap.Round;
+            penTwo.EndCap = LineCap.Round;
 
-            ForeColor = Color.Chartreuse;
+            penOne.StartCap = LineCap.Round;
+            penOne.EndCap = LineCap.Round;
+
+            _extraPadding = _line2Thikness / 2;
         }
+        else
+            _extraPadding = 0;
 
-        protected override void OnPaint(PaintEventArgs pe)
+        pe.Graphics.DrawLine(penOne, ((float)Padding.Left) + _extraPadding, drawHeight, ((float)this.Width - Padding.Right) - _extraPadding, drawHeight);
+        if (Value != 0)
+            pe.Graphics.DrawLine(penTwo, Padding.Left + _extraPadding, drawHeight, this.Width - ((float)Padding.Right) - progressNotToDraw - _extraPadding, drawHeight);
+
+        penOne.Dispose();
+        penTwo.Dispose();
+    }
+
+    protected override void OnPaddingChanged(EventArgs e)
+    {
+        base.OnPaddingChanged(e);
+        Invalidate();
+    }
+
+    public int Value
+    {
+        get { return _progress; }
+        set
         {
-            base.OnPaint(pe);
-            if (smoothing)
-                pe.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
-
-            float progressWidth = this.Width;
-            float progressToDraw = ((progressWidth - Padding.Left - Padding.Right) / 100) * progress;
-            float progressNotToDraw = (progressWidth - Padding.Left - Padding.Right) - progressToDraw;
-            float drawHeight = this.Height / 2;
-
-            Pen penOne = new Pen(progressBackColor, line1Thikness);
-            Pen penTwo = new Pen(ForeColor, line2Thikness);
-
-
-            if (rounded)
+            if (value != _progress)
             {
-                penTwo.StartCap = LineCap.Round;
-                penTwo.EndCap = LineCap.Round;
-
-                penOne.StartCap = LineCap.Round;
-                penOne.EndCap = LineCap.Round;
-
-                extraPadding = line2Thikness / 2;
+                _progress = value;
+                Invalidate();
             }
-            else
-                extraPadding = 0;
-
-
-            pe.Graphics.DrawLine(penOne, ((float)Padding.Left) + extraPadding, drawHeight, ((float)this.Width - Padding.Right) - extraPadding, drawHeight);
-            if (Value != 0)
-                pe.Graphics.DrawLine(penTwo, Padding.Left + extraPadding, drawHeight, this.Width - ((float)Padding.Right) - progressNotToDraw - extraPadding, drawHeight);
-
-
-            penOne.Dispose();
-            penTwo.Dispose();
         }
+    }
 
-        protected override void OnPaddingChanged(EventArgs e)
+    public Color ProgressBackColor
+    {
+        get { return _progressBackColor; }
+        set
         {
-            base.OnPaddingChanged(e);
+            _progressBackColor = value;
             Invalidate();
         }
+    }
 
-        public int Value
+    public bool Rounded
+    {
+        get { return _rounded; }
+        set
         {
-            get { return progress; }
-            set
-            {
-                if (value != progress)
-                {
-                    progress = value;
-                    Invalidate();
-                }
-            }
+            _rounded = value;
+            Invalidate();
         }
+    }
 
-        public Color ProgressBackColor
+    public bool Smooth
+    {
+        get { return _smoothing; }
+        set
         {
-            get { return progressBackColor; }
-            set
-            {
-                progressBackColor = value;
-                Invalidate();
-            }
+            _smoothing = value;
+            Invalidate();
         }
+    }
 
-        public bool Rounded
+    public float Line1Thikness
+    {
+        get { return _line1Thikness; }
+        set
         {
-            get { return rounded; }
-            set
-            {
-                rounded = value;
-                Invalidate();
-            }
+            _line1Thikness = value;
+            Invalidate();
         }
+    }
 
-        public bool Smooth
+    public float Line2Thikness
+    {
+        get { return _line2Thikness; }
+        set
         {
-            get { return smoothing; }
-            set
-            {
-                smoothing = value;
-                Invalidate();
-            }
-        }
-
-        public float Line1Thikness
-        {
-            get { return line1Thikness; }
-            set
-            {
-                line1Thikness = value;
-                Invalidate();
-            }
-        }
-
-        public float Line2Thikness
-        {
-            get { return line2Thikness; }
-            set
-            {
-                line2Thikness = value;
-                Invalidate();
-            }
+            _line2Thikness = value;
+            Invalidate();
         }
     }
 }

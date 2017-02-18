@@ -1,158 +1,149 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Diagnostics;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Drawing;
 using System.Windows.Forms;
 
-namespace LimitlessUI
+
+public partial class Slider_WOC : Control
 {
-    public partial class Slider_WOC : Control
+    public delegate void onValueChangedEvent(Slider_WOC slider,float value);
+    public event onValueChangedEvent onValueChanged;
+
+    private float _circleSize = 20;
+    private float _backLineThikness = 10;
+    private float _frontLineThikness = 10;
+    private float _xCord = 50;
+    private float _maxValue = 100;
+
+    private bool _drag = false;
+    private bool _drawCircle = true;
+
+    private int _increament = 10;
+    private Color _backgroundColor = Color.DarkGray;
+
+    public Slider_WOC()
     {
-        public delegate void onValueChangedEvent(float value);
-        public event onValueChangedEvent onValueChanged;
-        Color backgroundColor = Color.DarkGray;
+        ForeColor = Color.SeaGreen;
+        DoubleBuffered = true;
+        MouseDown += onClick;
+        MouseUp += onMouseUp;
+        MouseMove += onMouseMove;
+        MouseWheel += onScroll;
+    }
 
-        private float circleSize = 20;
-        private float backLineThikness = 10;
-        private float frontLineThikness = 10;
-        private float xCord = 50;
-        private float maxValue = 100;
-        private bool drag = false;
-        private bool drawCircle = true;
-        private int increament = 10;
-
-        public Slider_WOC()
+    private void onScroll(object sender, MouseEventArgs e)
+    {
+        if (e.Delta != 0)
         {
-            ForeColor = Color.SeaGreen;
-            DoubleBuffered = true;
-            MouseDown += onClick;
-            MouseUp += onMouseUp;
-            MouseMove += onMouseMove;
-            MouseWheel += onScroll;
-        }
+            if (e.Delta > 0 && _xCord <= Width - _circleSize / 2)
+                _xCord += _increament;
+            else if (e.Delta < 0 && _xCord > _circleSize / 2)
+                _xCord -= _increament;
 
-        private void onScroll(object sender, MouseEventArgs e)
-        {
-            if (e.Delta != 0)
-            {
-                if (e.Delta > 0 && xCord <= Width - circleSize / 2)
-                    xCord += increament;
-                else if (e.Delta < 0 && xCord > circleSize / 2)
-                    xCord -= increament;
-
-                if (xCord > Width - circleSize)
-                    xCord = Width - circleSize;
-                else if (xCord < circleSize / 2)
-                    xCord = 0;
-                Invalidate();
-                if (onValueChanged != null)
-                    onValueChanged.Invoke(Value);
-            }
-        }
-
-        private void onMouseUp(object sender, MouseEventArgs e)
-        {
-            drag = false;
-        }
-        private void onMouseMove(object sender, MouseEventArgs e)
-        {
-            if (drag && e.X >= circleSize / 2 && e.X <= Width - circleSize / 2)
-                xCord = e.X - circleSize / 2;
-            else if (drag && e.X < circleSize / 2)
-                xCord = 0;
-            else if (drag && e.X > Width - circleSize / 2)
-                xCord = Width - circleSize;
-
+            if (_xCord > Width - _circleSize)
+                _xCord = Width - _circleSize;
+            else if (_xCord < _circleSize / 2)
+                _xCord = 0;
+            Invalidate();
             if (onValueChanged != null)
-                onValueChanged.Invoke(Value);
+                onValueChanged.Invoke(this,Value);
+        }
+    }
 
+    private void onMouseUp(object sender, MouseEventArgs e)
+    {
+        _drag = false;
+    }
+
+    private void onMouseMove(object sender, MouseEventArgs e)
+    {
+        if (_drag && e.X >= _circleSize / 2 && e.X <= Width - _circleSize / 2)
+            _xCord = e.X - _circleSize / 2;
+        else if (_drag && e.X < _circleSize / 2)
+            _xCord = 0;
+        else if (_drag && e.X > Width - _circleSize / 2)
+            _xCord = Width - _circleSize;
+
+        if (onValueChanged != null)
+            onValueChanged.Invoke(this,Value);
+
+        Invalidate();
+    }
+
+    private void onClick(object sender, MouseEventArgs e)
+    {
+        _drag = true;
+        _xCord = e.X;
+        Invalidate();
+    }
+
+    protected override void OnPaint(PaintEventArgs pe)
+    {
+        base.OnPaint(pe);
+        pe.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+
+        pe.Graphics.DrawLine(new Pen(_backgroundColor, _backLineThikness), _circleSize / 2, Height / 2, Width - _circleSize / 2, Height / 2);
+        pe.Graphics.DrawLine(new Pen(ForeColor, _frontLineThikness), _circleSize / 2, Height / 2, _circleSize / 2 + _xCord, Height / 2);
+        if (_drawCircle)
+            pe.Graphics.FillEllipse(new SolidBrush(ForeColor), _xCord, Height / 2 - _circleSize / 2, _circleSize, _circleSize);
+    }
+
+    public float Value
+    {
+        get { return _xCord / ((Width - _circleSize) / _maxValue); }
+        set
+        {
+            this._xCord = value * ((Width - _circleSize) / _maxValue);
             Invalidate();
         }
+    }
 
-        private void onClick(object sender, MouseEventArgs e)
+    public bool DrawCircle
+    {
+        get { return _drawCircle; }
+        set
         {
-            drag = true;
-            xCord = e.X;
+            _drawCircle = value;
             Invalidate();
         }
+    }
 
-        protected override void OnPaint(PaintEventArgs pe)
+    public float MaxValue
+    {
+        get { return _maxValue; }
+        set
         {
-            base.OnPaint(pe);
-            pe.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
-
-            pe.Graphics.DrawLine(new Pen(backgroundColor, backLineThikness), circleSize / 2, Height / 2, Width - circleSize / 2, Height / 2);
-            pe.Graphics.DrawLine(new Pen(ForeColor, frontLineThikness), circleSize / 2, Height / 2, circleSize / 2 + xCord, Height / 2);
-            if (drawCircle)
-                pe.Graphics.FillEllipse(new SolidBrush(ForeColor), xCord, Height / 2 - circleSize / 2, circleSize, circleSize);
+            _maxValue = value;
+            Invalidate();
         }
+    }
 
-        public float Value
+    public float CircleSize
+    {
+        get { return _circleSize; }
+        set
         {
-            get
-            {
-                return xCord / ((Width - circleSize) / maxValue);
-            }
-            set
-            {
-
-                this.xCord = value * ((Width - circleSize) / maxValue);
-                Invalidate();
-
-            }
+            _circleSize = value;
+            Invalidate();
         }
+    }
 
-        public bool DrawCircle
+    public float BackLineThikness
+    {
+        get { return _backLineThikness; }
+        set
         {
-            get { return drawCircle; }
-            set
-            {
-                drawCircle = value;
-                Invalidate();
-            }
+            _backLineThikness = value;
+            Invalidate();
         }
+    }
 
-        public float MaxValue
+    public float FrontLineThikness
+    {
+        get { return _frontLineThikness; }
+        set
         {
-            get { return maxValue; }
-            set
-            {
-                maxValue = value;
-                Invalidate();
-            }
-        }
-        public float CircleSize
-        {
-            get { return circleSize; }
-            set
-            {
-                circleSize = value;
-                Invalidate();
-            }
-        }
-        public float BackLineThikness
-        {
-            get { return backLineThikness; }
-            set
-            {
-                backLineThikness = value;
-                Invalidate();
-            }
-        }
-
-        public float FrontLineThikness
-        {
-            get { return frontLineThikness; }
-            set
-            {
-                frontLineThikness = value;
-                Invalidate();
-            }
+            _frontLineThikness = value;
+            Invalidate();
         }
     }
 }
+

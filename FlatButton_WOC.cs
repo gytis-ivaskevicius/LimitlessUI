@@ -1,220 +1,185 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace LimitlessUI
+
+public partial class FlatButton_WOC : Control
 {
-    public partial class FlatButton_WOC : System.Windows.Forms.Control
+    ContentAlignment _textAligment = ContentAlignment.MiddleLeft;
+    private Image _image;
+    private SizeF _imageSize = new SizeF(20, 20);
+    public bool _selected = false;
+
+    private Color _selectedBackColor = Color.DarkSeaGreen;
+    private Color _selectedForeColor = Color.White;
+    private Color _onHoverColor = Color.MediumSeaGreen;
+    private Color _onHoverTextColor = Color.White;
+    private Color _defaultBackColor;
+    private Color _defaultForeColor;
+
+    public FlatButton_WOC()
     {
-        ContentAlignment textAligment = ContentAlignment.MiddleLeft;
-        private System.Drawing.Image image;
-        private SizeF imageSize = new SizeF(20, 20);
-        public bool selected = false;
+        BackColor = Color.SeaGreen;
+        ForeColor = Color.White;
+        Height = 48;
+        Width = 241;
 
-        private Color selectedBackColor = Color.DarkSeaGreen;
-        private Color selectedForeColor = Color.White;
+        MouseEnter += onMouseEnter;
+        MouseLeave += onMouseExit;
+        MouseClick += onClick;
+    }
 
-        private Color onHoverColor = Color.MediumSeaGreen;
-        private Color onHoverTextColor = Color.White;
-        private Color defaultBackColor;
-        private Color defaultForeColor;
+    private void onClick(object sender, MouseEventArgs e)
+    {
+        BackColor = _selectedBackColor;
+        ForeColor = _selectedForeColor;
 
-        public FlatButton_WOC()
+        foreach (Control control in Parent.Controls)
+            if (control is FlatButton_WOC)
+                ((FlatButton_WOC)control).unselect();
+        _selected = true;
+    }
+
+    public void unselect()
+    {
+        if (_selected)
         {
-            BackColor = Color.SeaGreen;
-            ForeColor = Color.White;
-            Height = 48;
-            Width = 241;
-
-            MouseEnter += onMouseEnter;
-            MouseLeave += onMouseExit;
-            MouseClick += onClick;
+            _selected = false;
+            BackColor = _defaultBackColor;
+            ForeColor = _defaultForeColor;
         }
+    }
 
-        private void onClick(object sender, MouseEventArgs e)
+    private void onMouseExit(object sender, EventArgs e)
+    {
+        if (!_selected)
         {
-
-            BackColor = selectedBackColor;
-            ForeColor = selectedForeColor;
-
-            foreach (System.Windows.Forms.Control control in Parent.Controls)
-                if (control is FlatButton_WOC)
-                    ((FlatButton_WOC)control).unselect();
-            selected = true;
+            BackColor = _defaultBackColor;
+            ForeColor = _defaultForeColor;
         }
+    }
 
-        public void unselect()
+    private void onMouseEnter(object sender, EventArgs e)
+    {
+        if (!_selected)
         {
-            if (selected)
-            {
-                selected = false;
-                BackColor = defaultBackColor;
-                ForeColor = defaultForeColor;
-            }
+            _defaultBackColor = BackColor;
+            _defaultForeColor = ForeColor;
+
+            BackColor = OnHoverColor;
+            ForeColor = OnHoverTextColor;
         }
+    }
 
-        private void onMouseExit(object sender, EventArgs e)
+    protected override void OnPaint(PaintEventArgs pe)
+    {
+        base.OnPaint(pe);
+
+        drawString(pe.Graphics, Text, Font, ForeColor, _textAligment.ToString());
+        if (_image != null)
         {
-            if (!selected)
-            {
-                BackColor = defaultBackColor;
-                ForeColor = defaultForeColor;
-            }
+            float drawHeight = Height / 2 - _imageSize.Height / 2;
+            pe.Graphics.DrawImage(_image, drawHeight, drawHeight, _imageSize.Width, _imageSize.Height);
         }
+    }
 
-        private void onMouseEnter(object sender, EventArgs e)
+    private void drawString(Graphics g, string text, Font font, Color color, string textAligment)
+    {
+        SizeF stringSize = g.MeasureString(Text, Font);
+        float drawX = Height;
+        float drawY = 0;
+
+        if (textAligment.Contains("Middle"))
+            drawY = Height / 2 - stringSize.Height / 2;
+        else if (textAligment.Contains("Bottom"))
+            drawY = Height - stringSize.Height;
+
+        if (textAligment.Contains("Center"))
+            drawX = Width / 2 - stringSize.Width / 2;
+        else if (textAligment.Contains("Right"))
+            drawX = Width - stringSize.Width;
+
+        g.DrawString(Text, Font, new SolidBrush(ForeColor), drawX, drawY);
+    }
+
+    public ContentAlignment TextAligment
+    {
+        get { return _textAligment; }
+        set
         {
-            if (!selected)
-            {
-                defaultBackColor = BackColor;
-                defaultForeColor = ForeColor;
-
-                BackColor = OnHoverColor;
-                ForeColor = OnHoverTextColor;
-            }
+            _textAligment = value;
+            Invalidate();
         }
+    }
 
-        protected override void OnPaint(PaintEventArgs pe)
+    public bool Selected
+    {
+        get { return _selected; }
+        set
         {
-            base.OnPaint(pe);
-
-            drawString(pe.Graphics, Text, Font, ForeColor, textAligment.ToString());
-            if (image != null)
-            {
-                float drawHeight = Height / 2 - imageSize.Height / 2;
-                pe.Graphics.DrawImage(image, drawHeight, drawHeight, imageSize.Width, imageSize.Height);
-            }
+            _selected = value;
+            Invalidate();
         }
+    }
 
-        private void drawString(Graphics g, string text, Font font, Color color, string textAligment)
+    public Image Image
+    {
+        get { return _image; }
+        set
         {
-            SizeF stringSize = g.MeasureString(Text, Font);
-            float drawX = Height;
-            float drawY = 0;
-
-            if (textAligment.Contains("Middle"))
-                drawY = Height / 2 - stringSize.Height / 2;
-            else if (textAligment.Contains("Bottom"))
-                drawY = Height - stringSize.Height;
-
-            if (textAligment.Contains("Center"))
-                drawX = Width / 2 - stringSize.Width / 2;
-            else if (textAligment.Contains("Right"))
-                drawX = Width - stringSize.Width;
-
-            g.DrawString(Text, Font, new SolidBrush(ForeColor), drawX, drawY);
+            _image = value;
+            Invalidate();
         }
+    }
 
-        public ContentAlignment TextAligment
+    public Color OnHoverColor
+    {
+        get { return _onHoverColor; }
+        set
         {
-            get
-            {
-                return textAligment;
-            }
-            set
-            {
-                textAligment = value;
-                Invalidate();
-            }
+            _onHoverColor = value;
+            Invalidate();
         }
+    }
 
-        public bool Selected
+    public Color OnHoverTextColor
+    {
+        get { return _onHoverTextColor; }
+        set
         {
-            get
-            {
-                return selected;
-            }
-            set
-            {
-                selected = value;
-                Invalidate();
-            }
+            _onHoverTextColor = value;
+            Invalidate();
         }
+    }
 
-        public System.Drawing.Image Image
+    public Color ActiveColor
+    {
+        get { return _selectedBackColor; }
+        set
         {
-            get
-            {
-                return image;
-            }
-            set
-            {
-                image = value;
-                Invalidate();
-            }
+            _selectedBackColor = value;
+            Invalidate();
         }
+    }
 
-        public Color OnHoverColor
+    public Color ActiveTextColor
+    {
+        get { return _selectedForeColor; }
+        set
         {
-            get
-            {
-                return onHoverColor;
-            }
-            set
-            {
-                onHoverColor = value;
-                Invalidate();
-            }
+            _selectedForeColor = value;
+            Invalidate();
         }
+    }
 
-        public Color OnHoverTextColor
+    public SizeF ImageSize
+    {
+        get { return _imageSize; }
+        set
         {
-            get
-            {
-                return onHoverTextColor;
-            }
-            set
-            {
-                onHoverTextColor = value;
-                Invalidate();
-            }
-        }
-
-        public Color ActiveColor
-        {
-            get
-            {
-                return selectedBackColor;
-            }
-            set
-            {
-                selectedBackColor = value;
-                Invalidate();
-            }
-        }
-
-        public Color ActiveTextColor
-        {
-            get
-            {
-                return selectedForeColor;
-            }
-            set
-            {
-                selectedForeColor = value;
-                Invalidate();
-            }
-        }
-
-
-        public SizeF ImageSize
-        {
-            get
-            {
-                return imageSize;
-            }
-            set
-            {
-                imageSize = value;
-                Invalidate();
-            }
+            _imageSize = value;
+            Invalidate();
         }
     }
 }
+

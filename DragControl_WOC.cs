@@ -1,73 +1,64 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace LimitlessUI
+public class DragControl_WOC : Component
 {
-    public partial class DragControl_WOC : Component
+    [System.Runtime.InteropServices.DllImportAttribute("user32.dll")]
+    public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
+    [System.Runtime.InteropServices.DllImportAttribute("user32.dll")]
+    public static extern bool ReleaseCapture();
+
+    public const int WM_NCLBUTTONDOWN = 0xA1;
+    public const int HT_CAPTION = 0x2;
+
+    private bool _dragType = true;
+    private bool _maximiseOnDoubleClick = true;
+
+    private Control _control;
+
+
+    private void onControlMouseDown(object sender, MouseEventArgs e)
     {
-        [System.Runtime.InteropServices.DllImportAttribute("user32.dll")]
-        public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
-        [System.Runtime.InteropServices.DllImportAttribute("user32.dll")]
-        public static extern bool ReleaseCapture();
-
-
-        private Control control;
-
-        private bool dragType = true;
-        private bool maximiseOnDoubleClick = true;
-
-        public const int WM_NCLBUTTONDOWN = 0xA1;
-        public const int HT_CAPTION = 0x2;
-
-
-        public Control TargetControl
+        if (e.Button == MouseButtons.Left)
         {
-            get { return control; }
-            set
-            {
-                control = value;
-                if (value != null)
-                    control.MouseDown += onControlMouseDown;
-            }
+            ReleaseCapture();
+            if (_dragType)
+                SendMessage(_control.FindForm().Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
+            else
+                SendMessage(_control.Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
         }
 
-        public bool Fixed
+        if (e.Button == MouseButtons.Left && e.Clicks == 2 && _maximiseOnDoubleClick)
         {
-            get { return dragType; }
-            set { dragType = value; }
-        }
-
-        public bool MaximiseOnDoubleClick
-        {
-            get { return maximiseOnDoubleClick; }
-            set { maximiseOnDoubleClick = value; }
-        }
-
-        private void onControlMouseDown(object sender, MouseEventArgs e)
-        {
-            if (e.Button == MouseButtons.Left)
-            {
-                ReleaseCapture();
-                if (dragType)
-                    SendMessage(control.FindForm().Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
-                else
-                    SendMessage(control.Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
-            }
-
-            if (e.Button == MouseButtons.Left && e.Clicks == 2 && maximiseOnDoubleClick)
-            {
-                if (control.FindForm().WindowState == FormWindowState.Normal)
-                    control.FindForm().WindowState = FormWindowState.Maximized;
-                else
-                    control.FindForm().WindowState = FormWindowState.Normal;
-            }
+            if (_control.FindForm().WindowState == FormWindowState.Normal)
+                _control.FindForm().WindowState = FormWindowState.Maximized;
+            else
+                _control.FindForm().WindowState = FormWindowState.Normal;
         }
     }
+
+    public Control TargetControl
+    {
+        get { return _control; }
+        set
+        {
+            _control = value;
+            if (value != null)
+                _control.MouseDown += onControlMouseDown;
+        }
+    }
+
+    public bool Fixed
+    {
+        get { return _dragType; }
+        set { _dragType = value; }
+    }
+
+    public bool MaximiseOnDoubleClick
+    {
+        get { return _maximiseOnDoubleClick; }
+        set { _maximiseOnDoubleClick = value; }
+    }
 }
+
