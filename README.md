@@ -74,13 +74,78 @@ Panel with gradient drawn on top of it.
 2. StartColor - Color that gradient starts with.
 3. EndColor - color that gradient ends with.
 
+<br>
+## ListView:
+### Description:
+ListView that accepts UserControls as its childs
+### Properties:
+1. AutoExpang - If setted to true, ListView changes its Height instead of having scrollbars.
+2. Vertical - If setted to true, it adds childs verticly (From top to bottom), if setted to false - adds childs horizoticly - from left to right.
+
+<br>
+
+## ProgressBar:
+### Description:
+Basic ProgressBar.
+### Properties:
+1. BackLineThikness - Thikness of back line.
+2. FrontLineThikness - Thikness of front line.
+3. ProgressBackColor - Color of back line.
+4. ForeColor - Color of front line.
+5. Rounded - Rounds lines endings.
+6. Smooth - enables anti-alias.
+7. Value - value of the progressBar.
+
+<br>
+
+## Seperator:
+### Description:
+Probobly the most dificult componet out of all of them. Line. I putted alot of work into it, I hope my mom is proud of me now.
+### Properties:
+1. LineColor - Color of the line.
+2. LineThikness - Thikness of hte line.
+### Notes:
+  Compatible with Left and right paddings. :)
+  
+  
+<br>
+
+## Slider:
+### Description:
+Slider - aka trakbar.
+### Properties:
+1. BackLineThikness - Thikness of back line.
+2. CircleSize - Diameter of a circle.
+3. DrawCircle - if setted to true - draws circle, false othervise.
+4. FrontLineThikness - Thikness of front line.
+5. MaxValue - Slider max value.
+6. Value - Value.
 
 
+<br>
+
+## Switch:
+### Description:
+Basic switch.
+### Properties:
+1. IsOn - If setted to true - on by default.
+2. OnColor -  Color of switch while its on.
+3. OffColor - Same but while off.
+4. OnText - Text that shows while switch is on.
+5. OffText - Same but while Switch is off.
+6. TextEnable - If setted to true, shows text.
 
 
+<br>
 
-
-
+## Form_WOC.cs (Class):
+### Description:
+Class that adds resisible grip to borderless forms edges. 
+### How to use it:
+  1. Change forms inharance from "Form" to "Form_WOC".
+  2. Add padding of ur choice (Reccomended 2-3).
+### Notes:
+  Im still working on it, the problem that im having is that i cant make it transparent. Got any suggestions? Please contact me.
 
 
 
