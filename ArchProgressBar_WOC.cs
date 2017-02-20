@@ -23,7 +23,7 @@ public partial class ArchProgressBar_WOC : Control
     private float _line1Thinkness = 5;
     private float _line2Thinkness = 9;
 
-    private Color _color1 = Color.Gray;
+    private Color _color1 = Color.Silver;
     private Color _color2 = Color.Lime;
     private Color _text1Color = DefaultForeColor;
     private Color _text2Color = DefaultForeColor;
@@ -41,9 +41,9 @@ public partial class ArchProgressBar_WOC : Control
     private void drawContent(PaintEventArgs e, int angle)
     {
         e.Graphics.RotateTransform(-angle);
-        SizeF string1Size = e.Graphics.MeasureString(_text1, Font);
-        SizeF string2Size = e.Graphics.MeasureString(_text2, Font);
-        SizeF string3Size = e.Graphics.MeasureString(_text3, Font);
+        SizeF string1Size = e.Graphics.MeasureString(_text1, _font1);
+        SizeF string2Size = e.Graphics.MeasureString(_text2, _font2);
+        SizeF string3Size = e.Graphics.MeasureString(_text3, _font3);
 
         float radiusByTwo = (Width - ProgressLineThikness) / 2;
         int widthByTwo = Width / 2;

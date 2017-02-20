@@ -3,7 +3,7 @@ using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 
 
-public partial class GradientPanel_WOC : Control
+public partial class GradientPanel_WOC : Panel
 {
     Color _startColor = Color.WhiteSmoke;
     Color _endColor = Color.SteelBlue;

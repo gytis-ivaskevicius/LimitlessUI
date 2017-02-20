@@ -1,10 +1,11 @@
 ﻿using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 
 
 public partial class Slider_WOC : Control
 {
-    public delegate void onValueChangedEvent(Slider_WOC slider,float value);
+    public delegate void onValueChangedEvent(Slider_WOC slider, float value);
     public event onValueChangedEvent onValueChanged;
 
     private float _circleSize = 20;
@@ -15,9 +16,10 @@ public partial class Slider_WOC : Control
 
     private bool _drag = false;
     private bool _drawCircle = true;
+    private bool _rounded = false;
 
     private int _increament = 10;
-    private Color _backgroundColor = Color.DarkGray;
+    private Color _backgroundColor = Color.Silver;
 
     public Slider_WOC()
     {
@@ -44,7 +46,7 @@ public partial class Slider_WOC : Control
                 _xCord = 0;
             Invalidate();
             if (onValueChanged != null)
-                onValueChanged.Invoke(this,Value);
+                onValueChanged.Invoke(this, Value);
         }
     }
 
@@ -63,7 +65,7 @@ public partial class Slider_WOC : Control
             _xCord = Width - _circleSize;
 
         if (onValueChanged != null)
-            onValueChanged.Invoke(this,Value);
+            onValueChanged.Invoke(this, Value);
 
         Invalidate();
     }
@@ -79,11 +81,33 @@ public partial class Slider_WOC : Control
     {
         base.OnPaint(pe);
         pe.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+        Pen penOne = new Pen(_backgroundColor, _backLineThikness);
+        Pen penTwo = new Pen(ForeColor, _frontLineThikness);
 
-        pe.Graphics.DrawLine(new Pen(_backgroundColor, _backLineThikness), _circleSize / 2, Height / 2, Width - _circleSize / 2, Height / 2);
-        pe.Graphics.DrawLine(new Pen(ForeColor, _frontLineThikness), _circleSize / 2, Height / 2, _circleSize / 2 + _xCord, Height / 2);
+        if (_rounded)
+        {
+            penTwo.StartCap = LineCap.Round;
+            penTwo.EndCap = LineCap.Round;
+
+            penOne.StartCap = LineCap.Round;
+            penOne.EndCap = LineCap.Round;
+        }
+        pe.Graphics.DrawLine(penOne, _circleSize / 2, Height / 2, Width - _circleSize / 2, Height / 2);
+        pe.Graphics.DrawLine(penTwo, _circleSize / 2, Height / 2, _circleSize / 2 + _xCord, Height / 2);
         if (_drawCircle)
             pe.Graphics.FillEllipse(new SolidBrush(ForeColor), _xCord, Height / 2 - _circleSize / 2, _circleSize, _circleSize);
+        penOne.Dispose();
+        penTwo.Dispose();
+    }
+
+    public Color BackLineColor
+    {
+        get { return _backgroundColor; }
+        set
+        {
+            this._backgroundColor = value;
+            Invalidate();
+        }
     }
 
     public float Value
@@ -92,6 +116,16 @@ public partial class Slider_WOC : Control
         set
         {
             this._xCord = value * ((Width - _circleSize) / _maxValue);
+            Invalidate();
+        }
+    }
+
+    public bool Rounded
+    {
+        get { return _rounded; }
+        set
+        {
+            _rounded = value;
             Invalidate();
         }
     }
