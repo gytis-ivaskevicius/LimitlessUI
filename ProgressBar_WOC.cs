@@ -105,7 +105,7 @@ public partial class ProgressBar_WOC : Control
         }
     }
 
-    public float Line1Thikness
+    public float BackLineThikness
     {
         get { return _line1Thikness; }
         set
@@ -115,7 +115,7 @@ public partial class ProgressBar_WOC : Control
         }
     }
 
-    public float Line2Thikness
+    public float FrontLineThikness
     {
         get { return _line2Thikness; }
         set

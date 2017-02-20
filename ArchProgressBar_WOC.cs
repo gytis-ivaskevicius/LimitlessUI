@@ -45,7 +45,7 @@ public partial class ArchProgressBar_WOC : Control
         SizeF string2Size = e.Graphics.MeasureString(_text2, Font);
         SizeF string3Size = e.Graphics.MeasureString(_text3, Font);
 
-        float radiusByTwo = (Width - Line2Thikness) / 2;
+        float radiusByTwo = (Width - ProgressLineThikness) / 2;
         int widthByTwo = Width / 2;
         e.Graphics.TranslateTransform(-(_line2Thinkness / 2F + radiusByTwo), -(_line2Thinkness / 2F + radiusByTwo));
 
@@ -71,7 +71,7 @@ public partial class ArchProgressBar_WOC : Control
         base.OnPaint(pe);
         Pen pen1 = new Pen(_color1, _line1Thinkness);
         Pen pen2 = new Pen(_color2, _line2Thinkness);
-        float radiusByTwo = (Width - this.Line2Thikness) / 2F;
+        float radiusByTwo = (Width - this.ProgressLineThikness) / 2F;
 
 
         float progressEndAngle = (_angle - 0) / 100F;
@@ -80,8 +80,8 @@ public partial class ArchProgressBar_WOC : Control
 
         pe.Graphics.RotateTransform((360 - _angle) / 2 + 90);
 
-        pe.Graphics.DrawArc(pen1, -radiusByTwo, -radiusByTwo, Width - Line2Thikness, Width - Line2Thikness, 0, _angle);
-        pe.Graphics.DrawArc(pen2, -radiusByTwo, -radiusByTwo, Width - Line2Thikness, Width - Line2Thikness, 0, progressEndAngle * _progress);
+        pe.Graphics.DrawArc(pen1, -radiusByTwo, -radiusByTwo, Width - ProgressLineThikness, Width - ProgressLineThikness, 0, _angle);
+        pe.Graphics.DrawArc(pen2, -radiusByTwo, -radiusByTwo, Width - ProgressLineThikness, Width - ProgressLineThikness, 0, progressEndAngle * _progress);
 
         if (_style != styleEnum.None)
             drawContent(pe, (360 - _angle) / 2 + 90);
@@ -151,7 +151,7 @@ public partial class ArchProgressBar_WOC : Control
         }
     }
 
-    public float Line1Thikness
+    public float BackLineThikness
     {
         get { return _line1Thinkness; }
         set
@@ -161,7 +161,7 @@ public partial class ArchProgressBar_WOC : Control
         }
     }
 
-    public float Line2Thikness
+    public float ProgressLineThikness
     {
         get { return _line2Thinkness; }
         set
@@ -171,7 +171,7 @@ public partial class ArchProgressBar_WOC : Control
         }
     }
 
-    public Color ProgressColor
+    public Color ProgressBackColor
     {
         get { return _color1; }
         set
@@ -181,7 +181,7 @@ public partial class ArchProgressBar_WOC : Control
         }
     }
 
-    public Color ProgressBackColor
+    public Color ProgressColor
     {
         get { return _color2; }
         set
