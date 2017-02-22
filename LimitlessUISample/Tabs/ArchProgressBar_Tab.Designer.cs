@@ -29,94 +29,132 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.archProgressBar_WOC1 = new ArchProgressBar_WOC();
-            this.archProgressBar_WOC2 = new ArchProgressBar_WOC();
-            this.archProgressBar_WOC3 = new ArchProgressBar_WOC();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.archProgressBar_WOC11 = new ArchProgressBar_WOC();
+            this.archProgressBar_WOC10 = new ArchProgressBar_WOC();
+            this.archProgressBar_WOC8 = new ArchProgressBar_WOC();
+            this.archProgressBar_WOC9 = new ArchProgressBar_WOC();
             this.archProgressBar_WOC4 = new ArchProgressBar_WOC();
             this.archProgressBar_WOC5 = new ArchProgressBar_WOC();
             this.archProgressBar_WOC6 = new ArchProgressBar_WOC();
-            this.archProgressBar_WOC8 = new ArchProgressBar_WOC();
-            this.archProgressBar_WOC9 = new ArchProgressBar_WOC();
-            this.archProgressBar_WOC10 = new ArchProgressBar_WOC();
-            this.archProgressBar_WOC11 = new ArchProgressBar_WOC();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.archProgressBar_WOC3 = new ArchProgressBar_WOC();
+            this.archProgressBar_WOC2 = new ArchProgressBar_WOC();
+            this.archProgressBar_WOC1 = new ArchProgressBar_WOC();
             this.SuspendLayout();
             // 
-            // archProgressBar_WOC1
+            // panel1
             // 
-            this.archProgressBar_WOC1.Angle = 360;
-            this.archProgressBar_WOC1.BackColor = System.Drawing.Color.White;
-            this.archProgressBar_WOC1.BackLineThikness = 5F;
-            this.archProgressBar_WOC1.Font1 = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.archProgressBar_WOC1.Font2 = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.archProgressBar_WOC1.Font3 = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.archProgressBar_WOC1.Location = new System.Drawing.Point(0, 0);
-            this.archProgressBar_WOC1.Name = "archProgressBar_WOC1";
-            this.archProgressBar_WOC1.ProgressBackColor = System.Drawing.Color.Silver;
-            this.archProgressBar_WOC1.ProgressColor = System.Drawing.Color.SeaGreen;
-            this.archProgressBar_WOC1.ProgressLineThikness = 9F;
-            this.archProgressBar_WOC1.Size = new System.Drawing.Size(200, 200);
-            this.archProgressBar_WOC1.Style = ArchProgressBar_WOC.styleEnum.Style1;
-            this.archProgressBar_WOC1.TabIndex = 0;
-            this.archProgressBar_WOC1.Text = "archProgressBar_WOC1";
-            this.archProgressBar_WOC1.Text1 = "CPU";
-            this.archProgressBar_WOC1.Text1Color = System.Drawing.SystemColors.ControlText;
-            this.archProgressBar_WOC1.Text2 = "99%";
-            this.archProgressBar_WOC1.Text2Color = System.Drawing.SystemColors.ControlText;
-            this.archProgressBar_WOC1.Text3 = "55C";
-            this.archProgressBar_WOC1.Text3Color = System.Drawing.SystemColors.ControlText;
-            this.archProgressBar_WOC1.Value = 50F;
+            this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.Location = new System.Drawing.Point(402, 394);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(401, 113);
+            this.panel1.TabIndex = 11;
             // 
-            // archProgressBar_WOC2
+            // timer1
             // 
-            this.archProgressBar_WOC2.Angle = 360;
-            this.archProgressBar_WOC2.BackColor = System.Drawing.Color.White;
-            this.archProgressBar_WOC2.BackLineThikness = 5F;
-            this.archProgressBar_WOC2.Font1 = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.archProgressBar_WOC2.Font2 = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.archProgressBar_WOC2.Font3 = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.archProgressBar_WOC2.Location = new System.Drawing.Point(201, 0);
-            this.archProgressBar_WOC2.Name = "archProgressBar_WOC2";
-            this.archProgressBar_WOC2.ProgressBackColor = System.Drawing.Color.Silver;
-            this.archProgressBar_WOC2.ProgressColor = System.Drawing.Color.SeaGreen;
-            this.archProgressBar_WOC2.ProgressLineThikness = 9F;
-            this.archProgressBar_WOC2.Size = new System.Drawing.Size(200, 200);
-            this.archProgressBar_WOC2.Style = ArchProgressBar_WOC.styleEnum.Style2;
-            this.archProgressBar_WOC2.TabIndex = 1;
-            this.archProgressBar_WOC2.Text = "archProgressBar_WOC2";
-            this.archProgressBar_WOC2.Text1 = "CPU";
-            this.archProgressBar_WOC2.Text1Color = System.Drawing.SystemColors.ControlText;
-            this.archProgressBar_WOC2.Text2 = "99%";
-            this.archProgressBar_WOC2.Text2Color = System.Drawing.SystemColors.ControlText;
-            this.archProgressBar_WOC2.Text3 = "55C";
-            this.archProgressBar_WOC2.Text3Color = System.Drawing.SystemColors.ControlText;
-            this.archProgressBar_WOC2.Value = 50F;
+            this.timer1.Interval = 700;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // archProgressBar_WOC3
+            // archProgressBar_WOC11
             // 
-            this.archProgressBar_WOC3.Angle = 360;
-            this.archProgressBar_WOC3.BackColor = System.Drawing.Color.White;
-            this.archProgressBar_WOC3.BackLineThikness = 5F;
-            this.archProgressBar_WOC3.Font1 = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.archProgressBar_WOC3.Font2 = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.archProgressBar_WOC3.Font3 = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.archProgressBar_WOC3.Location = new System.Drawing.Point(402, 0);
-            this.archProgressBar_WOC3.Name = "archProgressBar_WOC3";
-            this.archProgressBar_WOC3.ProgressBackColor = System.Drawing.Color.Silver;
-            this.archProgressBar_WOC3.ProgressColor = System.Drawing.Color.SeaGreen;
-            this.archProgressBar_WOC3.ProgressLineThikness = 9F;
-            this.archProgressBar_WOC3.Size = new System.Drawing.Size(200, 200);
-            this.archProgressBar_WOC3.Style = ArchProgressBar_WOC.styleEnum.Style3;
-            this.archProgressBar_WOC3.TabIndex = 2;
-            this.archProgressBar_WOC3.Text = "archProgressBar_WOC3";
-            this.archProgressBar_WOC3.Text1 = "CPU";
-            this.archProgressBar_WOC3.Text1Color = System.Drawing.SystemColors.ControlText;
-            this.archProgressBar_WOC3.Text2 = "99%";
-            this.archProgressBar_WOC3.Text2Color = System.Drawing.SystemColors.ControlText;
-            this.archProgressBar_WOC3.Text3 = "55C";
-            this.archProgressBar_WOC3.Text3Color = System.Drawing.SystemColors.ControlText;
-            this.archProgressBar_WOC3.Value = 50F;
+            this.archProgressBar_WOC11.Angle = 300;
+            this.archProgressBar_WOC11.BackColor = System.Drawing.Color.White;
+            this.archProgressBar_WOC11.BackLineThikness = 15F;
+            this.archProgressBar_WOC11.Font1 = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.archProgressBar_WOC11.Font2 = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.archProgressBar_WOC11.Font3 = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.archProgressBar_WOC11.Location = new System.Drawing.Point(603, 201);
+            this.archProgressBar_WOC11.Name = "archProgressBar_WOC11";
+            this.archProgressBar_WOC11.ProgressBackColor = System.Drawing.Color.Silver;
+            this.archProgressBar_WOC11.ProgressColor = System.Drawing.Color.SeaGreen;
+            this.archProgressBar_WOC11.ProgressLineThikness = 15F;
+            this.archProgressBar_WOC11.Size = new System.Drawing.Size(200, 192);
+            this.archProgressBar_WOC11.Style = ArchProgressBar_WOC.styleEnum.Style3;
+            this.archProgressBar_WOC11.TabIndex = 10;
+            this.archProgressBar_WOC11.Text = "archProgressBar_WOC11";
+            this.archProgressBar_WOC11.Text1 = "CPU";
+            this.archProgressBar_WOC11.Text1Color = System.Drawing.SystemColors.ControlText;
+            this.archProgressBar_WOC11.Text2 = "99%";
+            this.archProgressBar_WOC11.Text2Color = System.Drawing.SystemColors.ControlText;
+            this.archProgressBar_WOC11.Text3 = "55C";
+            this.archProgressBar_WOC11.Text3Color = System.Drawing.SystemColors.ControlText;
+            this.archProgressBar_WOC11.Value = 50F;
+            // 
+            // archProgressBar_WOC10
+            // 
+            this.archProgressBar_WOC10.Angle = 360;
+            this.archProgressBar_WOC10.BackColor = System.Drawing.Color.White;
+            this.archProgressBar_WOC10.BackLineThikness = 15F;
+            this.archProgressBar_WOC10.Font1 = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.archProgressBar_WOC10.Font2 = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.archProgressBar_WOC10.Font3 = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.archProgressBar_WOC10.Location = new System.Drawing.Point(603, 0);
+            this.archProgressBar_WOC10.Name = "archProgressBar_WOC10";
+            this.archProgressBar_WOC10.ProgressBackColor = System.Drawing.Color.Silver;
+            this.archProgressBar_WOC10.ProgressColor = System.Drawing.Color.SeaGreen;
+            this.archProgressBar_WOC10.ProgressLineThikness = 15F;
+            this.archProgressBar_WOC10.Size = new System.Drawing.Size(200, 200);
+            this.archProgressBar_WOC10.Style = ArchProgressBar_WOC.styleEnum.Style3;
+            this.archProgressBar_WOC10.TabIndex = 9;
+            this.archProgressBar_WOC10.Text = "archProgressBar_WOC10";
+            this.archProgressBar_WOC10.Text1 = "CPU";
+            this.archProgressBar_WOC10.Text1Color = System.Drawing.SystemColors.ControlText;
+            this.archProgressBar_WOC10.Text2 = "99%";
+            this.archProgressBar_WOC10.Text2Color = System.Drawing.SystemColors.ControlText;
+            this.archProgressBar_WOC10.Text3 = "55C";
+            this.archProgressBar_WOC10.Text3Color = System.Drawing.SystemColors.ControlText;
+            this.archProgressBar_WOC10.Value = 50F;
+            // 
+            // archProgressBar_WOC8
+            // 
+            this.archProgressBar_WOC8.Angle = 180;
+            this.archProgressBar_WOC8.BackColor = System.Drawing.Color.White;
+            this.archProgressBar_WOC8.BackLineThikness = 45F;
+            this.archProgressBar_WOC8.Font1 = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.archProgressBar_WOC8.Font2 = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.archProgressBar_WOC8.Font3 = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.archProgressBar_WOC8.Location = new System.Drawing.Point(201, 394);
+            this.archProgressBar_WOC8.Name = "archProgressBar_WOC8";
+            this.archProgressBar_WOC8.ProgressBackColor = System.Drawing.Color.Silver;
+            this.archProgressBar_WOC8.ProgressColor = System.Drawing.Color.SeaGreen;
+            this.archProgressBar_WOC8.ProgressLineThikness = 45F;
+            this.archProgressBar_WOC8.Size = new System.Drawing.Size(200, 113);
+            this.archProgressBar_WOC8.Style = ArchProgressBar_WOC.styleEnum.None;
+            this.archProgressBar_WOC8.TabIndex = 7;
+            this.archProgressBar_WOC8.Text = "archProgressBar_WOC8";
+            this.archProgressBar_WOC8.Text1 = "CPU";
+            this.archProgressBar_WOC8.Text1Color = System.Drawing.SystemColors.ControlText;
+            this.archProgressBar_WOC8.Text2 = "99%";
+            this.archProgressBar_WOC8.Text2Color = System.Drawing.SystemColors.ControlText;
+            this.archProgressBar_WOC8.Text3 = "55C";
+            this.archProgressBar_WOC8.Text3Color = System.Drawing.SystemColors.ControlText;
+            this.archProgressBar_WOC8.Value = 50F;
+            // 
+            // archProgressBar_WOC9
+            // 
+            this.archProgressBar_WOC9.Angle = 180;
+            this.archProgressBar_WOC9.BackColor = System.Drawing.Color.White;
+            this.archProgressBar_WOC9.BackLineThikness = 35F;
+            this.archProgressBar_WOC9.Font1 = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.archProgressBar_WOC9.Font2 = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.archProgressBar_WOC9.Font3 = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.archProgressBar_WOC9.Location = new System.Drawing.Point(0, 394);
+            this.archProgressBar_WOC9.Name = "archProgressBar_WOC9";
+            this.archProgressBar_WOC9.ProgressBackColor = System.Drawing.Color.Silver;
+            this.archProgressBar_WOC9.ProgressColor = System.Drawing.Color.SeaGreen;
+            this.archProgressBar_WOC9.ProgressLineThikness = 45F;
+            this.archProgressBar_WOC9.Size = new System.Drawing.Size(200, 113);
+            this.archProgressBar_WOC9.Style = ArchProgressBar_WOC.styleEnum.None;
+            this.archProgressBar_WOC9.TabIndex = 6;
+            this.archProgressBar_WOC9.Text = "archProgressBar_WOC9";
+            this.archProgressBar_WOC9.Text1 = "CPU";
+            this.archProgressBar_WOC9.Text1Color = System.Drawing.SystemColors.ControlText;
+            this.archProgressBar_WOC9.Text2 = "99%";
+            this.archProgressBar_WOC9.Text2Color = System.Drawing.SystemColors.ControlText;
+            this.archProgressBar_WOC9.Text3 = "55C";
+            this.archProgressBar_WOC9.Text3Color = System.Drawing.SystemColors.ControlText;
+            this.archProgressBar_WOC9.Value = 50F;
             // 
             // archProgressBar_WOC4
             // 
@@ -193,118 +231,80 @@
             this.archProgressBar_WOC6.Text3Color = System.Drawing.SystemColors.ControlText;
             this.archProgressBar_WOC6.Value = 50F;
             // 
-            // archProgressBar_WOC8
+            // archProgressBar_WOC3
             // 
-            this.archProgressBar_WOC8.Angle = 180;
-            this.archProgressBar_WOC8.BackColor = System.Drawing.Color.White;
-            this.archProgressBar_WOC8.BackLineThikness = 45F;
-            this.archProgressBar_WOC8.Font1 = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.archProgressBar_WOC8.Font2 = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.archProgressBar_WOC8.Font3 = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.archProgressBar_WOC8.Location = new System.Drawing.Point(201, 394);
-            this.archProgressBar_WOC8.Name = "archProgressBar_WOC8";
-            this.archProgressBar_WOC8.ProgressBackColor = System.Drawing.Color.Silver;
-            this.archProgressBar_WOC8.ProgressColor = System.Drawing.Color.SeaGreen;
-            this.archProgressBar_WOC8.ProgressLineThikness = 45F;
-            this.archProgressBar_WOC8.Size = new System.Drawing.Size(200, 113);
-            this.archProgressBar_WOC8.Style = ArchProgressBar_WOC.styleEnum.None;
-            this.archProgressBar_WOC8.TabIndex = 7;
-            this.archProgressBar_WOC8.Text = "archProgressBar_WOC8";
-            this.archProgressBar_WOC8.Text1 = "CPU";
-            this.archProgressBar_WOC8.Text1Color = System.Drawing.SystemColors.ControlText;
-            this.archProgressBar_WOC8.Text2 = "99%";
-            this.archProgressBar_WOC8.Text2Color = System.Drawing.SystemColors.ControlText;
-            this.archProgressBar_WOC8.Text3 = "55C";
-            this.archProgressBar_WOC8.Text3Color = System.Drawing.SystemColors.ControlText;
-            this.archProgressBar_WOC8.Value = 50F;
+            this.archProgressBar_WOC3.Angle = 360;
+            this.archProgressBar_WOC3.BackColor = System.Drawing.Color.White;
+            this.archProgressBar_WOC3.BackLineThikness = 5F;
+            this.archProgressBar_WOC3.Font1 = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.archProgressBar_WOC3.Font2 = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.archProgressBar_WOC3.Font3 = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.archProgressBar_WOC3.Location = new System.Drawing.Point(402, 0);
+            this.archProgressBar_WOC3.Name = "archProgressBar_WOC3";
+            this.archProgressBar_WOC3.ProgressBackColor = System.Drawing.Color.Silver;
+            this.archProgressBar_WOC3.ProgressColor = System.Drawing.Color.SeaGreen;
+            this.archProgressBar_WOC3.ProgressLineThikness = 9F;
+            this.archProgressBar_WOC3.Size = new System.Drawing.Size(200, 200);
+            this.archProgressBar_WOC3.Style = ArchProgressBar_WOC.styleEnum.Style3;
+            this.archProgressBar_WOC3.TabIndex = 2;
+            this.archProgressBar_WOC3.Text = "archProgressBar_WOC3";
+            this.archProgressBar_WOC3.Text1 = "CPU";
+            this.archProgressBar_WOC3.Text1Color = System.Drawing.SystemColors.ControlText;
+            this.archProgressBar_WOC3.Text2 = "99%";
+            this.archProgressBar_WOC3.Text2Color = System.Drawing.SystemColors.ControlText;
+            this.archProgressBar_WOC3.Text3 = "55C";
+            this.archProgressBar_WOC3.Text3Color = System.Drawing.SystemColors.ControlText;
+            this.archProgressBar_WOC3.Value = 50F;
             // 
-            // archProgressBar_WOC9
+            // archProgressBar_WOC2
             // 
-            this.archProgressBar_WOC9.Angle = 180;
-            this.archProgressBar_WOC9.BackColor = System.Drawing.Color.White;
-            this.archProgressBar_WOC9.BackLineThikness = 35F;
-            this.archProgressBar_WOC9.Font1 = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.archProgressBar_WOC9.Font2 = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.archProgressBar_WOC9.Font3 = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.archProgressBar_WOC9.Location = new System.Drawing.Point(0, 394);
-            this.archProgressBar_WOC9.Name = "archProgressBar_WOC9";
-            this.archProgressBar_WOC9.ProgressBackColor = System.Drawing.Color.Silver;
-            this.archProgressBar_WOC9.ProgressColor = System.Drawing.Color.SeaGreen;
-            this.archProgressBar_WOC9.ProgressLineThikness = 45F;
-            this.archProgressBar_WOC9.Size = new System.Drawing.Size(200, 113);
-            this.archProgressBar_WOC9.Style = ArchProgressBar_WOC.styleEnum.None;
-            this.archProgressBar_WOC9.TabIndex = 6;
-            this.archProgressBar_WOC9.Text = "archProgressBar_WOC9";
-            this.archProgressBar_WOC9.Text1 = "CPU";
-            this.archProgressBar_WOC9.Text1Color = System.Drawing.SystemColors.ControlText;
-            this.archProgressBar_WOC9.Text2 = "99%";
-            this.archProgressBar_WOC9.Text2Color = System.Drawing.SystemColors.ControlText;
-            this.archProgressBar_WOC9.Text3 = "55C";
-            this.archProgressBar_WOC9.Text3Color = System.Drawing.SystemColors.ControlText;
-            this.archProgressBar_WOC9.Value = 50F;
+            this.archProgressBar_WOC2.Angle = 360;
+            this.archProgressBar_WOC2.BackColor = System.Drawing.Color.White;
+            this.archProgressBar_WOC2.BackLineThikness = 5F;
+            this.archProgressBar_WOC2.Font1 = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.archProgressBar_WOC2.Font2 = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.archProgressBar_WOC2.Font3 = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.archProgressBar_WOC2.Location = new System.Drawing.Point(201, 0);
+            this.archProgressBar_WOC2.Name = "archProgressBar_WOC2";
+            this.archProgressBar_WOC2.ProgressBackColor = System.Drawing.Color.Silver;
+            this.archProgressBar_WOC2.ProgressColor = System.Drawing.Color.SeaGreen;
+            this.archProgressBar_WOC2.ProgressLineThikness = 9F;
+            this.archProgressBar_WOC2.Size = new System.Drawing.Size(200, 200);
+            this.archProgressBar_WOC2.Style = ArchProgressBar_WOC.styleEnum.Style2;
+            this.archProgressBar_WOC2.TabIndex = 1;
+            this.archProgressBar_WOC2.Text = "archProgressBar_WOC2";
+            this.archProgressBar_WOC2.Text1 = "CPU";
+            this.archProgressBar_WOC2.Text1Color = System.Drawing.SystemColors.ControlText;
+            this.archProgressBar_WOC2.Text2 = "99%";
+            this.archProgressBar_WOC2.Text2Color = System.Drawing.SystemColors.ControlText;
+            this.archProgressBar_WOC2.Text3 = "55C";
+            this.archProgressBar_WOC2.Text3Color = System.Drawing.SystemColors.ControlText;
+            this.archProgressBar_WOC2.Value = 50F;
             // 
-            // archProgressBar_WOC10
+            // archProgressBar_WOC1
             // 
-            this.archProgressBar_WOC10.Angle = 360;
-            this.archProgressBar_WOC10.BackColor = System.Drawing.Color.White;
-            this.archProgressBar_WOC10.BackLineThikness = 15F;
-            this.archProgressBar_WOC10.Font1 = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.archProgressBar_WOC10.Font2 = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.archProgressBar_WOC10.Font3 = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.archProgressBar_WOC10.Location = new System.Drawing.Point(603, 0);
-            this.archProgressBar_WOC10.Name = "archProgressBar_WOC10";
-            this.archProgressBar_WOC10.ProgressBackColor = System.Drawing.Color.Silver;
-            this.archProgressBar_WOC10.ProgressColor = System.Drawing.Color.SeaGreen;
-            this.archProgressBar_WOC10.ProgressLineThikness = 15F;
-            this.archProgressBar_WOC10.Size = new System.Drawing.Size(200, 200);
-            this.archProgressBar_WOC10.Style = ArchProgressBar_WOC.styleEnum.Style3;
-            this.archProgressBar_WOC10.TabIndex = 9;
-            this.archProgressBar_WOC10.Text = "archProgressBar_WOC10";
-            this.archProgressBar_WOC10.Text1 = "CPU";
-            this.archProgressBar_WOC10.Text1Color = System.Drawing.SystemColors.ControlText;
-            this.archProgressBar_WOC10.Text2 = "99%";
-            this.archProgressBar_WOC10.Text2Color = System.Drawing.SystemColors.ControlText;
-            this.archProgressBar_WOC10.Text3 = "55C";
-            this.archProgressBar_WOC10.Text3Color = System.Drawing.SystemColors.ControlText;
-            this.archProgressBar_WOC10.Value = 50F;
-            // 
-            // archProgressBar_WOC11
-            // 
-            this.archProgressBar_WOC11.Angle = 300;
-            this.archProgressBar_WOC11.BackColor = System.Drawing.Color.White;
-            this.archProgressBar_WOC11.BackLineThikness = 15F;
-            this.archProgressBar_WOC11.Font1 = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.archProgressBar_WOC11.Font2 = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.archProgressBar_WOC11.Font3 = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.archProgressBar_WOC11.Location = new System.Drawing.Point(603, 201);
-            this.archProgressBar_WOC11.Name = "archProgressBar_WOC11";
-            this.archProgressBar_WOC11.ProgressBackColor = System.Drawing.Color.Silver;
-            this.archProgressBar_WOC11.ProgressColor = System.Drawing.Color.SeaGreen;
-            this.archProgressBar_WOC11.ProgressLineThikness = 15F;
-            this.archProgressBar_WOC11.Size = new System.Drawing.Size(200, 192);
-            this.archProgressBar_WOC11.Style = ArchProgressBar_WOC.styleEnum.Style3;
-            this.archProgressBar_WOC11.TabIndex = 10;
-            this.archProgressBar_WOC11.Text = "archProgressBar_WOC11";
-            this.archProgressBar_WOC11.Text1 = "CPU";
-            this.archProgressBar_WOC11.Text1Color = System.Drawing.SystemColors.ControlText;
-            this.archProgressBar_WOC11.Text2 = "99%";
-            this.archProgressBar_WOC11.Text2Color = System.Drawing.SystemColors.ControlText;
-            this.archProgressBar_WOC11.Text3 = "55C";
-            this.archProgressBar_WOC11.Text3Color = System.Drawing.SystemColors.ControlText;
-            this.archProgressBar_WOC11.Value = 50F;
-            // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.Color.White;
-            this.panel1.Location = new System.Drawing.Point(402, 394);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(401, 113);
-            this.panel1.TabIndex = 11;
-            // 
-            // timer1
-            // 
-            this.timer1.Interval = 700;
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            this.archProgressBar_WOC1.Angle = 360;
+            this.archProgressBar_WOC1.BackColor = System.Drawing.Color.White;
+            this.archProgressBar_WOC1.BackLineThikness = 5F;
+            this.archProgressBar_WOC1.Font1 = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.archProgressBar_WOC1.Font2 = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.archProgressBar_WOC1.Font3 = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.archProgressBar_WOC1.Location = new System.Drawing.Point(0, 0);
+            this.archProgressBar_WOC1.Name = "archProgressBar_WOC1";
+            this.archProgressBar_WOC1.ProgressBackColor = System.Drawing.Color.Silver;
+            this.archProgressBar_WOC1.ProgressColor = System.Drawing.Color.SeaGreen;
+            this.archProgressBar_WOC1.ProgressLineThikness = 9F;
+            this.archProgressBar_WOC1.Size = new System.Drawing.Size(200, 200);
+            this.archProgressBar_WOC1.Style = ArchProgressBar_WOC.styleEnum.Style1;
+            this.archProgressBar_WOC1.TabIndex = 0;
+            this.archProgressBar_WOC1.Text = "archProgressBar_WOC1";
+            this.archProgressBar_WOC1.Text1 = "CPU";
+            this.archProgressBar_WOC1.Text1Color = System.Drawing.SystemColors.ControlText;
+            this.archProgressBar_WOC1.Text2 = "99%";
+            this.archProgressBar_WOC1.Text2Color = System.Drawing.SystemColors.ControlText;
+            this.archProgressBar_WOC1.Text3 = "55C";
+            this.archProgressBar_WOC1.Text3Color = System.Drawing.SystemColors.ControlText;
+            this.archProgressBar_WOC1.Value = 50F;
             // 
             // ArchProgressBar_Tab
             // 

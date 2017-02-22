@@ -21,7 +21,7 @@ namespace LimitlessUISample.Tabs
 
             for (int i = 0; i < 100; i++)
             {
-                listView_WOC1.add(new Other_ListView_Child("The Most Awsome ListView Child "+i));
+                listView_WOC1.add(new Other_ListView_Child(" Amazing ListView Child "+i));
             }
         }
 

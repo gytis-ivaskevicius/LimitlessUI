@@ -30,9 +30,9 @@
         {
             this.switch_WOC1 = new Switch_WOC();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.separator_WOC1 = new Separator_WOC();
+            this.textBox_WOC1 = new LimitlessUI.TextBox_WOC();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -62,19 +62,9 @@
             this.panel1.Size = new System.Drawing.Size(81, 50);
             this.panel1.TabIndex = 1;
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F);
-            this.label1.Location = new System.Drawing.Point(17, 15);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(241, 17);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "The Most Awsome ListView Child 100";
-            // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.label1);
+            this.panel2.Controls.Add(this.textBox_WOC1);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
@@ -83,6 +73,7 @@
             // 
             // separator_WOC1
             // 
+            this.separator_WOC1.AnimationEnabled = false;
             this.separator_WOC1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.separator_WOC1.LineColor = System.Drawing.Color.DimGray;
             this.separator_WOC1.LineThikness = 1F;
@@ -91,6 +82,16 @@
             this.separator_WOC1.Size = new System.Drawing.Size(463, 50);
             this.separator_WOC1.TabIndex = 5;
             this.separator_WOC1.Text = "separator_WOC1";
+            this.separator_WOC1.Val = 0;
+            // 
+            // textBox_WOC1
+            // 
+            this.textBox_WOC1.Font = new System.Drawing.Font("Segoe UI", 10.5F);
+            this.textBox_WOC1.Location = new System.Drawing.Point(20, 12);
+            this.textBox_WOC1.Name = "textBox_WOC1";
+            this.textBox_WOC1.Size = new System.Drawing.Size(172, 27);
+            this.textBox_WOC1.TabIndex = 0;
+            this.textBox_WOC1.TextBoxText = "Awsome EditText 100";
             // 
             // Other_ListView_Child
             // 
@@ -103,7 +104,6 @@
             this.Size = new System.Drawing.Size(803, 50);
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -112,8 +112,8 @@
 
         private Switch_WOC switch_WOC1;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel2;
         private Separator_WOC separator_WOC1;
+        private LimitlessUI.TextBox_WOC textBox_WOC1;
     }
 }

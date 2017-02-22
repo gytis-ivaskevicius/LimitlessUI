@@ -15,7 +15,7 @@ namespace LimitlessUISample.Childs
         public Other_ListView_Child(string text)
         {
             InitializeComponent();
-            label1.Text = text;
+            textBox_WOC1.TextBox.Text = text;
         }
     }
 }

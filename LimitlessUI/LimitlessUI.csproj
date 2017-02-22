@@ -8,7 +8,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>LimitlessUI</RootNamespace>
-    <AssemblyName>LimitlessUI_1.0.0</AssemblyName>
+    <AssemblyName>LimitlessUI_1.1.0</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -79,6 +79,17 @@
     <Compile Include="Switch_WOC.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="TextBox_WOC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TextBox_WOC.Designer.cs">
+      <DependentUpon>TextBox_WOC.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="TextBox_WOC.resx">
+      <DependentUpon>TextBox_WOC.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
