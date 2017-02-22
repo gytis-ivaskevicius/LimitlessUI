@@ -38,12 +38,15 @@ public partial class Separator_WOC : Control
     private void timerTick(object sender, EventArgs e)
     {
         _val += _progress;
-        Invalidate();
         if (_val > Width - (Padding.Right + Padding.Left) || _val < 0)
         {
             _timer.Stop();
-            _val = 0;
+            if (_val < 0)
+                _val = 0;
         }
+        else if (_val > Width - (Padding.Right + Padding.Left))
+            _val = Width - (Padding.Right + Padding.Left);
+        Invalidate();
     }
 
     protected override void OnPaddingChanged(EventArgs e)
@@ -64,6 +67,12 @@ public partial class Separator_WOC : Control
     {
         get { return _animationEnabled; }
         set { _animationEnabled = value; }
+    }
+
+    public int Val
+    {
+        get { return _val; }
+        set { _val = value; Invalidate(); }
     }
 
     public float LineThikness
