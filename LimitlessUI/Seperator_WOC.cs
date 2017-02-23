@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -6,6 +7,7 @@ public partial class Separator_WOC : Control
 {
     private float _thikness = 1;
     private Color _lineColor = Color.DimGray;
+    private Color _animationColor = Color.SeaGreen;
     private Timer _timer;
     private bool _animationEnabled = false;
     private int _val = 0;
@@ -60,7 +62,7 @@ public partial class Separator_WOC : Control
         base.OnPaint(pe);
         pe.Graphics.DrawLine(new Pen(_lineColor, _thikness), Padding.Left, this.Height / 2, this.Width - Padding.Right, this.Height / 2);
         if (_animationEnabled)
-            pe.Graphics.DrawLine(new Pen(Color.Red, _thikness), Padding.Left + (Width - _val) / 2, this.Height / 2, (Width + _val) / 2, this.Height / 2);
+            pe.Graphics.DrawLine(new Pen(_animationColor, _thikness), Padding.Left + (Width - _val) / 2, this.Height / 2, (Width + _val) / 2, this.Height / 2);
     }
 
     public bool AnimationEnabled
@@ -91,6 +93,16 @@ public partial class Separator_WOC : Control
         set
         {
             _lineColor = value;
+            Invalidate();
+        }
+    }
+
+    public Color AnimationColor
+    {
+        get { return _animationColor; }
+        set
+        {
+            _animationColor = value;
             Invalidate();
         }
     }

@@ -7,8 +7,10 @@ namespace LimitlessUI
     public partial class TextBox_WOC : UserControl
     {
         private Color _underlineColor = Color.Gray;
+        private Color _animationColor = Color.Red;
+
         private int _interval = 17;
-        private int _step = 21;
+        private int _step = 19;
         private bool _focused = false;
         public TextBox_WOC()
         {
@@ -33,6 +35,7 @@ namespace LimitlessUI
         private void textBox_MouseEnter(object sender, EventArgs e)
         {
             seperator.startAnimating(_interval, _step, -1);
+            Underline.AnimationColor = _animationColor;
         }
 
         private void textBox_MouseLeave(object sender, EventArgs e)
@@ -47,6 +50,12 @@ namespace LimitlessUI
         {
             get { return textBox.Text; }
             set { textBox.Text = value; }
+        }
+
+        public Color AnimationColor
+        {
+            get { return _animationColor; }
+            set { _animationColor = value; }
         }
 
         public RichTextBox TextBox { get { return textBox; } }
