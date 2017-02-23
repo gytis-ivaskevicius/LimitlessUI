@@ -1,12 +1,6 @@
 ﻿using LimitlessUISample.Tabs;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace LimitlessUISample
@@ -21,6 +15,12 @@ namespace LimitlessUISample
             ArchProgressBar_Tab.getInstance().Dock = DockStyle.Fill;
             ArchProgressBar_Tab.getInstance().BringToFront();
 
+            
+            drawLine(LinePositions.LEFT, Color.FromArgb(41, 53, 65), 64, Height);
+            drawLine(LinePositions.LEFT, Color.SeaGreen, 0, 64);
+            drawLine(LinePositions.TOP, Color.SeaGreen, 0, 203);
+            drawLine(LinePositions.BOTTOM, Color.FromArgb(41, 53, 65), 0, 203);
+            Invalidate();
         }
         //-----------------------------------------[Form Handling]--------------------------------------------------//
         private void navigation_click(object sender, EventArgs e)

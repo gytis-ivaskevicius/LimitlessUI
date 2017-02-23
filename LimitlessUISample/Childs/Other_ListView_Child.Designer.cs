@@ -28,30 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.switch_WOC1 = new Switch_WOC();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.separator_WOC1 = new Separator_WOC();
             this.textBox_WOC1 = new LimitlessUI.TextBox_WOC();
+            this.switch_WOC1 = new Switch_WOC();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // switch_WOC1
-            // 
-            this.switch_WOC1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.switch_WOC1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.switch_WOC1.IsOn = true;
-            this.switch_WOC1.Location = new System.Drawing.Point(13, 15);
-            this.switch_WOC1.Name = "switch_WOC1";
-            this.switch_WOC1.OffColor = System.Drawing.Color.DarkGray;
-            this.switch_WOC1.OffText = "Off";
-            this.switch_WOC1.OnColor = System.Drawing.Color.SeaGreen;
-            this.switch_WOC1.OnText = "On";
-            this.switch_WOC1.Size = new System.Drawing.Size(51, 18);
-            this.switch_WOC1.TabIndex = 0;
-            this.switch_WOC1.Text = "switch_WOC1";
-            this.switch_WOC1.TextEnabled = true;
             // 
             // panel1
             // 
@@ -73,6 +57,7 @@
             // 
             // separator_WOC1
             // 
+            this.separator_WOC1.AnimationColor = System.Drawing.Color.SeaGreen;
             this.separator_WOC1.AnimationEnabled = false;
             this.separator_WOC1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.separator_WOC1.LineColor = System.Drawing.Color.DimGray;
@@ -86,12 +71,29 @@
             // 
             // textBox_WOC1
             // 
+            this.textBox_WOC1.AnimationColor = System.Drawing.Color.Purple;
             this.textBox_WOC1.Font = new System.Drawing.Font("Segoe UI", 10.5F);
             this.textBox_WOC1.Location = new System.Drawing.Point(20, 12);
             this.textBox_WOC1.Name = "textBox_WOC1";
             this.textBox_WOC1.Size = new System.Drawing.Size(172, 27);
             this.textBox_WOC1.TabIndex = 0;
             this.textBox_WOC1.TextBoxText = "Awsome EditText 100";
+            // 
+            // switch_WOC1
+            // 
+            this.switch_WOC1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.switch_WOC1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.switch_WOC1.IsOn = true;
+            this.switch_WOC1.Location = new System.Drawing.Point(13, 15);
+            this.switch_WOC1.Name = "switch_WOC1";
+            this.switch_WOC1.OffColor = System.Drawing.Color.DarkGray;
+            this.switch_WOC1.OffText = "Off";
+            this.switch_WOC1.OnColor = System.Drawing.Color.SeaGreen;
+            this.switch_WOC1.OnText = "On";
+            this.switch_WOC1.Size = new System.Drawing.Size(51, 18);
+            this.switch_WOC1.TabIndex = 0;
+            this.switch_WOC1.Text = "switch_WOC1";
+            this.switch_WOC1.TextEnabled = true;
             // 
             // Other_ListView_Child
             // 

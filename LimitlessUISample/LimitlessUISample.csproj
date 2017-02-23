@@ -57,6 +57,9 @@
     <Compile Include="Childs\Other_ListView_Child.Designer.cs">
       <DependentUpon>Other_ListView_Child.cs</DependentUpon>
     </Compile>
+    <Compile Include="CustomControl1.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
