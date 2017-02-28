@@ -100,10 +100,14 @@ Basic ProgressBar.
 
 ## Seperator:
 ### Description:
-Probobly the most dificult componet out of all of them. Line. I putted alot of work into it, I hope my mom is proud of me now.
+Line that is usually used to seperate components or parts of UI.
+Recently added animation that is implemented in TextBox_WOC.cs
 ### Properties:
 1. LineColor - Color of the line.
 2. LineThikness - Thikness of hte line.
+3. AnimationEnabled - If setted to false - animatoin will not be drawn.
+### Methods:
+1. StartAnimating - Params: interval - How often should animation be drawn(16 for full 60fps), progress - how much should animation be changed each frame, startValue - value from which animation should be started drawn (-1 for current value)
 ### Notes:
   Compatible with Left and right paddings. :)
   
@@ -145,7 +149,21 @@ Class that adds resisible grip to borderless forms edges.
   1. Change forms inharance from "Form" to "Form_WOC".
   2. Add padding of ur choice (Reccomended 2-3).
 ### Notes:
-  Im still working on it, the problem that im having is that i cant make it transparent. Got any suggestions? Please contact me.
+  Grip is drawn on the edges of the form, that means that form needs to have small padding (3-4). To hide that padding - drawLine method was created, view sample code to learn more
+  
+  
+<br>
+
+### TextBox:
+### Description:
+Material styled TextBox with animation
+### How to use it:
+  1. TextBoxText - Text of the TextBox.
+  2. AnimationColor - Color of animation.
+  3. TextBox - Returns TextBox itself.
+  4. Underline - Returns underline(that is seperator).
+
+
 
 
 
