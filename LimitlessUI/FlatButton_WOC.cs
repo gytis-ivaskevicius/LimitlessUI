@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -7,8 +8,13 @@ public partial class FlatButton_WOC : Control
 {
     ContentAlignment _textAligment = ContentAlignment.MiddleLeft;
     private Image _image;
+    private Image _selectedImage;
+    private Point _offset = new Point(0, 0);
     private SizeF _imageSize = new SizeF(20, 20);
+
     public bool _selected = false;
+    private bool drawImage = false;
+    private bool drawText = true;
 
     private Color _selectedBackColor = Color.DarkSeaGreen;
     private Color _selectedForeColor = Color.White;
@@ -27,17 +33,21 @@ public partial class FlatButton_WOC : Control
         MouseEnter += onMouseEnter;
         MouseLeave += onMouseExit;
         MouseClick += onClick;
+        _defaultForeColor = ForeColor;
     }
 
     private void onClick(object sender, MouseEventArgs e)
     {
-        BackColor = _selectedBackColor;
-        ForeColor = _selectedForeColor;
+        if (!_selected)
+        {
+            BackColor = _selectedBackColor;
+            ForeColor = _selectedForeColor;
 
-        foreach (Control control in Parent.Controls)
-            if (control is FlatButton_WOC)
-                ((FlatButton_WOC)control).unselect();
-        _selected = true;
+            foreach (Control control in Parent.Controls)
+                if (control is FlatButton_WOC)
+                    ((FlatButton_WOC)control).unselect();
+            _selected = true;
+        }
     }
 
     public void unselect()
@@ -74,32 +84,52 @@ public partial class FlatButton_WOC : Control
     protected override void OnPaint(PaintEventArgs pe)
     {
         base.OnPaint(pe);
-
-        drawString(pe.Graphics, Text, Font, ForeColor, _textAligment.ToString());
-        if (_image != null)
+        if (drawText)
+            drawString(pe.Graphics, Text, Font, ForeColor, _textAligment.ToString());
+        if (drawImage && _selected ? _selectedImage == null : _image != null)
         {
             float drawHeight = Height / 2 - _imageSize.Height / 2;
-            pe.Graphics.DrawImage(_image, drawHeight, drawHeight, _imageSize.Width, _imageSize.Height);
+            pe.Graphics.DrawImage(_selected ? (_selectedImage != null ? _selectedImage : _image) : _image, drawHeight, drawHeight, _imageSize.Width, _imageSize.Height);
         }
     }
 
     private void drawString(Graphics g, string text, Font font, Color color, string textAligment)
     {
         SizeF stringSize = g.MeasureString(Text, Font);
-        float drawX = Height;
-        float drawY = 0;
+        float drawX = drawImage ? Height + _offset.X: _offset.X;
+        float drawY = _offset.Y;
 
         if (textAligment.Contains("Middle"))
-            drawY = Height / 2 - stringSize.Height / 2;
+            drawY += Height / 2 - stringSize.Height / 2;
         else if (textAligment.Contains("Bottom"))
-            drawY = Height - stringSize.Height;
+            drawY += Height - stringSize.Height;
 
         if (textAligment.Contains("Center"))
-            drawX = Width / 2 - stringSize.Width / 2;
+            drawX += Width / 2 - stringSize.Width / 2;
         else if (textAligment.Contains("Right"))
-            drawX = Width - stringSize.Width;
+            drawX += Width - stringSize.Width;
 
         g.DrawString(Text, Font, new SolidBrush(ForeColor), drawX, drawY);
+    }
+
+
+    public Point TextOffset
+    {
+        get { return _offset; }
+        set { _offset = value; Invalidate(); }
+    }
+
+
+    public bool DrawText
+    {
+        get { return drawText; }
+        set { drawText = value; Invalidate(); }
+    }
+
+    public bool DrawImage
+    {
+        get { return drawImage; }
+        set { drawImage = value; }
     }
 
     public ContentAlignment TextAligment
@@ -118,6 +148,20 @@ public partial class FlatButton_WOC : Control
         set
         {
             _selected = value;
+            if (_selected)
+            {
+                BackColor = _selectedBackColor;
+                ForeColor = _selectedForeColor;
+            }
+        }
+    }
+
+    public Image ActiveImage
+    {
+        get { return _selectedImage; }
+        set
+        {
+            _selectedImage = value;
             Invalidate();
         }
     }
