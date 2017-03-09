@@ -9,11 +9,13 @@ public partial class ArchProgressBar_WOC : Control
         Style1,
         Style2,
         Style3,
+        Style4,
         None
     }
     private styleEnum _style = styleEnum.Style1;
     private Font _font1, _font2, _font3;
     private int _angle = 360;
+    private Point offset = new Point(0, 0);
 
     private string _text1 = "CPU";
     private string _text2 = "99%";
@@ -28,6 +30,7 @@ public partial class ArchProgressBar_WOC : Control
     private Color _text1Color = DefaultForeColor;
     private Color _text2Color = DefaultForeColor;
     private Color _text3Color = DefaultForeColor;
+
 
 
     public ArchProgressBar_WOC()
@@ -52,16 +55,21 @@ public partial class ArchProgressBar_WOC : Control
         switch (_style)
         {
             case styleEnum.Style1:
-                e.Graphics.DrawString(_text1, _font1, new SolidBrush(_text1Color), widthByTwo - string1Size.Width / 2, widthByTwo - string1Size.Height / 2);
+                e.Graphics.DrawString(_text1, _font1, new SolidBrush(_text1Color), widthByTwo - string1Size.Width / 2 + offset.X, widthByTwo - string1Size.Height / 2 + offset.Y);
                 break;
             case styleEnum.Style2:
-                e.Graphics.DrawString(_text1, _font1, new SolidBrush(_text1Color), widthByTwo - string1Size.Width / 2, widthByTwo - string1Size.Height);
-                e.Graphics.DrawString(_text2, _font2, new SolidBrush(_text2Color), widthByTwo - string2Size.Width / 2, widthByTwo);
+                e.Graphics.DrawString(_text1, _font1, new SolidBrush(_text1Color), widthByTwo - string1Size.Width / 2 + offset.X, widthByTwo - string1Size.Height + offset.Y);
+                e.Graphics.DrawString(_text2, _font2, new SolidBrush(_text2Color), widthByTwo - string2Size.Width / 2 + offset.X, widthByTwo + offset.Y);
                 break;
             case styleEnum.Style3:
-                e.Graphics.DrawString(_text1, _font1, new SolidBrush(_text1Color), widthByTwo - string1Size.Width / 2, widthByTwo - string1Size.Height);
-                e.Graphics.DrawString(_text2, _font2, new SolidBrush(_text2Color), widthByTwo - string2Size.Width, widthByTwo);
-                e.Graphics.DrawString(_text3, _font3, new SolidBrush(_text3Color), widthByTwo, widthByTwo);
+                e.Graphics.DrawString(_text1, _font1, new SolidBrush(_text1Color), widthByTwo - string1Size.Width / 2 + offset.X, widthByTwo - string1Size.Height + offset.Y);
+                e.Graphics.DrawString(_text2, _font2, new SolidBrush(_text2Color), widthByTwo - string2Size.Width + offset.X, widthByTwo + offset.Y);
+                e.Graphics.DrawString(_text3, _font3, new SolidBrush(_text3Color), widthByTwo + offset.X, widthByTwo + offset.Y);
+                break;
+            case styleEnum.Style4:
+                e.Graphics.DrawString(_text1, _font1, new SolidBrush(_text1Color), widthByTwo - string1Size.Width / 2, widthByTwo - string1Size.Height / 2 + offset.Y);
+                e.Graphics.DrawString(_text2, _font2, new SolidBrush(_text2Color), _line2Thinkness / 2 - (string2Size.Width / 2) + offset.X, widthByTwo + offset.Y);
+                e.Graphics.DrawString(_text3, _font3, new SolidBrush(_text3Color), Width - (_line2Thinkness / 2) - (string3Size.Width / 2) - offset.X, widthByTwo + offset.Y);
                 break;
         }
     }
@@ -88,6 +96,12 @@ public partial class ArchProgressBar_WOC : Control
 
         pen1.Dispose();
         pen2.Dispose();
+    }
+
+    public Point Offset
+    {
+        get { return offset; }
+        set { offset = value; Invalidate(); }
     }
 
     public styleEnum Style
