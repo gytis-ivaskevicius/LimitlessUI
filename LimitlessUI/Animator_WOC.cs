@@ -11,6 +11,15 @@ public partial class Animator_WOC : Component
     private Point _changeSize_size;
     private int _changeSize_speed;
 
+    public delegate void onWidthChanged(Control control, int change, bool isExpanding);
+    public delegate void onHeightChanged(Control control, int change, bool isExpanding);
+    public delegate void onAnimationTick(Control control);
+
+    public event onWidthChanged _onWidthChanged_del;
+    public event onHeightChanged _onHeightChanged_del;
+    public event onAnimationTick _onAnimationEnd_del;
+    public event onAnimationTick _onAnimationStart_del;
+
     private bool _changeSize_increase_width;
     private bool _changeSize_increase_height;
     private bool _changeWidth = false;
@@ -33,19 +42,23 @@ public partial class Animator_WOC : Component
     {
         _control.SuspendLayout();
 
+        if (_onAnimationStart_del != null)
+            _onAnimationStart_del.Invoke(_control);
         if (_changeWidth)
         {
             _control.Width += _changeSize_increase_width ? _changeSize_speed : -_changeSize_speed;
-            if (_changeSize_increase_width && _control.Width > _changeSize_size.X)
+            if (_changeSize_increase_width && _control.Width >= _changeSize_size.X)
             {
                 _control.Width = _changeSize_size.X;
                 _timer.Stop();
             }
-            else if (!_changeSize_increase_width && _control.Width < _changeSize_size.X)
+            else if (!_changeSize_increase_width && _control.Width <= _changeSize_size.X)
             {
                 _control.Width = _changeSize_size.X;
                 _timer.Stop();
             }
+            if (_onWidthChanged_del != null)
+                _onWidthChanged_del.Invoke(_control, _changeSize_increase_width ? _changeSize_speed : -_changeSize_speed, _changeSize_increase_width);
         }
         if (_changeHeight)
         {
@@ -60,8 +73,11 @@ public partial class Animator_WOC : Component
                 _control.Height = _changeSize_size.X;
                 _timer.Stop();
             }
+            if (_onHeightChanged_del != null)
+                _onHeightChanged_del.Invoke(_control, _changeSize_increase_height ? _changeSize_speed : -_changeSize_speed, _changeSize_increase_height);
         }
-
+        if (_onAnimationEnd_del != null)
+            _onAnimationEnd_del.Invoke(_control);
         _control.ResumeLayout();
     }
 
