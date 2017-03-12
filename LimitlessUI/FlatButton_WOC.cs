@@ -12,9 +12,12 @@ public partial class FlatButton_WOC : Control
     private Point _offset = new Point(0, 0);
     private SizeF _imageSize = new SizeF(20, 20);
 
-    public bool _selected = false;
-    private bool drawImage = false;
-    private bool drawText = true;
+    private bool _selected = false;
+    private bool _drawImage = false;
+    private bool _drawText = true;
+    private bool _mouseHovering = false;
+    private bool _useActiveImageWhileHovering = false;
+    private bool _isTab = true;
 
     private Color _selectedBackColor = Color.DarkSeaGreen;
     private Color _selectedForeColor = Color.White;
@@ -38,7 +41,7 @@ public partial class FlatButton_WOC : Control
 
     private void onClick(object sender, MouseEventArgs e)
     {
-        if (!_selected)
+        if (!_selected && _isTab)
         {
             BackColor = _selectedBackColor;
             ForeColor = _selectedForeColor;
@@ -62,15 +65,18 @@ public partial class FlatButton_WOC : Control
 
     private void onMouseExit(object sender, EventArgs e)
     {
+        _mouseHovering = false;
         if (!_selected)
         {
             BackColor = _defaultBackColor;
             ForeColor = _defaultForeColor;
+            Invalidate();
         }
     }
 
     private void onMouseEnter(object sender, EventArgs e)
     {
+        _mouseHovering = true;
         if (!_selected)
         {
             _defaultBackColor = BackColor;
@@ -78,25 +84,26 @@ public partial class FlatButton_WOC : Control
 
             BackColor = OnHoverColor;
             ForeColor = OnHoverTextColor;
+            Invalidate();
         }
     }
 
     protected override void OnPaint(PaintEventArgs pe)
     {
         base.OnPaint(pe);
-        if (drawText)
+        if (_drawText)
             drawString(pe.Graphics, Text, Font, ForeColor, _textAligment.ToString());
-        if (drawImage && _selected ? _selectedImage == null : _image != null)
+        if (_drawImage && _image != null)
         {
             float drawHeight = Height / 2 - _imageSize.Height / 2;
-            pe.Graphics.DrawImage(_selected ? (_selectedImage != null ? _selectedImage : _image) : _image, drawHeight, drawHeight, _imageSize.Width, _imageSize.Height);
+            pe.Graphics.DrawImage(_selected || (_mouseHovering && _useActiveImageWhileHovering) ? (_selectedImage != null ? _selectedImage :  _image) : _image, drawHeight, drawHeight, _imageSize.Width, _imageSize.Height);
         }
     }
 
     private void drawString(Graphics g, string text, Font font, Color color, string textAligment)
     {
         SizeF stringSize = g.MeasureString(Text, Font);
-        float drawX = drawImage ? Height + _offset.X: _offset.X;
+        float drawX = _drawImage ? Height + _offset.X : _offset.X;
         float drawY = _offset.Y;
 
         if (textAligment.Contains("Middle"))
@@ -119,17 +126,29 @@ public partial class FlatButton_WOC : Control
         set { _offset = value; Invalidate(); }
     }
 
+    public bool UseActiveImageWhileHovering
+    {
+        get { return _useActiveImageWhileHovering; }
+        set { _useActiveImageWhileHovering = value; }
+    }
+
 
     public bool DrawText
     {
-        get { return drawText; }
-        set { drawText = value; Invalidate(); }
+        get { return _drawText; }
+        set { _drawText = value; Invalidate(); }
+    }
+
+    public bool IsTab
+    {
+        get { return _isTab; }
+        set { _isTab = value;  }
     }
 
     public bool DrawImage
     {
-        get { return drawImage; }
-        set { drawImage = value; }
+        get { return _drawImage; }
+        set { _drawImage = value; }
     }
 
     public ContentAlignment TextAligment
