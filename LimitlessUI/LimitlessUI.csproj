@@ -8,7 +8,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>LimitlessUI</RootNamespace>
-    <AssemblyName>LimitlessUI_1.1.0</AssemblyName>
+    <AssemblyName>LimitlessUI_1.3.0</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -42,6 +42,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Animator_WOC.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ArchProgressBar_WOC.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -79,6 +82,10 @@
     <Compile Include="Switch_WOC.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="TabsAdapter_WOC.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Tab_WOC.cs" />
     <Compile Include="TextBox_WOC.cs">
       <SubType>UserControl</SubType>
     </Compile>

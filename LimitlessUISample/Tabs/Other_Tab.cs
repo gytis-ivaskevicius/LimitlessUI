@@ -8,10 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using LimitlessUISample.Childs;
+using System.Diagnostics;
 
 namespace LimitlessUISample.Tabs
 {
-    public partial class Other_Tab : UserControl
+    public partial class Other_Tab : UserControl, Tab_WOC
     {
         private static Other_Tab _instance;
 
@@ -30,6 +31,11 @@ namespace LimitlessUISample.Tabs
             if (_instance == null)
                 _instance = new Other_Tab();
             return _instance;
+        }
+
+        public void onShowTab()
+        {
+            Debug.WriteLine("Showing Gradient_Tab");
         }
     }
 }

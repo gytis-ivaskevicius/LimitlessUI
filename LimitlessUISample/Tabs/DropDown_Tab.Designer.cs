@@ -28,9 +28,20 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dropDown_WOC1 = new DropDown_WOC();
             this.button1 = new System.Windows.Forms.Button();
+            this.dropDown_WOC1 = new DropDown_WOC();
             this.SuspendLayout();
+            // 
+            // button1
+            // 
+            this.button1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.25F);
+            this.button1.Location = new System.Drawing.Point(0, 32);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(803, 242);
+            this.button1.TabIndex = 1;
+            this.button1.Text = "Random Button";
+            this.button1.UseVisualStyleBackColor = true;
             // 
             // dropDown_WOC1
             // 
@@ -44,17 +55,6 @@
             this.dropDown_WOC1.TabIndex = 0;
             this.dropDown_WOC1.Text = "This is dropdown thingy";
             this.dropDown_WOC1.TextDistance = 35F;
-            // 
-            // button1
-            // 
-            this.button1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.25F);
-            this.button1.Location = new System.Drawing.Point(0, 32);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(803, 242);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "Random Button";
-            this.button1.UseVisualStyleBackColor = true;
             // 
             // DropDown_Tab
             // 

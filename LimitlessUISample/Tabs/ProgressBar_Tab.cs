@@ -7,10 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Diagnostics;
 
 namespace LimitlessUISample.Tabs
 {
-    public partial class ProgressBar_Tab : UserControl
+    public partial class ProgressBar_Tab : UserControl, Tab_WOC
     {
         private static ProgressBar_Tab _instance;
 
@@ -25,6 +26,11 @@ namespace LimitlessUISample.Tabs
             if (_instance == null)
                 _instance = new ProgressBar_Tab();
             return _instance;
+        }
+
+        public void onShowTab()
+        {
+            Debug.WriteLine("Showing ProgressBar_Tab");
         }
 
         private void timer1_Tick(object sender, EventArgs e)

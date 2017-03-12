@@ -7,10 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Diagnostics;
 
 namespace LimitlessUISample.Tabs
 {
-    public partial class DropDown_Tab : UserControl
+    public partial class DropDown_Tab : UserControl, Tab_WOC
     {
         private static DropDown_Tab _instance;
 
@@ -24,6 +25,11 @@ namespace LimitlessUISample.Tabs
             if (_instance == null)
                 _instance = new DropDown_Tab();
             return _instance;
+        }
+
+        public void onShowTab()
+        {
+            Debug.WriteLine("Showing DropDown_Tab");
         }
     }
 }

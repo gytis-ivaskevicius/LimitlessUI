@@ -1,5 +1,6 @@
 ﻿using LimitlessUISample.Tabs;
 using System;
+using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
@@ -22,6 +23,17 @@ namespace LimitlessUISample
             drawLine(LinePositions.TOP, Color.SeaGreen, 0, 204);
             drawLine(LinePositions.BOTTOM, Color.FromArgb(41, 53, 65), 0, 203);
             Invalidate();
+            setupNavigation();
+        }
+
+        private void setupNavigation()
+        {
+            nav_adapter.addTab(new ArchProgressBar_Tab(), true);
+            nav_adapter.addTab(new ProgressBar_Tab(), false);
+            nav_adapter.addTab(new DropDown_Tab(), false);
+            nav_adapter.addTab(new Gradient_Tab(), false);
+            nav_adapter.addTab(new Slider_Tab(), false);
+            nav_adapter.addTab(new Other_Tab(), false);
         }
 
         protected override void OnSizeChanged(EventArgs e)
@@ -35,68 +47,7 @@ namespace LimitlessUISample
         //-----------------------------------------[Form Handling]--------------------------------------------------//
         private void navigation_click(object sender, EventArgs e)
         {
-            switch (((FlatButton_WOC)sender).TabIndex)
-            {
-                case 0:
-                    ArchProgressBar_Tab.getInstance().BringToFront();
-                    tab_title.Text = "ArchProgressBar Sample";
-                    break;
-                case 1:
-                    if (!tabs_holder.Controls.Contains(ProgressBar_Tab.getInstance()))
-                    {
-                        tabs_holder.Controls.Add(ProgressBar_Tab.getInstance());
-                        ProgressBar_Tab.getInstance().Dock = DockStyle.Fill;
-                        ProgressBar_Tab.getInstance().BringToFront();
-                    }
-                    else
-                        ProgressBar_Tab.getInstance().BringToFront();
-                    tab_title.Text = "ProgressBar Sample";
-                    break;
-                case 2:
-                    if (!tabs_holder.Controls.Contains(DropDown_Tab.getInstance()))
-                    {
-                        tabs_holder.Controls.Add(DropDown_Tab.getInstance());
-                        DropDown_Tab.getInstance().Dock = DockStyle.Fill;
-                        DropDown_Tab.getInstance().BringToFront();
-                    }
-                    else
-                        DropDown_Tab.getInstance().BringToFront();
-                    tab_title.Text = "DropDown Sample";
-                    break;
-                case 3:
-                    if (!tabs_holder.Controls.Contains(Gradient_Tab.getInstance()))
-                    {
-                        tabs_holder.Controls.Add(Gradient_Tab.getInstance());
-                        Gradient_Tab.getInstance().Dock = DockStyle.Fill;
-                        Gradient_Tab.getInstance().BringToFront();
-                    }
-                    else
-                        Gradient_Tab.getInstance().BringToFront();
-                    tab_title.Text = "Gradient Sample";
-                    break;
-                case 4:
-                    if (!tabs_holder.Controls.Contains(Slider_Tab.getInstance()))
-                    {
-                        tabs_holder.Controls.Add(Slider_Tab.getInstance());
-                        Slider_Tab.getInstance().Dock = DockStyle.Fill;
-                        Slider_Tab.getInstance().BringToFront();
-                    }
-                    else
-                        Slider_Tab.getInstance().BringToFront();
-                    tab_title.Text = "Slider Sample";
-                    break;
-                case 5:
-                    if (!tabs_holder.Controls.Contains(Other_Tab.getInstance()))
-                    {
-                        tabs_holder.Controls.Add(Other_Tab.getInstance());
-                        Other_Tab.getInstance().Dock = DockStyle.Fill;
-                        Other_Tab.getInstance().BringToFront();
-                    }
-                    else
-                        Other_Tab.getInstance().BringToFront();
-                    tab_title.Text = "Other";
-                    break;
-            }
+            nav_adapter.showTab(((FlatButton_WOC)sender).TabIndex);
         }
         private void exitLabel_Click(object sender, EventArgs e)
         {

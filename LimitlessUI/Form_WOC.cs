@@ -24,7 +24,7 @@ public class Form_WOC : Form
     private Rectangle BottomLeft { get { return new Rectangle(0, this.ClientSize.Height - _gripSize, _gripSize, _gripSize); } }
     private Rectangle BottomRight { get { return new Rectangle(this.ClientSize.Width - _gripSize, this.ClientSize.Height - _gripSize, _gripSize, _gripSize); } }
 
-    private List<Line> _list = new List<Line>();
+    private List<Line> _lines = new List<Line>();
 
     private int _gripSize = 10;
     private const int
@@ -57,13 +57,19 @@ public class Form_WOC : Form
     }
     public void drawLine(LinePositions pos, Color color, int point1, int point2)
     {
-        _list.Add(new Line(pos, color, point1, point2));
+        _lines.Add(new Line(pos, color, point1, point2));
     }
+
+    public void clearLines()
+    {
+        _lines.Clear();
+    }
+
     protected override void OnPaint(PaintEventArgs e)
     {
         base.OnPaint(e);
         Pen pen = new Pen(Color.Red, 10);
-        foreach (Line line in _list)
+        foreach (Line line in _lines)
         {
             pen.Color = line.Color;
 
@@ -83,6 +89,7 @@ public class Form_WOC : Form
         get { return _gripSize; }
         set { _gripSize = value; }
     }
+
 
     class Line
     {
