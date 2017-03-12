@@ -6,12 +6,17 @@ using System.Windows.Forms;
 public partial class Separator_WOC : Control
 {
     private float _thikness = 1;
-    private Color _lineColor = Color.DimGray;
-    private Color _animationColor = Color.SeaGreen;
     private Timer _timer;
+
     private bool _animationEnabled = false;
+    private bool _vertical = false;
+
+    private int _angle = 0;
     private int _val = 0;
     private int _progress = 3;
+
+    private Color _lineColor = Color.DimGray;
+    private Color _animationColor = Color.SeaGreen;
 
     public Separator_WOC()
     {
@@ -60,9 +65,12 @@ public partial class Separator_WOC : Control
     protected override void OnPaint(PaintEventArgs pe)
     {
         base.OnPaint(pe);
-        pe.Graphics.DrawLine(new Pen(_lineColor, _thikness), Padding.Left, this.Height / 2, this.Width - Padding.Right, this.Height / 2);
+        int size = _vertical ? Height / 2 : Width / 2;
+        pe.Graphics.TranslateTransform(Width / 2, Height / 2);
+        pe.Graphics.RotateTransform(_angle);
+        pe.Graphics.DrawLine(new Pen(_lineColor, _thikness), -size + Padding.Left, 0, size - Padding.Right, 0);
         if (_animationEnabled)
-            pe.Graphics.DrawLine(new Pen(_animationColor, _thikness), Padding.Left + (Width - _val) / 2, this.Height / 2, (Width + _val) / 2, this.Height / 2);
+            pe.Graphics.DrawLine(new Pen(_animationColor, _thikness), Padding.Left + (-_val) / 2, 0, (_val) / 2, 0);
     }
 
     public bool AnimationEnabled
@@ -71,10 +79,22 @@ public partial class Separator_WOC : Control
         set { _animationEnabled = value; }
     }
 
+    public bool Vertical
+    {
+        get { return _vertical; }
+        set { _vertical = value; Invalidate(); }
+    }
+
     public int Val
     {
         get { return _val; }
         set { _val = value; Invalidate(); }
+    }
+
+    public int Angle
+    {
+        get { return _angle; }
+        set { _angle = value; Invalidate(); }
     }
 
     public float LineThikness
