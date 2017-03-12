@@ -16,6 +16,8 @@ public partial class Switch_WOC : Control
     public Switch_WOC()
     {
         Click += click;
+        DoubleClick += click;
+
         BackColor = Color.FromArgb(64, 64, 64);
         ForeColor = Color.FromArgb(224, 224, 224);
         Width = 51;
