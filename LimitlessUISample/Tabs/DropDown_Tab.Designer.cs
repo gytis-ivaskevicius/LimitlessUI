@@ -45,16 +45,19 @@
             // 
             // dropDown_WOC1
             // 
-            this.dropDown_WOC1.ArrowSize = new System.Drawing.SizeF(10F, 10F);
+            this.dropDown_WOC1.ArrowSize = new System.Drawing.SizeF(12F, 12F);
             this.dropDown_WOC1.ArrowThinkness = 2F;
             this.dropDown_WOC1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.dropDown_WOC1.DownImage = null;
             this.dropDown_WOC1.Location = new System.Drawing.Point(0, 0);
             this.dropDown_WOC1.Name = "dropDown_WOC1";
+            this.dropDown_WOC1.PointsDown = true;
             this.dropDown_WOC1.SetLayout = this.button1;
             this.dropDown_WOC1.Size = new System.Drawing.Size(803, 32);
             this.dropDown_WOC1.TabIndex = 0;
             this.dropDown_WOC1.Text = "This is dropdown thingy";
             this.dropDown_WOC1.TextDistance = 35F;
+            this.dropDown_WOC1.UpImage = null;
             // 
             // DropDown_Tab
             // 
