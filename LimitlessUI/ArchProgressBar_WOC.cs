@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System.Diagnostics;
+using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 
@@ -16,6 +17,7 @@ public partial class ArchProgressBar_WOC : Control
     private Font _font1, _font2, _font3;
     private int _angle = 360;
     private Point offset = new Point(0, 0);
+    private bool _ignoreHeight = true;
 
     private string _text1 = "CPU";
     private string _text2 = "99%";
@@ -50,21 +52,21 @@ public partial class ArchProgressBar_WOC : Control
 
         float radiusByTwo = (Width - ProgressLineThikness) / 2;
         int widthByTwo = Width / 2;
+        int heightByTwo = (int)radiusByTwo;
         e.Graphics.TranslateTransform(-(_line2Thinkness / 2F + radiusByTwo), -(_line2Thinkness / 2F + radiusByTwo));
-
         switch (_style)
         {
             case styleEnum.Style1:
-                e.Graphics.DrawString(_text1, _font1, new SolidBrush(_text1Color), widthByTwo - string1Size.Width / 2 + offset.X, widthByTwo - string1Size.Height / 2 + offset.Y);
+                e.Graphics.DrawString(_text1, _font1, new SolidBrush(_text1Color), widthByTwo - string1Size.Width / 2 + offset.X, heightByTwo - string1Size.Height / 2 + offset.Y);
                 break;
             case styleEnum.Style2:
-                e.Graphics.DrawString(_text1, _font1, new SolidBrush(_text1Color), widthByTwo - string1Size.Width / 2 + offset.X, widthByTwo - string1Size.Height + offset.Y);
-                e.Graphics.DrawString(_text2, _font2, new SolidBrush(_text2Color), widthByTwo - string2Size.Width / 2 + offset.X, widthByTwo + offset.Y);
+                e.Graphics.DrawString(_text1, _font1, new SolidBrush(_text1Color), widthByTwo - (string1Size.Width / 2) + offset.X, heightByTwo - string1Size.Height + offset.Y);
+                e.Graphics.DrawString(_text2, _font2, new SolidBrush(_text2Color), widthByTwo - string2Size.Width / 2 + offset.X, heightByTwo + offset.Y);
                 break;
             case styleEnum.Style3:
-                e.Graphics.DrawString(_text1, _font1, new SolidBrush(_text1Color), widthByTwo - string1Size.Width / 2 + offset.X, widthByTwo - string1Size.Height + offset.Y);
-                e.Graphics.DrawString(_text2, _font2, new SolidBrush(_text2Color), widthByTwo - string2Size.Width + offset.X, widthByTwo + offset.Y);
-                e.Graphics.DrawString(_text3, _font3, new SolidBrush(_text3Color), widthByTwo + offset.X, widthByTwo + offset.Y);
+                e.Graphics.DrawString(_text1, _font1, new SolidBrush(_text1Color), widthByTwo - string1Size.Width / 2 + offset.X, heightByTwo - string1Size.Height + offset.Y);
+                e.Graphics.DrawString(_text2, _font2, new SolidBrush(_text2Color), widthByTwo - string2Size.Width + offset.X, heightByTwo + offset.Y);
+                e.Graphics.DrawString(_text3, _font3, new SolidBrush(_text3Color), widthByTwo + offset.X, heightByTwo + offset.Y);
                 break;
             case styleEnum.Style4:
                 e.Graphics.DrawString(_text1, _font1, new SolidBrush(_text1Color), widthByTwo - string1Size.Width / 2, widthByTwo - string1Size.Height / 2 + offset.Y);
@@ -79,8 +81,9 @@ public partial class ArchProgressBar_WOC : Control
         base.OnPaint(pe);
         Pen pen1 = new Pen(_color1, _line1Thinkness);
         Pen pen2 = new Pen(_color2, _line2Thinkness);
-        float radiusByTwo = (Width - this.ProgressLineThikness) / 2F;
 
+        float circleRadius = _ignoreHeight ? (Width - ProgressLineThikness) : (Width > Height ? (Height - ProgressLineThikness) : (Width - ProgressLineThikness));
+        float radiusByTwo = _ignoreHeight ? (Width - ProgressLineThikness) / 2F : (Width > Height ? (Height - ProgressLineThikness) / 2F : (Width - ProgressLineThikness) / 2F);
 
         float progressEndAngle = (_angle - 0) / 100F;
         pe.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
@@ -88,14 +91,52 @@ public partial class ArchProgressBar_WOC : Control
 
         pe.Graphics.RotateTransform((360 - _angle) / 2 + 90);
 
-        pe.Graphics.DrawArc(pen1, -radiusByTwo, -radiusByTwo, Width - ProgressLineThikness, Width - ProgressLineThikness, 0, _angle);
-        pe.Graphics.DrawArc(pen2, -radiusByTwo, -radiusByTwo, Width - ProgressLineThikness, Width - ProgressLineThikness, 0, progressEndAngle * _progress);
+        pe.Graphics.DrawArc(pen1, -(circleRadius / 2), -(circleRadius / 2), circleRadius, circleRadius, 0, _angle);
+        pe.Graphics.DrawArc(pen2, -(circleRadius / 2), -(circleRadius / 2), circleRadius, circleRadius, 0, progressEndAngle * _progress);
 
         if (_style != styleEnum.None)
             drawContent(pe, (360 - _angle) / 2 + 90);
 
         pen1.Dispose();
         pen2.Dispose();
+    }
+    public void updateData(string text2, int progress)
+    {
+        _text2 = text2;
+        _progress = progress;
+        Invalidate();
+    }
+    public void updateData(string text2, string text3, int progress, Color text3Color)
+    {
+        _text2 = text2;
+        _text3 = text3;
+        _text3Color = text3Color;
+        _progress = progress;
+        Invalidate();
+    }
+
+    public void updateText(string text1, string text2, string text3)
+    {
+        this._text1 = text1;
+        this._text2 = text2;
+        this._text3 = text3;
+        Invalidate();
+    }
+
+    public void updateText(string text1, string text2)
+    {
+        this._text1 = text1;
+        this._text2 = text2;
+        Invalidate();
+    }
+
+    #region Getters and Setters
+
+
+    public bool IgnoreHeight
+    {
+        get { return _ignoreHeight; }
+        set { _ignoreHeight = value; Invalidate(); }
     }
 
     public Point Offset
@@ -263,20 +304,6 @@ public partial class ArchProgressBar_WOC : Control
             Invalidate();
         }
     }
-
-    public void updateText(string text1, string text2, string text3)
-    {
-        this._text1 = text1;
-        this._text2 = text2;
-        this._text3 = text3;
-        Invalidate();
-    }
-
-    public void updateText(string text1, string text2)
-    {
-        this._text1 = text1;
-        this._text2 = text2;
-        Invalidate();
-    }
+    #endregion
 }
 
