@@ -7,6 +7,8 @@ public partial class DropDown_WOC : Control
     private float _textDistance = 35;
     private float _thikness = 2;
 
+    private Image _downImage;
+    private Image _upImage;
     private SizeF _arrowSize = new SizeF(10, 10);
     private Control _panel;
     private int _expandedPanelHeight;
@@ -43,13 +45,39 @@ public partial class DropDown_WOC : Control
 
     protected override void OnPaint(PaintEventArgs pe)
     {
+        base.OnPaint(pe);
         SizeF textSize = pe.Graphics.MeasureString(Text, Font);
-        float padding = (Height - textSize.Height) / 2;
+        //float padding = (Height - textSize.Height) / 2;
         pe.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
 
         pe.Graphics.DrawString(Text, Font, new SolidBrush(ForeColor), _textDistance, Height / 2 - (textSize.Height / 2));
-        drawArrow(pe, padding, padding + _arrowSize.Height / 2, _arrowSize.Height, _arrowSize.Width, _pointsDown);
-        base.OnPaint(pe);
+        if (_downImage != null && _upImage != null)
+        {
+            if (_pointsDown)
+                pe.Graphics.DrawImage(_downImage, (Height - _arrowSize.Width) / 2, (Height - _arrowSize.Height) / 2, _arrowSize.Width, _arrowSize.Height);
+            else
+                pe.Graphics.DrawImage(_upImage, (Height - _arrowSize.Width) / 2, (Height - _arrowSize.Height) / 2, _arrowSize.Width, _arrowSize.Height);
+        }
+        else
+            drawArrow(pe, (Height - _arrowSize.Width) / 2,       (Height - _arrowSize.Height/2) / 2      , _arrowSize.Height, _arrowSize.Width, _pointsDown);
+    }
+
+
+    public bool PointsDown { 
+        get { return _pointsDown; }
+        set { _pointsDown = value; Invalidate(); }
+    }
+
+    public Image DownImage
+    {
+        get { return _downImage; }
+        set { _downImage = value; Invalidate(); }
+    }
+
+    public Image UpImage
+    {
+        get { return _upImage; }
+        set { _upImage = value; Invalidate(); }
     }
 
     public SizeF ArrowSize
