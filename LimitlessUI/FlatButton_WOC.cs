@@ -18,13 +18,14 @@ public partial class FlatButton_WOC : Control
     private bool _mouseHovering = false;
     private bool _useActiveImageWhileHovering = false;
     private bool _isTab = true;
+    private bool _neverChangeBackColor = false;
 
     private Color _selectedBackColor = Color.DarkSeaGreen;
     private Color _selectedForeColor = Color.White;
     private Color _onHoverColor = Color.MediumSeaGreen;
     private Color _onHoverTextColor = Color.White;
     private Color _defaultBackColor;
-    private Color _defaultForeColor;
+    public Color _defaultForeColor;
 
     public FlatButton_WOC()
     {
@@ -43,12 +44,14 @@ public partial class FlatButton_WOC : Control
     {
         if (!_selected && _isTab)
         {
-            BackColor = _selectedBackColor;
+            if (_neverChangeBackColor)
+                BackColor = _selectedBackColor;
             ForeColor = _selectedForeColor;
 
-            foreach (Control control in Parent.Controls)
-                if (control is FlatButton_WOC)
-                    ((FlatButton_WOC)control).unselect();
+            if (Parent != null)
+                foreach (Control control in Parent.Controls)
+                    if (control is FlatButton_WOC)
+                        ((FlatButton_WOC)control).unselect();
             _selected = true;
         }
     }
@@ -79,10 +82,12 @@ public partial class FlatButton_WOC : Control
         _mouseHovering = true;
         if (!_selected)
         {
-            _defaultBackColor = BackColor;
+            if (_neverChangeBackColor)
+            {
+                _defaultBackColor = BackColor;
+                BackColor = OnHoverColor;
+            }
             _defaultForeColor = ForeColor;
-
-            BackColor = OnHoverColor;
             ForeColor = OnHoverTextColor;
             Invalidate();
         }
@@ -96,7 +101,7 @@ public partial class FlatButton_WOC : Control
         if (_drawImage && _image != null)
         {
             float drawHeight = Height / 2 - _imageSize.Height / 2;
-            pe.Graphics.DrawImage(_selected || (_mouseHovering && _useActiveImageWhileHovering) ? (_selectedImage != null ? _selectedImage :  _image) : _image, drawHeight, drawHeight, _imageSize.Width, _imageSize.Height);
+            pe.Graphics.DrawImage(_selected || (_mouseHovering && _useActiveImageWhileHovering) ? (_selectedImage != null ? _selectedImage : _image) : _image, drawHeight, drawHeight, _imageSize.Width, _imageSize.Height);
         }
     }
 
@@ -117,6 +122,14 @@ public partial class FlatButton_WOC : Control
             drawX += Width - stringSize.Width;
 
         g.DrawString(Text, Font, new SolidBrush(ForeColor), drawX, drawY);
+    }
+
+
+
+    public bool NeverChangeBG
+    {
+        get { return _neverChangeBackColor; }
+        set { _neverChangeBackColor = value; }
     }
 
 
@@ -142,7 +155,7 @@ public partial class FlatButton_WOC : Control
     public bool IsTab
     {
         get { return _isTab; }
-        set { _isTab = value;  }
+        set { _isTab = value; }
     }
 
     public bool DrawImage
