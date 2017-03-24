@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -18,41 +17,39 @@ public partial class FlatButton_WOC : Control
     private bool _mouseHovering = false;
     private bool _useActiveImageWhileHovering = false;
     private bool _isTab = true;
-    private bool _neverChangeBackColor = false;
 
-    private Color _selectedBackColor = Color.DarkSeaGreen;
-    private Color _selectedForeColor = Color.White;
-    private Color _onHoverColor = Color.MediumSeaGreen;
-    private Color _onHoverTextColor = Color.White;
+    private Color _selectedBackColor;
+    private Color _selectedForeColor;
+    private Color _onHoverColor;
+    private Color _onHoverTextColor;
     private Color _defaultBackColor;
-    public Color _defaultForeColor;
+    private Color _defaultForeColor;
 
     public FlatButton_WOC()
     {
-        BackColor = Color.SeaGreen;
+        BackColor = Color.FromArgb(41, 53, 65);
         ForeColor = Color.White;
-        Height = 48;
-        Width = 241;
+        Height = 50;
+        Width = 220;
 
         MouseEnter += onMouseEnter;
         MouseLeave += onMouseExit;
         MouseClick += onClick;
-        _defaultForeColor = ForeColor;
     }
 
     private void onClick(object sender, MouseEventArgs e)
     {
         if (!_selected && _isTab)
         {
-            if (_neverChangeBackColor)
-                BackColor = _selectedBackColor;
-            ForeColor = _selectedForeColor;
+            BackColor = _selectedBackColor != null ? _selectedBackColor : BackColor;
+            ForeColor = _selectedForeColor != null ? _selectedForeColor : ForeColor;
 
             if (Parent != null)
                 foreach (Control control in Parent.Controls)
                     if (control is FlatButton_WOC)
                         ((FlatButton_WOC)control).unselect();
             _selected = true;
+            Invalidate();
         }
     }
 
@@ -64,6 +61,7 @@ public partial class FlatButton_WOC : Control
             BackColor = _defaultBackColor;
             ForeColor = _defaultForeColor;
         }
+        Invalidate();
     }
 
     private void onMouseExit(object sender, EventArgs e)
@@ -82,13 +80,11 @@ public partial class FlatButton_WOC : Control
         _mouseHovering = true;
         if (!_selected)
         {
-            if (_neverChangeBackColor)
-            {
-                _defaultBackColor = BackColor;
-                BackColor = OnHoverColor;
-            }
+            _defaultBackColor = BackColor;
+            BackColor = OnHoverColor != null ? _onHoverColor : BackColor;
+
             _defaultForeColor = ForeColor;
-            ForeColor = OnHoverTextColor;
+            ForeColor = OnHoverTextColor != null ? _onHoverTextColor : ForeColor;
             Invalidate();
         }
     }
@@ -97,7 +93,7 @@ public partial class FlatButton_WOC : Control
     {
         base.OnPaint(pe);
         if (_drawText)
-            drawString(pe.Graphics, Text, Font, ForeColor, _textAligment.ToString());
+            drawString(pe.Graphics, Text, Font, _textAligment.ToString());
         if (_drawImage && _image != null)
         {
             float drawHeight = Height / 2 - _imageSize.Height / 2;
@@ -105,7 +101,7 @@ public partial class FlatButton_WOC : Control
         }
     }
 
-    private void drawString(Graphics g, string text, Font font, Color color, string textAligment)
+    private void drawString(Graphics g, string text, Font font, string textAligment)
     {
         SizeF stringSize = g.MeasureString(Text, Font);
         float drawX = _drawImage ? Height + _offset.X : _offset.X;
@@ -126,12 +122,37 @@ public partial class FlatButton_WOC : Control
 
 
 
-    public bool NeverChangeBG
+    #region Getters and setters
+
+    public bool Selected
     {
-        get { return _neverChangeBackColor; }
-        set { _neverChangeBackColor = value; }
+        get { return _selected; }
+        set
+        {
+            if (_selected = value)
+            {
+                BackColor = _selectedBackColor != null ? _selectedBackColor : BackColor;
+                ForeColor = _selectedForeColor != null ? _selectedForeColor : ForeColor;
+            }
+            else
+            {
+                BackColor = _defaultBackColor;
+                ForeColor = _defaultForeColor;
+            }
+        }
     }
 
+
+    public Color DefaultForeColor
+    {
+        get { return _defaultForeColor; }
+        set
+        {
+            if (_defaultBackColor != null)
+                _defaultForeColor = value;
+            else _defaultBackColor = ForeColor;
+        }
+    }
 
     public Point TextOffset
     {
@@ -144,7 +165,6 @@ public partial class FlatButton_WOC : Control
         get { return _useActiveImageWhileHovering; }
         set { _useActiveImageWhileHovering = value; }
     }
-
 
     public bool DrawText
     {
@@ -174,19 +194,7 @@ public partial class FlatButton_WOC : Control
         }
     }
 
-    public bool Selected
-    {
-        get { return _selected; }
-        set
-        {
-            _selected = value;
-            if (_selected)
-            {
-                BackColor = _selectedBackColor;
-                ForeColor = _selectedForeColor;
-            }
-        }
-    }
+  
 
     public Image ActiveImage
     {
@@ -257,5 +265,6 @@ public partial class FlatButton_WOC : Control
             Invalidate();
         }
     }
+    #endregion
 }
 
