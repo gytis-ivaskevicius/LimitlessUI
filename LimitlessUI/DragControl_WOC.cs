@@ -5,13 +5,14 @@ using System.Windows.Forms;
 public class DragControl_WOC : Component
 {
     [System.Runtime.InteropServices.DllImportAttribute("user32.dll")]
-    public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
+    private static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
     [System.Runtime.InteropServices.DllImportAttribute("user32.dll")]
-    public static extern bool ReleaseCapture();
+    private static extern bool ReleaseCapture();
 
-    public const int WM_NCLBUTTONDOWN = 0xA1;
-    public const int HT_CAPTION = 0x2;
+    private const int WM_NCLBUTTONDOWN = 0xA1;
+    private const int HT_CAPTION = 0x2;
 
+    private bool _draggableInnerControls = false;
     private bool _dragType = true;
     private bool _maximiseOnDoubleClick = true;
 
@@ -46,7 +47,17 @@ public class DragControl_WOC : Component
             _control = value;
             if (value != null)
                 _control.MouseDown += onControlMouseDown;
+            if (_draggableInnerControls)
+                foreach (Control innerControl in _control.Controls)
+                    innerControl.MouseDown += onControlMouseDown;
         }
+    }
+
+
+    public bool DraggableInnerControls
+    {
+        get { return _draggableInnerControls; }
+        set { _draggableInnerControls = value; }
     }
 
     public bool Fixed
