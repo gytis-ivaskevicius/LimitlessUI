@@ -146,12 +146,13 @@ public partial class FlatButton_WOC : Control
     public Color DefaultForeColor
     {
         get { return _defaultForeColor; }
-        set
-        {
-            if (_defaultBackColor != null)
-                _defaultForeColor = value;
-            else _defaultBackColor = ForeColor;
-        }
+        set { _defaultForeColor = value; }
+    }
+
+    public Color DefaultBackColor
+    {
+        get { return _defaultBackColor; }
+        set { _defaultBackColor = value; }
     }
 
     public Point TextOffset
@@ -194,7 +195,7 @@ public partial class FlatButton_WOC : Control
         }
     }
 
-  
+
 
     public Image ActiveImage
     {
