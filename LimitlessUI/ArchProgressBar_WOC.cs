@@ -83,16 +83,15 @@ public partial class ArchProgressBar_WOC : Control
         Pen pen2 = new Pen(_color2, _line2Thinkness);
 
         float circleRadius = _ignoreHeight ? (Width - ProgressLineThikness) : (Width > Height ? (Height - ProgressLineThikness) : (Width - ProgressLineThikness));
-        float radiusByTwo = _ignoreHeight ? (Width - ProgressLineThikness) / 2F : (Width > Height ? (Height - ProgressLineThikness) / 2F : (Width - ProgressLineThikness) / 2F);
+        float radiusByTwo = circleRadius /2;
+        float progressEndAngle = (_angle) / 100F;
 
-        float progressEndAngle = (_angle - 0) / 100F;
         pe.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
         pe.Graphics.TranslateTransform(_line2Thinkness / 2F + radiusByTwo, _line2Thinkness / 2F + radiusByTwo);
-
         pe.Graphics.RotateTransform((360 - _angle) / 2 + 90);
 
-        pe.Graphics.DrawArc(pen1, -(circleRadius / 2), -(circleRadius / 2), circleRadius, circleRadius, 0, _angle);
-        pe.Graphics.DrawArc(pen2, -(circleRadius / 2), -(circleRadius / 2), circleRadius, circleRadius, 0, progressEndAngle * _progress);
+        pe.Graphics.DrawArc(pen1, -radiusByTwo, -radiusByTwo, circleRadius, circleRadius, 0, _angle);
+        pe.Graphics.DrawArc(pen2, -radiusByTwo, -radiusByTwo, circleRadius, circleRadius, 0, progressEndAngle * _progress);
 
         if (_style != styleEnum.None)
             drawContent(pe, (360 - _angle) / 2 + 90);
@@ -115,7 +114,7 @@ public partial class ArchProgressBar_WOC : Control
         Invalidate();
     }
 
-    public void updateText(string text1, string text2, string text3)
+    public void updateData(string text1, string text2, string text3)
     {
         this._text1 = text1;
         this._text2 = text2;
@@ -123,7 +122,7 @@ public partial class ArchProgressBar_WOC : Control
         Invalidate();
     }
 
-    public void updateText(string text1, string text2)
+    public void updateData(string text1, string text2)
     {
         this._text1 = text1;
         this._text2 = text2;
