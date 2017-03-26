@@ -97,8 +97,8 @@
             // 
             this.flatButton_WOC6.ActiveColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(43)))), ((int)(((byte)(55)))));
             this.flatButton_WOC6.ActiveImage = null;
-            this.flatButton_WOC6.ActiveTextColor = System.Drawing.Color.White;
-            this.flatButton_WOC6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(53)))), ((int)(((byte)(65)))));
+            this.flatButton_WOC6.ActiveTextColor = System.Drawing.Color.SeaGreen;
+            this.flatButton_WOC6.DefaultForeColor = System.Drawing.Color.White;
             this.flatButton_WOC6.Dock = System.Windows.Forms.DockStyle.Top;
             this.flatButton_WOC6.DrawImage = true;
             this.flatButton_WOC6.DrawText = true;
@@ -106,6 +106,7 @@
             this.flatButton_WOC6.ForeColor = System.Drawing.Color.White;
             this.flatButton_WOC6.Image = ((System.Drawing.Image)(resources.GetObject("flatButton_WOC6.Image")));
             this.flatButton_WOC6.ImageSize = new System.Drawing.SizeF(20F, 20F);
+            this.flatButton_WOC6.IsTab = true;
             this.flatButton_WOC6.Location = new System.Drawing.Point(0, 240);
             this.flatButton_WOC6.Name = "flatButton_WOC6";
             this.flatButton_WOC6.OnHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(33)))), ((int)(((byte)(45)))));
@@ -123,8 +124,8 @@
             // 
             this.flatButton_WOC5.ActiveColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(43)))), ((int)(((byte)(55)))));
             this.flatButton_WOC5.ActiveImage = null;
-            this.flatButton_WOC5.ActiveTextColor = System.Drawing.Color.White;
-            this.flatButton_WOC5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(53)))), ((int)(((byte)(65)))));
+            this.flatButton_WOC5.ActiveTextColor = System.Drawing.Color.SeaGreen;
+            this.flatButton_WOC5.DefaultForeColor = System.Drawing.Color.White;
             this.flatButton_WOC5.Dock = System.Windows.Forms.DockStyle.Top;
             this.flatButton_WOC5.DrawImage = true;
             this.flatButton_WOC5.DrawText = true;
@@ -132,6 +133,7 @@
             this.flatButton_WOC5.ForeColor = System.Drawing.Color.White;
             this.flatButton_WOC5.Image = ((System.Drawing.Image)(resources.GetObject("flatButton_WOC5.Image")));
             this.flatButton_WOC5.ImageSize = new System.Drawing.SizeF(20F, 20F);
+            this.flatButton_WOC5.IsTab = true;
             this.flatButton_WOC5.Location = new System.Drawing.Point(0, 192);
             this.flatButton_WOC5.Name = "flatButton_WOC5";
             this.flatButton_WOC5.OnHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(33)))), ((int)(((byte)(45)))));
@@ -149,8 +151,8 @@
             // 
             this.flatButton_WOC4.ActiveColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(43)))), ((int)(((byte)(55)))));
             this.flatButton_WOC4.ActiveImage = null;
-            this.flatButton_WOC4.ActiveTextColor = System.Drawing.Color.White;
-            this.flatButton_WOC4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(53)))), ((int)(((byte)(65)))));
+            this.flatButton_WOC4.ActiveTextColor = System.Drawing.Color.SeaGreen;
+            this.flatButton_WOC4.DefaultForeColor = System.Drawing.Color.White;
             this.flatButton_WOC4.Dock = System.Windows.Forms.DockStyle.Top;
             this.flatButton_WOC4.DrawImage = true;
             this.flatButton_WOC4.DrawText = true;
@@ -158,6 +160,7 @@
             this.flatButton_WOC4.ForeColor = System.Drawing.Color.White;
             this.flatButton_WOC4.Image = ((System.Drawing.Image)(resources.GetObject("flatButton_WOC4.Image")));
             this.flatButton_WOC4.ImageSize = new System.Drawing.SizeF(20F, 20F);
+            this.flatButton_WOC4.IsTab = true;
             this.flatButton_WOC4.Location = new System.Drawing.Point(0, 144);
             this.flatButton_WOC4.Name = "flatButton_WOC4";
             this.flatButton_WOC4.OnHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(33)))), ((int)(((byte)(45)))));
@@ -175,8 +178,8 @@
             // 
             this.flatButton_WOC3.ActiveColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(43)))), ((int)(((byte)(55)))));
             this.flatButton_WOC3.ActiveImage = null;
-            this.flatButton_WOC3.ActiveTextColor = System.Drawing.Color.White;
-            this.flatButton_WOC3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(53)))), ((int)(((byte)(65)))));
+            this.flatButton_WOC3.ActiveTextColor = System.Drawing.Color.SeaGreen;
+            this.flatButton_WOC3.DefaultForeColor = System.Drawing.Color.White;
             this.flatButton_WOC3.Dock = System.Windows.Forms.DockStyle.Top;
             this.flatButton_WOC3.DrawImage = true;
             this.flatButton_WOC3.DrawText = true;
@@ -184,6 +187,7 @@
             this.flatButton_WOC3.ForeColor = System.Drawing.Color.White;
             this.flatButton_WOC3.Image = ((System.Drawing.Image)(resources.GetObject("flatButton_WOC3.Image")));
             this.flatButton_WOC3.ImageSize = new System.Drawing.SizeF(20F, 20F);
+            this.flatButton_WOC3.IsTab = true;
             this.flatButton_WOC3.Location = new System.Drawing.Point(0, 96);
             this.flatButton_WOC3.Name = "flatButton_WOC3";
             this.flatButton_WOC3.OnHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(33)))), ((int)(((byte)(45)))));
@@ -201,8 +205,8 @@
             // 
             this.flatButton_WOC2.ActiveColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(43)))), ((int)(((byte)(55)))));
             this.flatButton_WOC2.ActiveImage = null;
-            this.flatButton_WOC2.ActiveTextColor = System.Drawing.Color.White;
-            this.flatButton_WOC2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(53)))), ((int)(((byte)(65)))));
+            this.flatButton_WOC2.ActiveTextColor = System.Drawing.Color.SeaGreen;
+            this.flatButton_WOC2.DefaultForeColor = System.Drawing.Color.White;
             this.flatButton_WOC2.Dock = System.Windows.Forms.DockStyle.Top;
             this.flatButton_WOC2.DrawImage = true;
             this.flatButton_WOC2.DrawText = true;
@@ -210,6 +214,7 @@
             this.flatButton_WOC2.ForeColor = System.Drawing.Color.White;
             this.flatButton_WOC2.Image = ((System.Drawing.Image)(resources.GetObject("flatButton_WOC2.Image")));
             this.flatButton_WOC2.ImageSize = new System.Drawing.SizeF(20F, 20F);
+            this.flatButton_WOC2.IsTab = true;
             this.flatButton_WOC2.Location = new System.Drawing.Point(0, 48);
             this.flatButton_WOC2.Name = "flatButton_WOC2";
             this.flatButton_WOC2.OnHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(33)))), ((int)(((byte)(45)))));
@@ -227,8 +232,9 @@
             // 
             this.flatButton_WOC1.ActiveColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(43)))), ((int)(((byte)(55)))));
             this.flatButton_WOC1.ActiveImage = null;
-            this.flatButton_WOC1.ActiveTextColor = System.Drawing.Color.White;
+            this.flatButton_WOC1.ActiveTextColor = System.Drawing.Color.SeaGreen;
             this.flatButton_WOC1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(43)))), ((int)(((byte)(55)))));
+            this.flatButton_WOC1.DefaultForeColor = System.Drawing.Color.White;
             this.flatButton_WOC1.Dock = System.Windows.Forms.DockStyle.Top;
             this.flatButton_WOC1.DrawImage = true;
             this.flatButton_WOC1.DrawText = true;
@@ -236,6 +242,7 @@
             this.flatButton_WOC1.ForeColor = System.Drawing.Color.White;
             this.flatButton_WOC1.Image = ((System.Drawing.Image)(resources.GetObject("flatButton_WOC1.Image")));
             this.flatButton_WOC1.ImageSize = new System.Drawing.SizeF(20F, 20F);
+            this.flatButton_WOC1.IsTab = true;
             this.flatButton_WOC1.Location = new System.Drawing.Point(0, 0);
             this.flatButton_WOC1.Name = "flatButton_WOC1";
             this.flatButton_WOC1.OnHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(33)))), ((int)(((byte)(45)))));
@@ -324,6 +331,7 @@
             // 
             // separator_WOC1
             // 
+            this.separator_WOC1.Angle = 0;
             this.separator_WOC1.AnimationColor = System.Drawing.Color.SeaGreen;
             this.separator_WOC1.AnimationEnabled = false;
             this.separator_WOC1.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -335,6 +343,7 @@
             this.separator_WOC1.TabIndex = 1;
             this.separator_WOC1.Text = "separator_WOC1";
             this.separator_WOC1.Val = 0;
+            this.separator_WOC1.Vertical = false;
             // 
             // panel4
             // 

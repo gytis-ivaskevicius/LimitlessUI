@@ -142,7 +142,6 @@ public partial class FlatButton_WOC : Control
         }
     }
 
-
     public Color DefaultForeColor
     {
         get { return _defaultForeColor; }
