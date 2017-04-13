@@ -14,15 +14,15 @@ public class Form_WOC : Form
         LEFT,
         RIGHT
     }
-    private Rectangle Top { get { return new Rectangle(0, 0, this.ClientSize.Width, _gripSize); } }
-    private Rectangle Left { get { return new Rectangle(0, 0, _gripSize, this.ClientSize.Height); } }
-    private Rectangle Bottom { get { return new Rectangle(0, this.ClientSize.Height - _gripSize, this.ClientSize.Width, _gripSize); } }
-    private Rectangle Right { get { return new Rectangle(this.ClientSize.Width - _gripSize, 0, _gripSize, this.ClientSize.Height); } }
+    private Rectangle TopGrip { get { return new Rectangle(0, 0, this.ClientSize.Width, _gripSize); } }
+    private Rectangle LeftGrip { get { return new Rectangle(0, 0, _gripSize, this.ClientSize.Height); } }
+    private Rectangle BottomGrip { get { return new Rectangle(0, this.ClientSize.Height - _gripSize, this.ClientSize.Width, _gripSize); } }
+    private Rectangle RightGrip { get { return new Rectangle(this.ClientSize.Width - _gripSize, 0, _gripSize, this.ClientSize.Height); } }
 
-    private Rectangle TopLeft { get { return new Rectangle(0, 0, _gripSize, _gripSize); } }
-    private Rectangle TopRight { get { return new Rectangle(this.ClientSize.Width - _gripSize, 0, _gripSize, _gripSize); } }
-    private Rectangle BottomLeft { get { return new Rectangle(0, this.ClientSize.Height - _gripSize, _gripSize, _gripSize); } }
-    private Rectangle BottomRight { get { return new Rectangle(this.ClientSize.Width - _gripSize, this.ClientSize.Height - _gripSize, _gripSize, _gripSize); } }
+    private Rectangle TopLeftGrip { get { return new Rectangle(0, 0, _gripSize, _gripSize); } }
+    private Rectangle TopRightGrip { get { return new Rectangle(this.ClientSize.Width - _gripSize, 0, _gripSize, _gripSize); } }
+    private Rectangle BottomLeftGrip { get { return new Rectangle(0, this.ClientSize.Height - _gripSize, _gripSize, _gripSize); } }
+    private Rectangle BottomRightGrip { get { return new Rectangle(this.ClientSize.Width - _gripSize, this.ClientSize.Height - _gripSize, _gripSize, _gripSize); } }
 
     private List<Line> _lines = new List<Line>();
 
@@ -44,15 +44,15 @@ public class Form_WOC : Form
         {
             var cursor = this.PointToClient(Cursor.Position);
 
-            if (TopLeft.Contains(cursor)) message.Result = (IntPtr)HTTOPLEFT;
-            else if (TopRight.Contains(cursor)) message.Result = (IntPtr)HTTOPRIGHT;
-            else if (BottomLeft.Contains(cursor)) message.Result = (IntPtr)HTBOTTOMLEFT;
-            else if (BottomRight.Contains(cursor)) message.Result = (IntPtr)HTBOTTOMRIGHT;
+            if (TopLeftGrip.Contains(cursor)) message.Result = (IntPtr)HTTOPLEFT;
+            else if (TopRightGrip.Contains(cursor)) message.Result = (IntPtr)HTTOPRIGHT;
+            else if (BottomLeftGrip.Contains(cursor)) message.Result = (IntPtr)HTBOTTOMLEFT;
+            else if (BottomRightGrip.Contains(cursor)) message.Result = (IntPtr)HTBOTTOMRIGHT;
 
-            else if (Top.Contains(cursor)) message.Result = (IntPtr)HTTOP;
-            else if (Left.Contains(cursor)) message.Result = (IntPtr)HTLEFT;
-            else if (Right.Contains(cursor)) message.Result = (IntPtr)HTRIGHT;
-            else if (Bottom.Contains(cursor)) message.Result = (IntPtr)HTBOTTOM;
+            else if (TopGrip.Contains(cursor)) message.Result = (IntPtr)HTTOP;
+            else if (LeftGrip.Contains(cursor)) message.Result = (IntPtr)HTLEFT;
+            else if (RightGrip.Contains(cursor)) message.Result = (IntPtr)HTRIGHT;
+            else if (BottomGrip.Contains(cursor)) message.Result = (IntPtr)HTBOTTOM;
         }
     }
     public void drawLine(LinePositions pos, Color color, int point1, int point2)

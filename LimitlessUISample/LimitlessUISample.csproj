@@ -54,9 +54,6 @@
     <Compile Include="Chart_WOC.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Chart_WOC.Designer.cs">
-      <DependentUpon>Chart_WOC.cs</DependentUpon>
-    </Compile>
     <Compile Include="Childs\Other_ListView_Child.cs">
       <SubType>UserControl</SubType>
     </Compile>

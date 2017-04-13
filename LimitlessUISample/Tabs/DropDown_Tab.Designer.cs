@@ -28,8 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.button1 = new System.Windows.Forms.Button();
             this.dropDown_WOC1 = new DropDown_WOC();
+            this.chart_WOC1 = new LimitlessUISample.Chart_WOC();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.animator_WOC1 = new Animator_WOC();
             this.SuspendLayout();
             // 
@@ -60,6 +64,24 @@
             this.dropDown_WOC1.TextDistance = 35F;
             this.dropDown_WOC1.UpImage = null;
             // 
+            // chart_WOC1
+            // 
+            this.chart_WOC1.Location = new System.Drawing.Point(42, 155);
+            this.chart_WOC1.Name = "chart_WOC1";
+            this.chart_WOC1.Padding = new System.Windows.Forms.Padding(20);
+            this.chart_WOC1.Size = new System.Drawing.Size(728, 199);
+            this.chart_WOC1.TabIndex = 2;
+            this.chart_WOC1.Text = "chart_WOC1";
+            // 
+            // timer1
+            // 
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // timer2
+            // 
+            this.timer2.Enabled = true;
+            this.timer2.Interval = 500;
+            // 
             // animator_WOC1
             // 
             this.animator_WOC1.Controls = null;
@@ -70,6 +92,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
+            this.Controls.Add(this.chart_WOC1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.dropDown_WOC1);
             this.Name = "DropDown_Tab";
@@ -82,6 +105,9 @@
 
         private DropDown_WOC dropDown_WOC1;
         private System.Windows.Forms.Button button1;
+        private Chart_WOC chart_WOC1;
+        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Timer timer2;
         private Animator_WOC animator_WOC1;
     }
 }
