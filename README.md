@@ -1,3 +1,9 @@
+# EULA:
+You are allowed to change/modify/update and use this library as long as it is not used for commercial use.
+
+<br>
+<br>
+
 # Documentation:
 
 <br>
