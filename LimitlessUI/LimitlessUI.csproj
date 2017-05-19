@@ -8,7 +8,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>LimitlessUI</RootNamespace>
-    <AssemblyName>LimitlessUI_1.3.0</AssemblyName>
+    <AssemblyName>LimitlessUI_1.5.0</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -48,6 +48,9 @@
     <Compile Include="ArchProgressBar_WOC.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Chart_WOC.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="DragControl_WOC.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -64,6 +67,9 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="GradientPanel_WOC.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Legend_WOC.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="ListView_WOC.cs">

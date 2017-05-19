@@ -29,24 +29,21 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.button1 = new System.Windows.Forms.Button();
-            this.dropDown_WOC1 = new DropDown_WOC();
-            this.chart_WOC1 = new LimitlessUISample.Chart_WOC();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.timer2 = new System.Windows.Forms.Timer(this.components);
+            this.dropDown_WOC1 = new DropDown_WOC();
             this.animator_WOC1 = new Animator_WOC();
+            this.listView_WOC1 = new ListView_WOC();
+            this.chart_UC1 = new LimitlessUISample.Childs.Chart_UC();
             this.SuspendLayout();
             // 
-            // button1
+            // timer1
             // 
-            this.button1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.25F);
-            this.button1.Location = new System.Drawing.Point(0, 32);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(803, 104);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "Random Button";
-            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // timer2
+            // 
+            this.timer2.Enabled = true;
+            this.timer2.Interval = 500;
             // 
             // dropDown_WOC1
             // 
@@ -57,43 +54,43 @@
             this.dropDown_WOC1.Location = new System.Drawing.Point(0, 0);
             this.dropDown_WOC1.Name = "dropDown_WOC1";
             this.dropDown_WOC1.PointsDown = true;
-            this.dropDown_WOC1.SetLayout = this.button1;
+            this.dropDown_WOC1.SetLayout = this.chart_UC1;
             this.dropDown_WOC1.Size = new System.Drawing.Size(803, 32);
             this.dropDown_WOC1.TabIndex = 0;
             this.dropDown_WOC1.Text = "This is dropdown thingy";
             this.dropDown_WOC1.TextDistance = 35F;
             this.dropDown_WOC1.UpImage = null;
             // 
-            // chart_WOC1
-            // 
-            this.chart_WOC1.Location = new System.Drawing.Point(42, 155);
-            this.chart_WOC1.Name = "chart_WOC1";
-            this.chart_WOC1.Padding = new System.Windows.Forms.Padding(20);
-            this.chart_WOC1.Size = new System.Drawing.Size(728, 199);
-            this.chart_WOC1.TabIndex = 2;
-            this.chart_WOC1.Text = "chart_WOC1";
-            // 
-            // timer1
-            // 
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
-            // timer2
-            // 
-            this.timer2.Enabled = true;
-            this.timer2.Interval = 500;
-            // 
             // animator_WOC1
             // 
             this.animator_WOC1.Controls = null;
             this.animator_WOC1.Delay = 17;
+            // 
+            // listView_WOC1
+            // 
+            this.listView_WOC1.AutoExpand = false;
+            this.listView_WOC1.AutoScroll = true;
+            this.listView_WOC1.Location = new System.Drawing.Point(0, 0);
+            this.listView_WOC1.Name = "listView_WOC1";
+            this.listView_WOC1.Size = new System.Drawing.Size(0, 0);
+            this.listView_WOC1.TabIndex = 0;
+            this.listView_WOC1.Vertical = true;
+            // 
+            // chart_UC1
+            // 
+            this.chart_UC1.BackColor = System.Drawing.Color.White;
+            this.chart_UC1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.chart_UC1.Location = new System.Drawing.Point(0, 32);
+            this.chart_UC1.Name = "chart_UC1";
+            this.chart_UC1.Size = new System.Drawing.Size(803, 323);
+            this.chart_UC1.TabIndex = 4;
             // 
             // DropDown_Tab
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.Controls.Add(this.chart_WOC1);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.chart_UC1);
             this.Controls.Add(this.dropDown_WOC1);
             this.Name = "DropDown_Tab";
             this.Size = new System.Drawing.Size(803, 507);
@@ -104,10 +101,10 @@
         #endregion
 
         private DropDown_WOC dropDown_WOC1;
-        private System.Windows.Forms.Button button1;
-        private Chart_WOC chart_WOC1;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Timer timer2;
         private Animator_WOC animator_WOC1;
+        private ListView_WOC listView_WOC1;
+        private Childs.Chart_UC chart_UC1;
     }
 }

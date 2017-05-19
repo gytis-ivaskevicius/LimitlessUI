@@ -49,7 +49,6 @@ public partial class FlatButton_WOC : Control
                     if (control is FlatButton_WOC)
                         ((FlatButton_WOC)control).unselect();
             _selected = true;
-            Invalidate();
         }
     }
 
@@ -61,7 +60,6 @@ public partial class FlatButton_WOC : Control
             BackColor = _defaultBackColor;
             ForeColor = _defaultForeColor;
         }
-        Invalidate();
     }
 
     private void onMouseExit(object sender, EventArgs e)
@@ -97,7 +95,7 @@ public partial class FlatButton_WOC : Control
         if (_drawImage && _image != null)
         {
             float drawHeight = Height / 2 - _imageSize.Height / 2;
-            pe.Graphics.DrawImage(_selected || (_mouseHovering && _useActiveImageWhileHovering) ? (_selectedImage != null ? _selectedImage : _image) : _image, drawHeight, drawHeight, _imageSize.Width, _imageSize.Height);
+            pe.Graphics.DrawImage(_selected || (_mouseHovering && _useActiveImageWhileHovering) ? ( _selectedImage ?? _image) : _image, drawHeight, drawHeight, _imageSize.Width, _imageSize.Height);
         }
     }
 
@@ -194,8 +192,6 @@ public partial class FlatButton_WOC : Control
         }
     }
 
-
-
     public Image ActiveImage
     {
         get { return _selectedImage; }
@@ -267,4 +263,3 @@ public partial class FlatButton_WOC : Control
     }
     #endregion
 }
-

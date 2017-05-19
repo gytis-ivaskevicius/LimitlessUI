@@ -33,8 +33,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="LimitlessUI_1.3.0">
-      <HintPath>..\LimitlessUI\bin\Debug\LimitlessUI_1.3.0.dll</HintPath>
+    <Reference Include="LimitlessUI_1.5.0">
+      <HintPath>..\LimitlessUI\bin\Debug\LimitlessUI_1.5.0.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -51,8 +51,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Chart_WOC.cs">
-      <SubType>Component</SubType>
+    <Compile Include="Childs\Chart_UC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Childs\Chart_UC.Designer.cs">
+      <DependentUpon>Chart_UC.cs</DependentUpon>
     </Compile>
     <Compile Include="Childs\Other_ListView_Child.cs">
       <SubType>UserControl</SubType>
@@ -104,6 +107,9 @@
     <Compile Include="Tabs\Slider_Tab.Designer.cs">
       <DependentUpon>Slider_Tab.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Childs\Chart_UC.resx">
+      <DependentUpon>Chart_UC.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Childs\Other_ListView_Child.resx">
       <DependentUpon>Other_ListView_Child.cs</DependentUpon>
     </EmbeddedResource>

@@ -51,6 +51,8 @@
             this.elipse_WOC1 = new Elipse_WOC();
             this.control1 = new System.Windows.Forms.Control();
             this.nav_adapter = new TabsAdapter_WOC();
+            this.listView_WOC1 = new ListView_WOC();
+            this.listView_WOC2 = new ListView_WOC();
             this.panel1.SuspendLayout();
             this.nav_panel.SuspendLayout();
             this.header.SuspendLayout();
@@ -98,6 +100,8 @@
             this.flatButton_WOC6.ActiveColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(43)))), ((int)(((byte)(55)))));
             this.flatButton_WOC6.ActiveImage = null;
             this.flatButton_WOC6.ActiveTextColor = System.Drawing.Color.SeaGreen;
+            this.flatButton_WOC6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(53)))), ((int)(((byte)(65)))));
+            this.flatButton_WOC6.DefaultBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(33)))), ((int)(((byte)(45)))));
             this.flatButton_WOC6.DefaultForeColor = System.Drawing.Color.White;
             this.flatButton_WOC6.Dock = System.Windows.Forms.DockStyle.Top;
             this.flatButton_WOC6.DrawImage = true;
@@ -125,6 +129,8 @@
             this.flatButton_WOC5.ActiveColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(43)))), ((int)(((byte)(55)))));
             this.flatButton_WOC5.ActiveImage = null;
             this.flatButton_WOC5.ActiveTextColor = System.Drawing.Color.SeaGreen;
+            this.flatButton_WOC5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(53)))), ((int)(((byte)(65)))));
+            this.flatButton_WOC5.DefaultBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(33)))), ((int)(((byte)(45)))));
             this.flatButton_WOC5.DefaultForeColor = System.Drawing.Color.White;
             this.flatButton_WOC5.Dock = System.Windows.Forms.DockStyle.Top;
             this.flatButton_WOC5.DrawImage = true;
@@ -152,6 +158,8 @@
             this.flatButton_WOC4.ActiveColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(43)))), ((int)(((byte)(55)))));
             this.flatButton_WOC4.ActiveImage = null;
             this.flatButton_WOC4.ActiveTextColor = System.Drawing.Color.SeaGreen;
+            this.flatButton_WOC4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(53)))), ((int)(((byte)(65)))));
+            this.flatButton_WOC4.DefaultBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(33)))), ((int)(((byte)(45)))));
             this.flatButton_WOC4.DefaultForeColor = System.Drawing.Color.White;
             this.flatButton_WOC4.Dock = System.Windows.Forms.DockStyle.Top;
             this.flatButton_WOC4.DrawImage = true;
@@ -179,6 +187,8 @@
             this.flatButton_WOC3.ActiveColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(43)))), ((int)(((byte)(55)))));
             this.flatButton_WOC3.ActiveImage = null;
             this.flatButton_WOC3.ActiveTextColor = System.Drawing.Color.SeaGreen;
+            this.flatButton_WOC3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(53)))), ((int)(((byte)(65)))));
+            this.flatButton_WOC3.DefaultBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(33)))), ((int)(((byte)(45)))));
             this.flatButton_WOC3.DefaultForeColor = System.Drawing.Color.White;
             this.flatButton_WOC3.Dock = System.Windows.Forms.DockStyle.Top;
             this.flatButton_WOC3.DrawImage = true;
@@ -206,6 +216,8 @@
             this.flatButton_WOC2.ActiveColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(43)))), ((int)(((byte)(55)))));
             this.flatButton_WOC2.ActiveImage = null;
             this.flatButton_WOC2.ActiveTextColor = System.Drawing.Color.SeaGreen;
+            this.flatButton_WOC2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(53)))), ((int)(((byte)(65)))));
+            this.flatButton_WOC2.DefaultBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(33)))), ((int)(((byte)(45)))));
             this.flatButton_WOC2.DefaultForeColor = System.Drawing.Color.White;
             this.flatButton_WOC2.Dock = System.Windows.Forms.DockStyle.Top;
             this.flatButton_WOC2.DrawImage = true;
@@ -233,7 +245,8 @@
             this.flatButton_WOC1.ActiveColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(43)))), ((int)(((byte)(55)))));
             this.flatButton_WOC1.ActiveImage = null;
             this.flatButton_WOC1.ActiveTextColor = System.Drawing.Color.SeaGreen;
-            this.flatButton_WOC1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(43)))), ((int)(((byte)(55)))));
+            this.flatButton_WOC1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(53)))), ((int)(((byte)(65)))));
+            this.flatButton_WOC1.DefaultBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(33)))), ((int)(((byte)(45)))));
             this.flatButton_WOC1.DefaultForeColor = System.Drawing.Color.White;
             this.flatButton_WOC1.Dock = System.Windows.Forms.DockStyle.Top;
             this.flatButton_WOC1.DrawImage = true;
@@ -368,6 +381,7 @@
             // 
             // dragControl_WOC1
             // 
+            this.dragControl_WOC1.DraggableInnerControls = false;
             this.dragControl_WOC1.Fixed = true;
             this.dragControl_WOC1.MaximiseOnDoubleClick = true;
             this.dragControl_WOC1.TargetControl = this.header;
@@ -388,6 +402,26 @@
             // nav_adapter
             // 
             this.nav_adapter.Control = this.tabs_holder;
+            // 
+            // listView_WOC1
+            // 
+            this.listView_WOC1.AutoExpand = false;
+            this.listView_WOC1.AutoScroll = true;
+            this.listView_WOC1.Location = new System.Drawing.Point(0, 0);
+            this.listView_WOC1.Name = "listView_WOC1";
+            this.listView_WOC1.Size = new System.Drawing.Size(0, 0);
+            this.listView_WOC1.TabIndex = 0;
+            this.listView_WOC1.Vertical = true;
+            // 
+            // listView_WOC2
+            // 
+            this.listView_WOC2.AutoExpand = false;
+            this.listView_WOC2.AutoScroll = true;
+            this.listView_WOC2.Location = new System.Drawing.Point(0, 0);
+            this.listView_WOC2.Name = "listView_WOC2";
+            this.listView_WOC2.Size = new System.Drawing.Size(0, 0);
+            this.listView_WOC2.TabIndex = 0;
+            this.listView_WOC2.Vertical = true;
             // 
             // MainForm
             // 
@@ -436,6 +470,8 @@
         private FlatButton_WOC flatButton_WOC6;
         private System.Windows.Forms.Control control1;
         private TabsAdapter_WOC nav_adapter;
+        private ListView_WOC listView_WOC1;
+        private ListView_WOC listView_WOC2;
     }
 }
 

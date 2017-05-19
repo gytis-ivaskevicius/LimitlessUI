@@ -64,6 +64,7 @@
             this.archProgressBar_WOC11.Font1 = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.archProgressBar_WOC11.Font2 = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.archProgressBar_WOC11.Font3 = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.archProgressBar_WOC11.IgnoreHeight = true;
             this.archProgressBar_WOC11.Location = new System.Drawing.Point(603, 201);
             this.archProgressBar_WOC11.Name = "archProgressBar_WOC11";
             this.archProgressBar_WOC11.Offset = new System.Drawing.Point(0, 0);
@@ -90,6 +91,7 @@
             this.archProgressBar_WOC10.Font1 = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.archProgressBar_WOC10.Font2 = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.archProgressBar_WOC10.Font3 = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.archProgressBar_WOC10.IgnoreHeight = true;
             this.archProgressBar_WOC10.Location = new System.Drawing.Point(603, 0);
             this.archProgressBar_WOC10.Name = "archProgressBar_WOC10";
             this.archProgressBar_WOC10.Offset = new System.Drawing.Point(0, 0);
@@ -116,6 +118,7 @@
             this.archProgressBar_WOC8.Font1 = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.archProgressBar_WOC8.Font2 = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.archProgressBar_WOC8.Font3 = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.archProgressBar_WOC8.IgnoreHeight = true;
             this.archProgressBar_WOC8.Location = new System.Drawing.Point(201, 394);
             this.archProgressBar_WOC8.Name = "archProgressBar_WOC8";
             this.archProgressBar_WOC8.Offset = new System.Drawing.Point(0, 0);
@@ -142,6 +145,7 @@
             this.archProgressBar_WOC9.Font1 = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.archProgressBar_WOC9.Font2 = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.archProgressBar_WOC9.Font3 = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.archProgressBar_WOC9.IgnoreHeight = true;
             this.archProgressBar_WOC9.Location = new System.Drawing.Point(0, 394);
             this.archProgressBar_WOC9.Name = "archProgressBar_WOC9";
             this.archProgressBar_WOC9.Offset = new System.Drawing.Point(0, 0);
@@ -168,6 +172,7 @@
             this.archProgressBar_WOC4.Font1 = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.archProgressBar_WOC4.Font2 = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.archProgressBar_WOC4.Font3 = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.archProgressBar_WOC4.IgnoreHeight = true;
             this.archProgressBar_WOC4.Location = new System.Drawing.Point(402, 201);
             this.archProgressBar_WOC4.Name = "archProgressBar_WOC4";
             this.archProgressBar_WOC4.Offset = new System.Drawing.Point(0, 0);
@@ -194,6 +199,7 @@
             this.archProgressBar_WOC5.Font1 = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.archProgressBar_WOC5.Font2 = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.archProgressBar_WOC5.Font3 = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.archProgressBar_WOC5.IgnoreHeight = true;
             this.archProgressBar_WOC5.Location = new System.Drawing.Point(201, 201);
             this.archProgressBar_WOC5.Name = "archProgressBar_WOC5";
             this.archProgressBar_WOC5.Offset = new System.Drawing.Point(0, 0);
@@ -220,6 +226,7 @@
             this.archProgressBar_WOC6.Font1 = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.archProgressBar_WOC6.Font2 = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.archProgressBar_WOC6.Font3 = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.archProgressBar_WOC6.IgnoreHeight = true;
             this.archProgressBar_WOC6.Location = new System.Drawing.Point(0, 201);
             this.archProgressBar_WOC6.Name = "archProgressBar_WOC6";
             this.archProgressBar_WOC6.Offset = new System.Drawing.Point(0, 0);
@@ -246,6 +253,7 @@
             this.archProgressBar_WOC3.Font1 = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.archProgressBar_WOC3.Font2 = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.archProgressBar_WOC3.Font3 = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.archProgressBar_WOC3.IgnoreHeight = true;
             this.archProgressBar_WOC3.Location = new System.Drawing.Point(402, 0);
             this.archProgressBar_WOC3.Name = "archProgressBar_WOC3";
             this.archProgressBar_WOC3.Offset = new System.Drawing.Point(0, 0);
@@ -272,6 +280,7 @@
             this.archProgressBar_WOC2.Font1 = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.archProgressBar_WOC2.Font2 = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.archProgressBar_WOC2.Font3 = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.archProgressBar_WOC2.IgnoreHeight = true;
             this.archProgressBar_WOC2.Location = new System.Drawing.Point(201, 0);
             this.archProgressBar_WOC2.Name = "archProgressBar_WOC2";
             this.archProgressBar_WOC2.Offset = new System.Drawing.Point(0, 0);
@@ -298,6 +307,7 @@
             this.archProgressBar_WOC1.Font1 = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.archProgressBar_WOC1.Font2 = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.archProgressBar_WOC1.Font3 = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.archProgressBar_WOC1.IgnoreHeight = true;
             this.archProgressBar_WOC1.Location = new System.Drawing.Point(0, 0);
             this.archProgressBar_WOC1.Name = "archProgressBar_WOC1";
             this.archProgressBar_WOC1.Offset = new System.Drawing.Point(10, 0);

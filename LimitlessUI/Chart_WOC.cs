@@ -113,7 +113,9 @@ namespace LimitlessUISample
             {
                 pen1.Color = serie.lineColor;
                 float xLineCord = 0;
-                PointF lastPoint = new PointF(0, -serie.values.First());
+                PointF lastPoint;
+                if (serie.values.Count != 0)
+                    lastPoint = new PointF(0, -serie.values.First());
                 foreach (int yVal in serie.values)
                 {
                     PointF point = new PointF(xLineCord, -yVal);
@@ -177,7 +179,7 @@ namespace LimitlessUISample
         {
             get { return _chartLength; }
             set { _chartLength = value; Invalidate(); }
-        } 
+        }
         #endregion
         //-----------------------------------[Serie Class]-----------------------------------//
         public class Serie
