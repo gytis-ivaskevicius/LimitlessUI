@@ -6,7 +6,7 @@ public partial class ListView_WOC : ScrollableControl
 {
     private bool _vertical = true;
     private bool _autoExpand = false;
-    private List<Control> _items = new List<Control>();
+    public List<Control> items = new List<Control>();
 
     public ListView_WOC()
     {
@@ -16,28 +16,28 @@ public partial class ListView_WOC : ScrollableControl
     public void add(Control item)
     {
         item.Dock = _vertical ? DockStyle.Top : DockStyle.Left;
-        _items.Add(item);
+        items.Add(item);
         this.Controls.Add(item);
         item.BringToFront();
 
         if (_autoExpand && _vertical)
-            Height = _items.Last().Location.Y + _items.Last().Size.Height;
+            Height = items.Last().Location.Y + items.Last().Size.Height;
         else if (_autoExpand && !_vertical)
-            Width = _items.Last().Location.X + _items.Last().Size.Width;
+            Width = items.Last().Location.X + items.Last().Size.Width;
     }
 
     public void remove(int index)
     {
-        this.Controls.Remove(_items.ElementAt(index));
-        _items.RemoveAt(index);
+        this.Controls.Remove(items.ElementAt(index));
+        items.RemoveAt(index);
     }
 
     public void clear()
     {
-        _items.Clear();
+        items.Clear();
         this.Controls.Clear();
     }
-
+    
     public bool Vertical
     {
         get { return _vertical; }
@@ -49,11 +49,4 @@ public partial class ListView_WOC : ScrollableControl
         get { return _autoExpand; }
         set { _autoExpand = value; }
     }
-
-    public List<Control> ListItems
-    {
-        get { return _items; }
-        set { _items = value; }
-    }
-
 }
