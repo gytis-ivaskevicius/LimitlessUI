@@ -27,6 +27,7 @@ public partial class FlatButton_WOC : Control
 
     public FlatButton_WOC()
     {
+        DoubleBuffered = true;
         BackColor = Color.FromArgb(41, 53, 65);
         ForeColor = Color.White;
         Height = 50;

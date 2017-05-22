@@ -18,8 +18,6 @@ namespace LimitlessUISample.Tabs
         public DropDown_Tab()
         {
             InitializeComponent();
-
-           
         }
 
         public static DropDown_Tab getInstance()

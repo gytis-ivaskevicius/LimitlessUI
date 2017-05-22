@@ -36,7 +36,7 @@
             this.flatButton_WOC5 = new FlatButton_WOC();
             this.flatButton_WOC4 = new FlatButton_WOC();
             this.flatButton_WOC3 = new FlatButton_WOC();
-            this.flatButton_WOC2 = new FlatButton_WOC();
+            this.progressBar_btn = new FlatButton_WOC();
             this.flatButton_WOC1 = new FlatButton_WOC();
             this.header = new System.Windows.Forms.Panel();
             this.tab_title = new System.Windows.Forms.Label();
@@ -87,7 +87,7 @@
             this.nav_panel.Controls.Add(this.flatButton_WOC5);
             this.nav_panel.Controls.Add(this.flatButton_WOC4);
             this.nav_panel.Controls.Add(this.flatButton_WOC3);
-            this.nav_panel.Controls.Add(this.flatButton_WOC2);
+            this.nav_panel.Controls.Add(this.progressBar_btn);
             this.nav_panel.Controls.Add(this.flatButton_WOC1);
             this.nav_panel.Dock = System.Windows.Forms.DockStyle.Left;
             this.nav_panel.Location = new System.Drawing.Point(0, 61);
@@ -211,48 +211,48 @@
             this.flatButton_WOC3.UseActiveImageWhileHovering = false;
             this.flatButton_WOC3.Click += new System.EventHandler(this.navigation_click);
             // 
-            // flatButton_WOC2
+            // progressBar_btn
             // 
-            this.flatButton_WOC2.ActiveColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(43)))), ((int)(((byte)(55)))));
-            this.flatButton_WOC2.ActiveImage = null;
-            this.flatButton_WOC2.ActiveTextColor = System.Drawing.Color.SeaGreen;
-            this.flatButton_WOC2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(53)))), ((int)(((byte)(65)))));
-            this.flatButton_WOC2.DefaultBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(33)))), ((int)(((byte)(45)))));
-            this.flatButton_WOC2.DefaultForeColor = System.Drawing.Color.White;
-            this.flatButton_WOC2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.flatButton_WOC2.DrawImage = true;
-            this.flatButton_WOC2.DrawText = true;
-            this.flatButton_WOC2.Font = new System.Drawing.Font("Segoe UI", 8.25F);
-            this.flatButton_WOC2.ForeColor = System.Drawing.Color.White;
-            this.flatButton_WOC2.Image = ((System.Drawing.Image)(resources.GetObject("flatButton_WOC2.Image")));
-            this.flatButton_WOC2.ImageSize = new System.Drawing.SizeF(20F, 20F);
-            this.flatButton_WOC2.IsTab = true;
-            this.flatButton_WOC2.Location = new System.Drawing.Point(0, 48);
-            this.flatButton_WOC2.Name = "flatButton_WOC2";
-            this.flatButton_WOC2.OnHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(33)))), ((int)(((byte)(45)))));
-            this.flatButton_WOC2.OnHoverTextColor = System.Drawing.Color.SeaGreen;
-            this.flatButton_WOC2.Selected = false;
-            this.flatButton_WOC2.Size = new System.Drawing.Size(200, 48);
-            this.flatButton_WOC2.TabIndex = 1;
-            this.flatButton_WOC2.Text = "ProgressBar";
-            this.flatButton_WOC2.TextAligment = System.Drawing.ContentAlignment.MiddleLeft;
-            this.flatButton_WOC2.TextOffset = new System.Drawing.Point(0, 0);
-            this.flatButton_WOC2.UseActiveImageWhileHovering = false;
-            this.flatButton_WOC2.Click += new System.EventHandler(this.navigation_click);
+            this.progressBar_btn.ActiveColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(43)))), ((int)(((byte)(55)))));
+            this.progressBar_btn.ActiveImage = null;
+            this.progressBar_btn.ActiveTextColor = System.Drawing.Color.SeaGreen;
+            this.progressBar_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(53)))), ((int)(((byte)(65)))));
+            this.progressBar_btn.DefaultBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(33)))), ((int)(((byte)(45)))));
+            this.progressBar_btn.DefaultForeColor = System.Drawing.Color.White;
+            this.progressBar_btn.Dock = System.Windows.Forms.DockStyle.Top;
+            this.progressBar_btn.DrawImage = true;
+            this.progressBar_btn.DrawText = true;
+            this.progressBar_btn.Font = new System.Drawing.Font("Segoe UI", 8.25F);
+            this.progressBar_btn.ForeColor = System.Drawing.Color.White;
+            this.progressBar_btn.Image = ((System.Drawing.Image)(resources.GetObject("progressBar_btn.Image")));
+            this.progressBar_btn.ImageSize = new System.Drawing.SizeF(20F, 20F);
+            this.progressBar_btn.IsTab = true;
+            this.progressBar_btn.Location = new System.Drawing.Point(0, 48);
+            this.progressBar_btn.Name = "progressBar_btn";
+            this.progressBar_btn.OnHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(33)))), ((int)(((byte)(45)))));
+            this.progressBar_btn.OnHoverTextColor = System.Drawing.Color.SeaGreen;
+            this.progressBar_btn.Selected = false;
+            this.progressBar_btn.Size = new System.Drawing.Size(200, 48);
+            this.progressBar_btn.TabIndex = 1;
+            this.progressBar_btn.Text = "ProgressBar";
+            this.progressBar_btn.TextAligment = System.Drawing.ContentAlignment.MiddleLeft;
+            this.progressBar_btn.TextOffset = new System.Drawing.Point(0, 0);
+            this.progressBar_btn.UseActiveImageWhileHovering = false;
+            this.progressBar_btn.Click += new System.EventHandler(this.navigation_click);
             // 
             // flatButton_WOC1
             // 
             this.flatButton_WOC1.ActiveColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(43)))), ((int)(((byte)(55)))));
             this.flatButton_WOC1.ActiveImage = null;
             this.flatButton_WOC1.ActiveTextColor = System.Drawing.Color.SeaGreen;
-            this.flatButton_WOC1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(53)))), ((int)(((byte)(65)))));
+            this.flatButton_WOC1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(43)))), ((int)(((byte)(55)))));
             this.flatButton_WOC1.DefaultBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(33)))), ((int)(((byte)(45)))));
             this.flatButton_WOC1.DefaultForeColor = System.Drawing.Color.White;
             this.flatButton_WOC1.Dock = System.Windows.Forms.DockStyle.Top;
             this.flatButton_WOC1.DrawImage = true;
             this.flatButton_WOC1.DrawText = true;
             this.flatButton_WOC1.Font = new System.Drawing.Font("Segoe UI", 8.25F);
-            this.flatButton_WOC1.ForeColor = System.Drawing.Color.White;
+            this.flatButton_WOC1.ForeColor = System.Drawing.Color.SeaGreen;
             this.flatButton_WOC1.Image = ((System.Drawing.Image)(resources.GetObject("flatButton_WOC1.Image")));
             this.flatButton_WOC1.ImageSize = new System.Drawing.SizeF(20F, 20F);
             this.flatButton_WOC1.IsTab = true;
@@ -459,7 +459,7 @@
         private System.Windows.Forms.Label maximiseLabel;
         private System.Windows.Forms.Label minimiseLabel;
         private System.Windows.Forms.Label exitLabel;
-        private FlatButton_WOC flatButton_WOC2;
+        private FlatButton_WOC progressBar_btn;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label tab_title;
         private System.Windows.Forms.Panel tabs_holder;

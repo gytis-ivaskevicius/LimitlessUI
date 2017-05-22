@@ -17,6 +17,7 @@ namespace LimitlessUISample
             ArchProgressBar_Tab.getInstance().Dock = DockStyle.Fill;
             ArchProgressBar_Tab.getInstance().BringToFront();
 
+            
 
             drawLine(LinePositions.LEFT, Color.FromArgb(41, 53, 65), 65, Height);
             drawLine(LinePositions.LEFT, Color.SeaGreen, 0, 65);
