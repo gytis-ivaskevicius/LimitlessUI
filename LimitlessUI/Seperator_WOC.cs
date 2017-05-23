@@ -68,9 +68,14 @@ public partial class Separator_WOC : Control
         int size = _vertical ? Height / 2 : Width / 2;
         pe.Graphics.TranslateTransform(Width / 2, Height / 2);
         pe.Graphics.RotateTransform(_angle);
-        pe.Graphics.DrawLine(new Pen(_lineColor, _thikness), -size + Padding.Left, 0, size - Padding.Right, 0);
+        Pen pen = new Pen(_lineColor, _thikness);
+        pe.Graphics.DrawLine(pen, -size + Padding.Left, 0, size - Padding.Right, 0);
         if (_animationEnabled)
-            pe.Graphics.DrawLine(new Pen(_animationColor, _thikness), Padding.Left + (-_val) / 2, 0, (_val) / 2, 0);
+        {
+            pen.Color = _animationColor;
+            pe.Graphics.DrawLine(pen, Padding.Left + (-_val) / 2, 0, (_val) / 2, 0);
+        }
+        pen.Dispose();
     }
 
     public bool AnimationEnabled
@@ -103,7 +108,10 @@ public partial class Separator_WOC : Control
         set
         {
             _thikness = value;
-            Invalidate();
+            if (Height < _thikness)
+                Height = (int) _thikness;
+            else
+                Invalidate();
         }
     }
 
