@@ -26,7 +26,9 @@ public class Form_WOC : Form
 
     private List<Line> _lines = new List<Line>();
 
-    private int _gripSize = 10;
+    private int _gripSize = 10;     // Thickness of form grip which allows you to resize it
+
+
     private const int
         HTLEFT = 10,
         HTRIGHT = 11,
@@ -40,7 +42,7 @@ public class Form_WOC : Form
     protected override void WndProc(ref Message message)
     {
         base.WndProc(ref message);
-        if (message.Msg == 0x84) // WM_NCHITTEST
+        if (message.Msg == 0x84)    // WM_NCHITTEST
         {
             var cursor = this.PointToClient(Cursor.Position);
 
@@ -90,7 +92,7 @@ public class Form_WOC : Form
         set { _gripSize = value; }
     }
 
-
+    
     class Line
     {
         private int _x1;
@@ -98,7 +100,7 @@ public class Form_WOC : Form
         private int _y1;
         private int _y2;
         private Color _color;
-        private LinePositions _positon;
+        private LinePositions _position;
 
         public Line(LinePositions position, Color color, int point1, int point2)
         {
@@ -113,7 +115,7 @@ public class Form_WOC : Form
                 _y2 = point2;
             }
             _color = color;
-            _positon = position;
+            _position = position;
         }
 
         public Color Color { get { return _color; } }
@@ -121,7 +123,7 @@ public class Form_WOC : Form
         public int X2 { get { return _x2; } }
         public int Y1 { get { return _y1; } }
         public int Y2 { get { return _y2; } }
-        public LinePositions LinePosition { get { return _positon; } }
+        public LinePositions LinePosition { get { return _position; } }
     }
 }
 
