@@ -31,7 +31,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.separator_WOC1 = new Separator_WOC();
-            this.textBox_WOC1 = new LimitlessUI.TextBox_WOC();
+            this.textBox_WOC1 = new LimitlessUI.MaterialTextBox_WOC();
             this.switch_WOC1 = new Switch_WOC();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -116,6 +116,6 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
         private Separator_WOC separator_WOC1;
-        private LimitlessUI.TextBox_WOC textBox_WOC1;
+        private LimitlessUI.MaterialTextBox_WOC textBox_WOC1;
     }
 }

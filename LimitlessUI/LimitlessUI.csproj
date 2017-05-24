@@ -92,16 +92,16 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Tab_WOC.cs" />
-    <Compile Include="TextBox_WOC.cs">
+    <Compile Include="MaterialTextBox_WOC.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="TextBox_WOC.Designer.cs">
-      <DependentUpon>TextBox_WOC.cs</DependentUpon>
+    <Compile Include="MaterialTextBox_WOC.Designer.cs">
+      <DependentUpon>MaterialTextBox_WOC.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="TextBox_WOC.resx">
-      <DependentUpon>TextBox_WOC.cs</DependentUpon>
+    <EmbeddedResource Include="MaterialTextBox_WOC.resx">
+      <DependentUpon>MaterialTextBox_WOC.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

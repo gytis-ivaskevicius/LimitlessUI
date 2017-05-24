@@ -32,13 +32,10 @@
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.dropDown_WOC1 = new DropDown_WOC();
+            this.chart_UC1 = new LimitlessUISample.Childs.Chart_UC();
             this.animator_WOC1 = new Animator_WOC();
             this.listView_WOC1 = new ListView_WOC();
-            this.chart_UC1 = new LimitlessUISample.Childs.Chart_UC();
             this.SuspendLayout();
-            // 
-            // timer1
-            // 
             // 
             // timer2
             // 
@@ -61,6 +58,15 @@
             this.dropDown_WOC1.TextDistance = 35F;
             this.dropDown_WOC1.UpImage = null;
             // 
+            // chart_UC1
+            // 
+            this.chart_UC1.BackColor = System.Drawing.Color.White;
+            this.chart_UC1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.chart_UC1.Location = new System.Drawing.Point(0, 32);
+            this.chart_UC1.Name = "chart_UC1";
+            this.chart_UC1.Size = new System.Drawing.Size(803, 323);
+            this.chart_UC1.TabIndex = 4;
+            // 
             // animator_WOC1
             // 
             this.animator_WOC1.Controls = null;
@@ -75,15 +81,6 @@
             this.listView_WOC1.Size = new System.Drawing.Size(0, 0);
             this.listView_WOC1.TabIndex = 0;
             this.listView_WOC1.Vertical = true;
-            // 
-            // chart_UC1
-            // 
-            this.chart_UC1.BackColor = System.Drawing.Color.White;
-            this.chart_UC1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.chart_UC1.Location = new System.Drawing.Point(0, 32);
-            this.chart_UC1.Name = "chart_UC1";
-            this.chart_UC1.Size = new System.Drawing.Size(803, 323);
-            this.chart_UC1.TabIndex = 4;
             // 
             // DropDown_Tab
             // 

@@ -101,7 +101,7 @@
             this.flatButton_WOC6.ActiveImage = null;
             this.flatButton_WOC6.ActiveTextColor = System.Drawing.Color.SeaGreen;
             this.flatButton_WOC6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(53)))), ((int)(((byte)(65)))));
-            this.flatButton_WOC6.DefaultBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(33)))), ((int)(((byte)(45)))));
+            this.flatButton_WOC6.DefaultBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(53)))), ((int)(((byte)(65)))));
             this.flatButton_WOC6.DefaultForeColor = System.Drawing.Color.White;
             this.flatButton_WOC6.Dock = System.Windows.Forms.DockStyle.Top;
             this.flatButton_WOC6.DrawImage = true;
@@ -130,7 +130,7 @@
             this.flatButton_WOC5.ActiveImage = null;
             this.flatButton_WOC5.ActiveTextColor = System.Drawing.Color.SeaGreen;
             this.flatButton_WOC5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(53)))), ((int)(((byte)(65)))));
-            this.flatButton_WOC5.DefaultBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(33)))), ((int)(((byte)(45)))));
+            this.flatButton_WOC5.DefaultBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(53)))), ((int)(((byte)(65)))));
             this.flatButton_WOC5.DefaultForeColor = System.Drawing.Color.White;
             this.flatButton_WOC5.Dock = System.Windows.Forms.DockStyle.Top;
             this.flatButton_WOC5.DrawImage = true;
@@ -159,7 +159,7 @@
             this.flatButton_WOC4.ActiveImage = null;
             this.flatButton_WOC4.ActiveTextColor = System.Drawing.Color.SeaGreen;
             this.flatButton_WOC4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(53)))), ((int)(((byte)(65)))));
-            this.flatButton_WOC4.DefaultBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(33)))), ((int)(((byte)(45)))));
+            this.flatButton_WOC4.DefaultBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(53)))), ((int)(((byte)(65)))));
             this.flatButton_WOC4.DefaultForeColor = System.Drawing.Color.White;
             this.flatButton_WOC4.Dock = System.Windows.Forms.DockStyle.Top;
             this.flatButton_WOC4.DrawImage = true;
@@ -188,7 +188,7 @@
             this.flatButton_WOC3.ActiveImage = null;
             this.flatButton_WOC3.ActiveTextColor = System.Drawing.Color.SeaGreen;
             this.flatButton_WOC3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(53)))), ((int)(((byte)(65)))));
-            this.flatButton_WOC3.DefaultBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(33)))), ((int)(((byte)(45)))));
+            this.flatButton_WOC3.DefaultBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(53)))), ((int)(((byte)(65)))));
             this.flatButton_WOC3.DefaultForeColor = System.Drawing.Color.White;
             this.flatButton_WOC3.Dock = System.Windows.Forms.DockStyle.Top;
             this.flatButton_WOC3.DrawImage = true;
@@ -217,7 +217,7 @@
             this.progressBar_btn.ActiveImage = null;
             this.progressBar_btn.ActiveTextColor = System.Drawing.Color.SeaGreen;
             this.progressBar_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(53)))), ((int)(((byte)(65)))));
-            this.progressBar_btn.DefaultBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(33)))), ((int)(((byte)(45)))));
+            this.progressBar_btn.DefaultBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(53)))), ((int)(((byte)(65)))));
             this.progressBar_btn.DefaultForeColor = System.Drawing.Color.White;
             this.progressBar_btn.Dock = System.Windows.Forms.DockStyle.Top;
             this.progressBar_btn.DrawImage = true;
@@ -245,8 +245,8 @@
             this.flatButton_WOC1.ActiveColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(43)))), ((int)(((byte)(55)))));
             this.flatButton_WOC1.ActiveImage = null;
             this.flatButton_WOC1.ActiveTextColor = System.Drawing.Color.SeaGreen;
-            this.flatButton_WOC1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(43)))), ((int)(((byte)(55)))));
-            this.flatButton_WOC1.DefaultBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(33)))), ((int)(((byte)(45)))));
+            this.flatButton_WOC1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(53)))), ((int)(((byte)(65)))));
+            this.flatButton_WOC1.DefaultBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(53)))), ((int)(((byte)(65)))));
             this.flatButton_WOC1.DefaultForeColor = System.Drawing.Color.White;
             this.flatButton_WOC1.Dock = System.Windows.Forms.DockStyle.Top;
             this.flatButton_WOC1.DrawImage = true;

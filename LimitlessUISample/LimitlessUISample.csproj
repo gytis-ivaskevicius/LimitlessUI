@@ -107,6 +107,12 @@
     <Compile Include="Tabs\Slider_Tab.Designer.cs">
       <DependentUpon>Slider_Tab.cs</DependentUpon>
     </Compile>
+    <Compile Include="TextBox_WOC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TextBox_WOC.Designer.cs">
+      <DependentUpon>TextBox_WOC.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Childs\Chart_UC.resx">
       <DependentUpon>Chart_UC.cs</DependentUpon>
     </EmbeddedResource>
@@ -143,6 +149,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Tabs\Slider_Tab.resx">
       <DependentUpon>Slider_Tab.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TextBox_WOC.resx">
+      <DependentUpon>TextBox_WOC.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

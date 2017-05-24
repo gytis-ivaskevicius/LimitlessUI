@@ -253,6 +253,7 @@ public partial class FlatButton_WOC : Control
         }
     }
 
+    public override string Text { get => base.Text; set { base.Text = value; Invalidate(); } }
     public SizeF ImageSize
     {
         get { return _imageSize; }
