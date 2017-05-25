@@ -25,9 +25,8 @@ public class Form_WOC : Form
     private Rectangle BottomRightGrip { get { return new Rectangle(this.ClientSize.Width - _gripSize, this.ClientSize.Height - _gripSize, _gripSize, _gripSize); } }
 
     private List<Line> _lines = new List<Line>();
-
     private int _gripSize = 10;     // Thickness of form grip which allows you to resize it
-
+    private bool _drawShadow = true;
 
     private const int
         HTLEFT = 10,
@@ -38,6 +37,24 @@ public class Form_WOC : Form
         HTBOTTOM = 15,
         HTBOTTOMLEFT = 16,
         HTBOTTOMRIGHT = 17;
+
+
+
+    protected override CreateParams CreateParams
+    {
+        get
+        {
+            CreateParams cp = base.CreateParams;
+            if (_drawShadow)
+            {
+                const int CS_DROPSHADOW = 0x20000;
+                cp.ClassStyle |= CS_DROPSHADOW;
+            }
+            return cp;
+        }
+    }
+
+
 
     protected override void WndProc(ref Message message)
     {
@@ -79,7 +96,7 @@ public class Form_WOC : Form
                 e.Graphics.DrawLine(pen, line.X1, Height, line.X2, Height);
             else if (line.LinePosition == LinePositions.TOP)
                 e.Graphics.DrawLine(pen, line.X1, 0, line.X2, 0);
-            else if (line.LinePosition == LinePositions.RIGHT)       
+            else if (line.LinePosition == LinePositions.RIGHT)
                 e.Graphics.DrawLine(pen, Width, line.Y1, Width, line.Y2);
             else
                 e.Graphics.DrawLine(pen, 0, line.Y1, 0, line.Y2);
@@ -92,7 +109,13 @@ public class Form_WOC : Form
         set { _gripSize = value; }
     }
 
-    
+    public bool DrawShadow
+    {
+        get { return _drawShadow; }
+        set { _drawShadow = value; }
+    }
+
+
     class Line
     {
         private int _x1;
