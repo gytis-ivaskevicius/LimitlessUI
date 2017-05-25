@@ -61,13 +61,13 @@
             this.separator_WOC1.AnimationEnabled = false;
             this.separator_WOC1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.separator_WOC1.LineColor = System.Drawing.Color.DimGray;
-            this.separator_WOC1.LineThikness = 1F;
+            this.separator_WOC1.LineThickness = 1F;
             this.separator_WOC1.Location = new System.Drawing.Point(259, 0);
             this.separator_WOC1.Name = "separator_WOC1";
             this.separator_WOC1.Size = new System.Drawing.Size(463, 50);
             this.separator_WOC1.TabIndex = 5;
             this.separator_WOC1.Text = "separator_WOC1";
-            this.separator_WOC1.Val = 0;
+            this.separator_WOC1.Value = 0;
             // 
             // textBox_WOC1
             // 

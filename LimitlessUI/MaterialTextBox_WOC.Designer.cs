@@ -63,7 +63,7 @@
             this.seperator.AnimationEnabled = true;
             this.seperator.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.seperator.LineColor = System.Drawing.Color.DimGray;
-            this.seperator.LineThikness = 3F;
+            this.seperator.LineThickness = 3F;
             this.seperator.Location = new System.Drawing.Point(0, 24);
             this.seperator.Name = "seperator";
             this.seperator.Size = new System.Drawing.Size(172, 3);

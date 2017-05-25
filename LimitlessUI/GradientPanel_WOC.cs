@@ -15,15 +15,15 @@ public partial class GradientPanel_WOC : Panel
         DoubleBuffered = true;
     }
 
-    protected override void OnPaint(PaintEventArgs pe)
+    protected override void OnPaintBackground(PaintEventArgs e)
     {
-        base.OnPaint(pe);
         LinearGradientBrush brush = new LinearGradientBrush(this.ClientRectangle,
-                                                             _startColor,
-                                                             _endColor,
-                                                             _angle);
-        pe.Graphics.FillRectangle(brush, this.ClientRectangle);
+                                                                    _startColor,
+                                                                    _endColor,
+                                                                    _angle);
+        e.Graphics.FillRectangle(brush, this.ClientRectangle);
     }
+
 
     public float Angle
     {

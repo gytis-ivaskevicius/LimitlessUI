@@ -29,11 +29,15 @@
         private void InitializeComponent()
         {
             this.gradientPanel_WOC1 = new GradientPanel_WOC();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.animator_WOC1 = new Animator_WOC();
+            this.gradientPanel_WOC1.SuspendLayout();
             this.SuspendLayout();
             // 
             // gradientPanel_WOC1
             // 
             this.gradientPanel_WOC1.Angle = 0F;
+            this.gradientPanel_WOC1.Controls.Add(this.panel1);
             this.gradientPanel_WOC1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gradientPanel_WOC1.EndColor = System.Drawing.Color.White;
             this.gradientPanel_WOC1.Location = new System.Drawing.Point(0, 0);
@@ -43,6 +47,20 @@
             this.gradientPanel_WOC1.TabIndex = 0;
             this.gradientPanel_WOC1.Text = "gradientPanel_WOC1";
             // 
+            // panel1
+            // 
+            this.panel1.Location = new System.Drawing.Point(57, 3);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(200, 108);
+            this.panel1.TabIndex = 0;
+            this.panel1.Click += new System.EventHandler(this.panel1_Click);
+            // 
+            // animator_WOC1
+            // 
+            this.animator_WOC1.Animation = Animator_WOC.Animations.ChangeWidth;
+            this.animator_WOC1.Controls = this.panel1;
+            this.animator_WOC1.Delay = 17;
+            // 
             // Gradient_Tab
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -50,6 +68,7 @@
             this.Controls.Add(this.gradientPanel_WOC1);
             this.Name = "Gradient_Tab";
             this.Size = new System.Drawing.Size(803, 507);
+            this.gradientPanel_WOC1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -57,5 +76,7 @@
         #endregion
 
         private GradientPanel_WOC gradientPanel_WOC1;
+        private System.Windows.Forms.Panel panel1;
+        private Animator_WOC animator_WOC1;
     }
 }

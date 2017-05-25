@@ -42,6 +42,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AnimatorTimer_WOC.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Animator_WOC.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -57,7 +60,7 @@
     <Compile Include="DropDown_WOC.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Elipse_WOC.cs">
+    <Compile Include="Ellipse_WOC.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="FlatButton_WOC.cs">

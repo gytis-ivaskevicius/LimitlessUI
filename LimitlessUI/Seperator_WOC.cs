@@ -5,7 +5,7 @@ using System.Windows.Forms;
 
 public partial class Separator_WOC : Control
 {
-    private float _thikness = 1;
+    private float _thickness = 1;
     private Timer _timer;
 
     private bool _animationEnabled = false;
@@ -68,7 +68,7 @@ public partial class Separator_WOC : Control
         int size = _vertical ? Height / 2 : Width / 2;
         pe.Graphics.TranslateTransform(Width / 2, Height / 2);
         pe.Graphics.RotateTransform(_angle);
-        Pen pen = new Pen(_lineColor, _thikness);
+        Pen pen = new Pen(_lineColor, _thickness);
         pe.Graphics.DrawLine(pen, -size + Padding.Left, 0, size - Padding.Right, 0);
         if (_animationEnabled)
         {
@@ -90,7 +90,7 @@ public partial class Separator_WOC : Control
         set { _vertical = value; Invalidate(); }
     }
 
-    public int Val
+    public int Value
     {
         get { return _val; }
         set { _val = value; Invalidate(); }
@@ -102,14 +102,14 @@ public partial class Separator_WOC : Control
         set { _angle = value; Invalidate(); }
     }
 
-    public float LineThikness
+    public float LineThickness
     {
-        get { return _thikness; }
+        get { return _thickness; }
         set
         {
-            _thikness = value;
-            if (Height < _thikness)
-                Height = (int) _thikness;
+            _thickness = value;
+            if (Height < _thickness)
+                Height = (int) _thickness;
             else
                 Invalidate();
         }

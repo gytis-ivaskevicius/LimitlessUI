@@ -42,8 +42,8 @@ namespace LimitlessUI
         {
             if (!_focused)
                 seperator.startAnimating(_interval, -_step, -1);
-            if (seperator.Val > seperator.Width - (Padding.Right + Padding.Left))
-                seperator.Val = seperator.Width - (Padding.Right + Padding.Left);
+            if (seperator.Value > seperator.Width - (Padding.Right + Padding.Left))
+                seperator.Value = seperator.Width - (Padding.Right + Padding.Left);
         }
 
         public string TextBoxText
