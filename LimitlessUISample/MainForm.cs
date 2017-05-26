@@ -3,6 +3,7 @@ using System;
 using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace LimitlessUISample
@@ -17,7 +18,7 @@ namespace LimitlessUISample
             ArchProgressBar_Tab.getInstance().Dock = DockStyle.Fill;
             ArchProgressBar_Tab.getInstance().BringToFront();
 
-            
+
 
             drawLine(LinePositions.LEFT, Color.FromArgb(41, 53, 65), 65, Height);
             drawLine(LinePositions.LEFT, Color.SeaGreen, 0, 65);
@@ -26,6 +27,7 @@ namespace LimitlessUISample
             Invalidate();
             setupNavigation();
         }
+
 
         private void setupNavigation()
         {

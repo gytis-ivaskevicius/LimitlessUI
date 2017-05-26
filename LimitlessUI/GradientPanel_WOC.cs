@@ -2,56 +2,59 @@
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 
-
-public partial class GradientPanel_WOC : Panel
+namespace LimitlessUI
 {
-    Color _startColor = Color.WhiteSmoke;
-    Color _endColor = Color.SteelBlue;
-
-    float _angle = 90;
-
-    public GradientPanel_WOC()
+    public partial class GradientPanel_WOC : Panel
     {
-        DoubleBuffered = true;
-    }
+        Color _startColor = Color.WhiteSmoke;
+        Color _endColor = Color.SteelBlue;
 
-    protected override void OnPaintBackground(PaintEventArgs e)
-    {
-        LinearGradientBrush brush = new LinearGradientBrush(this.ClientRectangle,
-                                                                    _startColor,
-                                                                    _endColor,
-                                                                    _angle);
-        e.Graphics.FillRectangle(brush, this.ClientRectangle);
-    }
+        float _angle = 90;
 
-
-    public float Angle
-    {
-        get { return _angle; }
-        set
+        public GradientPanel_WOC()
         {
-            _angle = value;
-            Invalidate();
+            DoubleBuffered = true;
         }
-    }
-    public Color StartColor
-    {
-        get { return _startColor; }
-        set
-        {
-            _startColor = value;
-            Invalidate();
-        }
-    }
 
-    public Color EndColor
-    {
-        get { return _endColor; }
-        set
+        protected override void OnPaintBackground(PaintEventArgs e)
         {
-            _endColor = value;
-            Invalidate();
+            LinearGradientBrush brush = new LinearGradientBrush(this.ClientRectangle,
+                                                                        _startColor,
+                                                                        _endColor,
+                                                                        _angle);
+            e.Graphics.FillRectangle(brush, this.ClientRectangle);
         }
+
+
+        #region Getters and Setters
+        public float Angle
+        {
+            get { return _angle; }
+            set
+            {
+                _angle = value;
+                Invalidate();
+            }
+        }
+        public Color StartColor
+        {
+            get { return _startColor; }
+            set
+            {
+                _startColor = value;
+                Invalidate();
+            }
+        }
+
+        public Color EndColor
+        {
+            get { return _endColor; }
+            set
+            {
+                _endColor = value;
+                Invalidate();
+            }
+        }
+        #endregion
     }
 }
-

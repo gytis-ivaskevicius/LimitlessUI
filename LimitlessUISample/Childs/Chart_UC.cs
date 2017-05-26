@@ -15,7 +15,8 @@ namespace LimitlessUISample.Childs
         public Chart_UC()
         {
             InitializeComponent();
-            timer1.Start();
+            if (!DesignMode)
+                timer1.Start();
             chart_WOC2.addSerie(Color.Green, "serie1", true);
             chart_WOC2.addSerie(Color.Red, "serie2", false);
             legend_WOC2.notifySeriesChanged();

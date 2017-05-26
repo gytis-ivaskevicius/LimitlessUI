@@ -31,8 +31,8 @@
             this.components = new System.ComponentModel.Container();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.timer2 = new System.Windows.Forms.Timer(this.components);
-            this.dropDown_WOC1 = new DropDown_WOC();
             this.chart_UC1 = new LimitlessUISample.Childs.Chart_UC();
+            this.dropDown_WOC1 = new LimitlessUI.DropDown_WOC();
             this.animator_WOC1 = new Animator_WOC();
             this.listView_WOC1 = new ListView_WOC();
             this.SuspendLayout();
@@ -42,33 +42,31 @@
             this.timer2.Enabled = true;
             this.timer2.Interval = 500;
             // 
-            // dropDown_WOC1
-            // 
-            this.dropDown_WOC1.ArrowSize = new System.Drawing.SizeF(12F, 12F);
-            this.dropDown_WOC1.ArrowThinkness = 2F;
-            this.dropDown_WOC1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.dropDown_WOC1.DownImage = null;
-            this.dropDown_WOC1.Location = new System.Drawing.Point(0, 0);
-            this.dropDown_WOC1.Name = "dropDown_WOC1";
-            this.dropDown_WOC1.PointsDown = true;
-            this.dropDown_WOC1.SetLayout = this.chart_UC1;
-            this.dropDown_WOC1.Size = new System.Drawing.Size(803, 32);
-            this.dropDown_WOC1.TabIndex = 0;
-            this.dropDown_WOC1.Text = "This is dropdown thingy";
-            this.dropDown_WOC1.TextDistance = 35F;
-            this.dropDown_WOC1.UpImage = null;
-            // 
             // chart_UC1
             // 
             this.chart_UC1.BackColor = System.Drawing.Color.White;
             this.chart_UC1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.chart_UC1.Location = new System.Drawing.Point(0, 32);
+            this.chart_UC1.Location = new System.Drawing.Point(0, 39);
             this.chart_UC1.Name = "chart_UC1";
             this.chart_UC1.Size = new System.Drawing.Size(803, 323);
-            this.chart_UC1.TabIndex = 4;
+            this.chart_UC1.TabIndex = 6;
+            // 
+            // dropDown_WOC1
+            // 
+            this.dropDown_WOC1.AnimationLength = 300;
+            this.dropDown_WOC1.ArrowSize = 20;
+            this.dropDown_WOC1.Control = this.chart_UC1;
+            this.dropDown_WOC1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.dropDown_WOC1.Image = global::LimitlessUISample.Properties.Resources.ic_expand;
+            this.dropDown_WOC1.Location = new System.Drawing.Point(0, 0);
+            this.dropDown_WOC1.Name = "dropDown_WOC1";
+            this.dropDown_WOC1.Size = new System.Drawing.Size(803, 39);
+            this.dropDown_WOC1.TabIndex = 5;
+            this.dropDown_WOC1.Text = "DropDown demo";
             // 
             // animator_WOC1
             // 
+            this.animator_WOC1.Animation = Animator_WOC.Animations.ChangeWidth;
             this.animator_WOC1.Controls = null;
             this.animator_WOC1.Delay = 17;
             // 
@@ -96,12 +94,11 @@
         }
 
         #endregion
-
-        private DropDown_WOC dropDown_WOC1;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Timer timer2;
         private Animator_WOC animator_WOC1;
         private ListView_WOC listView_WOC1;
+        private LimitlessUI.DropDown_WOC dropDown_WOC1;
         private Childs.Chart_UC chart_UC1;
     }
 }

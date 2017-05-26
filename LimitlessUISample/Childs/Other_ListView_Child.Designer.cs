@@ -57,27 +57,26 @@
             // 
             // separator_WOC1
             // 
-            this.separator_WOC1.AnimationColor = System.Drawing.Color.SeaGreen;
-            this.separator_WOC1.AnimationEnabled = false;
             this.separator_WOC1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.separator_WOC1.LineColor = System.Drawing.Color.DimGray;
-            this.separator_WOC1.LineThickness = 1F;
+            this.separator_WOC1.LineThickness = 1;
             this.separator_WOC1.Location = new System.Drawing.Point(259, 0);
             this.separator_WOC1.Name = "separator_WOC1";
             this.separator_WOC1.Size = new System.Drawing.Size(463, 50);
             this.separator_WOC1.TabIndex = 5;
             this.separator_WOC1.Text = "separator_WOC1";
-            this.separator_WOC1.Value = 0;
+            this.separator_WOC1.Vertical = false;
             // 
             // textBox_WOC1
             // 
             this.textBox_WOC1.AnimationColor = System.Drawing.Color.Purple;
+            this.textBox_WOC1.AnimationLength = 300;
             this.textBox_WOC1.Font = new System.Drawing.Font("Segoe UI", 10.5F);
+            this.textBox_WOC1.LineThickness = 3;
             this.textBox_WOC1.Location = new System.Drawing.Point(20, 12);
             this.textBox_WOC1.Name = "textBox_WOC1";
+            this.textBox_WOC1.Padding = new System.Windows.Forms.Padding(0, 0, 0, 3);
             this.textBox_WOC1.Size = new System.Drawing.Size(172, 27);
             this.textBox_WOC1.TabIndex = 0;
-            this.textBox_WOC1.TextBoxText = "Awsome EditText 100";
             // 
             // switch_WOC1
             // 

@@ -344,18 +344,13 @@
             // 
             // separator_WOC1
             // 
-            this.separator_WOC1.Angle = 0;
-            this.separator_WOC1.AnimationColor = System.Drawing.Color.SeaGreen;
-            this.separator_WOC1.AnimationEnabled = false;
             this.separator_WOC1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.separator_WOC1.LineColor = System.Drawing.Color.DimGray;
-            this.separator_WOC1.LineThickness = 1F;
+            this.separator_WOC1.LineThickness = 1;
             this.separator_WOC1.Location = new System.Drawing.Point(200, 60);
             this.separator_WOC1.Name = "separator_WOC1";
             this.separator_WOC1.Size = new System.Drawing.Size(799, 1);
             this.separator_WOC1.TabIndex = 1;
             this.separator_WOC1.Text = "separator_WOC1";
-            this.separator_WOC1.Value = 0;
             this.separator_WOC1.Vertical = false;
             // 
             // panel4

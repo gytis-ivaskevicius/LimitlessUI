@@ -63,9 +63,9 @@ namespace LimitlessUISample.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap expand_ic {
+        internal static System.Drawing.Bitmap ic_expand {
             get {
-                object obj = ResourceManager.GetObject("expand_ic", resourceCulture);
+                object obj = ResourceManager.GetObject("ic_expand", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

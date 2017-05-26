@@ -13,6 +13,7 @@ namespace LimitlessUISample
 {
     public partial class TextBox_WOC : UserControl
     {
+        private Color _borderColor = Color.Black;
         private int _borderThikness = 5;
         private bool _multiLine = true;
         private bool _drawBorder = false;
@@ -65,8 +66,19 @@ namespace LimitlessUISample
         public bool Multiline
         {
             get { return _multiLine; }
-            set { _multiLine = value; centerVertical(_multiLine); textBox.Multiline = !_multiLine;
+            set
+            {
+                _multiLine = value;
+                centerVertical(_multiLine);
+                textBox.Multiline = !_multiLine;
             }
+        }
+
+
+        public Color BorderColor
+        {
+            get { return _borderColor; }
+            set { _borderColor = value;  Invalidate(); }
         }
 
 

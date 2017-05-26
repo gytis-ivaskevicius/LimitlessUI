@@ -56,7 +56,7 @@
             // 
             this.chart_WOC2.ChartLength = 100;
             this.chart_WOC2.ChartLineThikness = 3;
-            this.chart_WOC2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.chart_WOC2.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.chart_WOC2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(42)))), ((int)(((byte)(42)))));
             this.chart_WOC2.LineThikness = 1;
             this.chart_WOC2.Location = new System.Drawing.Point(0, 0);
