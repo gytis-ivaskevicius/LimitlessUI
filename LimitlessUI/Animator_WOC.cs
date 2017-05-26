@@ -56,7 +56,7 @@ public partial class Animator_WOC : Component
 
     public void animate(int animationLength, int value)
     {
-        _animatorTimer.setValueRange(value, _animation == Animations.ChangeWidth ? _control.Width : _control.Height, animationLength, (_animation == Animations.ChangeWidth ? _control.Width : _control.Height) < value);
+        _animatorTimer.setValueRange(value, _animation == Animations.ChangeWidth ? _control.Width : _control.Height, animationLength, true);
     }
 
 
@@ -75,7 +75,7 @@ public partial class Animator_WOC : Component
 
     public int Delay
     {
-        get { return _animatorTimer.Interval; }
+        get { return(int) _animatorTimer.Interval; }
         set { _animatorTimer.Interval = value; }
     }
 }

@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Drawing;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace LimitlessUI
@@ -9,44 +11,60 @@ namespace LimitlessUI
         private Color _underlineColor = Color.Gray;
         private Color _animationColor = Color.Red;
 
-        private int _interval = 17;
-        private int _step = 19;
+        private AnimatorTimer_WOC _animationTimer;
         private bool _focused = false;
+
+        private int _animationLength = 300;
+        private int _animationProgress;
+        private int _lineThickness = 3;
+
         public MaterialTextBox_WOC()
         {
             InitializeComponent();
-            textBox.GotFocus += textBox_GotFocus;
-            textBox.LostFocus += textBox_LostFocus;
-            seperator.LineColor = _underlineColor;
+
+            DoubleBuffered = true;
+            _animationTimer = new AnimatorTimer_WOC();
+
+            _animationTimer.onAnimationTimerTick += (int progress) =>
+            {
+                _animationProgress = progress;
+                Invalidate();
+            };
+            textBox.GotFocus += (object sender, EventArgs e) => _focused = true;
+            textBox.LostFocus += (object sender, EventArgs e) =>
+            {
+                _focused = false;
+                _animationTimer.setValueRange(0, _animationLength, true);
+            };
+            textBox.MouseEnter += (object sender, EventArgs e) => _animationTimer.setValueRange(Width / 2, _animationLength, true);
+            textBox.MouseLeave += (object sender, EventArgs e) =>
+            {
+                if (!_focused)
+                    _animationTimer.setValueRange(0, _animationLength, true);
+            };
         }
 
-        private void textBox_LostFocus(object sender, EventArgs e)
+
+        protected override void OnPaint(PaintEventArgs e)
         {
-            _focused = false;
-            seperator.startAnimating(_interval, -_step, -1);
+            base.OnPaint(e);
+
+            using (Pen pen = new Pen(Color.Silver, 10))
+            {
+                float halfLinethickness = _lineThickness / 2;
+                e.Graphics.DrawLine(pen, Padding.Left, Height - halfLinethickness, Width - Padding.Right, Height - halfLinethickness);
+
+                e.Graphics.TranslateTransform(Width / 2, Height - halfLinethickness);
+
+                pen.Color = _animationColor;
+                e.Graphics.DrawLine(pen, Padding.Left + (-_animationProgress), 0, (_animationProgress), 0);
+            }
         }
 
-        private void textBox_GotFocus(object sender, EventArgs e)
-        {
-            _focused = true;
-            seperator.startAnimating(_interval, _step, -1);
-        }
 
-        private void textBox_MouseEnter(object sender, EventArgs e)
-        {
-            seperator.startAnimating(_interval, _step, -1);
-            Underline.AnimationColor = _animationColor;
-        }
+        #region Getters and Setters
 
-        private void textBox_MouseLeave(object sender, EventArgs e)
-        {
-            if (!_focused)
-                seperator.startAnimating(_interval, -_step, -1);
-            if (seperator.Value > seperator.Width - (Padding.Right + Padding.Left))
-                seperator.Value = seperator.Width - (Padding.Right + Padding.Left);
-        }
-
-        public string TextBoxText
+        public override string Text
         {
             get { return textBox.Text; }
             set { textBox.Text = value; }
@@ -55,11 +73,30 @@ namespace LimitlessUI
         public Color AnimationColor
         {
             get { return _animationColor; }
-            set { _animationColor = value; }
+            set { _animationColor = value; Invalidate(); }
         }
 
-        public RichTextBox TextBox { get { return textBox; } }
+        public int LineThickness
+        {
+            get { return _lineThickness; }
+            set
+            {
+                _lineThickness = value;
+                Padding = new Padding(Padding.Left, Padding.Top, Padding.Right, Padding.Bottom);
+                Invalidate();
+            }
+        }
 
-        public Separator_WOC Underline { get { return seperator; } }
+
+        public int AnimationLength
+        {
+            get { return _animationLength; }
+            set { _animationLength = value; }
+        }
+
+
+        public RichTextBox TextBox { get { return textBox; } }
+        #endregion
+
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -10,63 +11,127 @@ namespace LimitlessUI
 {
     public class AnimatorTimer_WOC : Timer
     {
-        public delegate void onAnimationStart();
-        public delegate void onAnimationEnd();
-        public delegate void onAnimationTick(int progress);
 
-        public event onAnimationStart onAnimationStarted;
-        public event onAnimationEnd onAnimationEnded;
+        public delegate void onAnimationTick(int progress);
         public event onAnimationTick onAnimationTimerTick;
 
-        public static readonly int REFRESH_RATE = 60;
+        public static float _displayRefreshRate = 60;
+        private static bool run = true;
 
-        private int _maxVal;
-        private int _minVal;
-        private int _progress;
-        private int _speed;
+        private int _neededValue;
+        private float _progress;
+        private float _speed = 0;
 
-        private bool _isIncreasing;
+        [DllImport("user32.dll")]
+        public static extern bool EnumDisplaySettings(
+               string deviceName, int modeNum, ref DEVMODE devMode);
+        const int ENUM_CURRENT_SETTINGS = -1;
 
+        const int ENUM_REGISTRY_SETTINGS = -2;
+
+        [StructLayout(LayoutKind.Sequential)]
+        public struct DEVMODE
+        {
+
+            private const int CCHDEVICENAME = 0x20;
+            private const int CCHFORMNAME = 0x20;
+            [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 0x20)]
+            public string dmDeviceName;
+            public short dmSpecVersion;
+            public short dmDriverVersion;
+            public short dmSize;
+            public short dmDriverExtra;
+            public int dmFields;
+            public int dmPositionX;
+            public int dmPositionY;
+            public ScreenOrientation dmDisplayOrientation;
+            public int dmDisplayFixedOutput;
+            public short dmColor;
+            public short dmDuplex;
+            public short dmYResolution;
+            public short dmTTOption;
+            public short dmCollate;
+            [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 0x20)]
+            public string dmFormName;
+            public short dmLogPixels;
+            public int dmBitsPerPel;
+            public int dmPelsWidth;
+            public int dmPelsHeight;
+            public int dmDisplayFlags;
+            public int dmDisplayFrequency;
+
+
+        }
+
+        private Stopwatch s = new Stopwatch();
         public AnimatorTimer_WOC()
         {
-            Interval = 17;
+            if (run)
+            {
+                run = false;
+                DEVMODE vDevMode = new DEVMODE();
+
+                while (EnumDisplaySettings(Screen.PrimaryScreen.DeviceName, ENUM_CURRENT_SETTINGS, ref vDevMode))
+                {
+                    _displayRefreshRate = vDevMode.dmDisplayFrequency;
+                    break;
+                }
+                Debug.WriteLine("HZ: " + _displayRefreshRate);
+            }
+
+            int count = 0;
+            Interval = (int)Math.Round(1000 / _displayRefreshRate);
+            Debug.WriteLine("SingleFrame: " + (int)Math.Round(1000 / _displayRefreshRate));
+            Stopwatch stop = new Stopwatch();
+        
             Tick += (object sender, EventArgs e) =>
             {
-                if (onAnimationStarted != null)
-                    onAnimationStarted.Invoke();
+                if (!s.IsRunning)
+                    s.Start();
+                Debug.WriteLine("Elapsed: " + s.ElapsedMilliseconds);
+                s.Restart();
+                count++;
 
                 _progress += _speed;
+                Debug.WriteLine(count + " | " + _progress);
 
-                if (_progress > _maxVal) { Debug.WriteLine("max"); _progress = _maxVal; Stop(); }
-                else if (_progress < _minVal) { Debug.WriteLine("min"); _progress = _minVal; Stop(); }
-                Debug.WriteLine(_progress + " : " + _maxVal + " : " + _minVal);
+                if (_speed < 0 ? _progress <= _neededValue : _progress >= _neededValue)
+                {
+                    _progress = _neededValue;
+                    Stop();
+                    Debug.WriteLine("Elapsed: " + s.ElapsedMilliseconds);
+                }
 
                 if (onAnimationTimerTick != null)
-                    onAnimationTimerTick.Invoke(_progress);
+                    onAnimationTimerTick.Invoke((int)_progress);
 
-                if (onAnimationEnded != null)
-                    onAnimationEnded.Invoke();
             };
         }
 
-        public void setValueRange(int neededProgress, int progress, int milis, bool isIncreasing)
+        public void setValueRange(int neededProgress, Int32 progress, int milis, bool start)
         {
-            _isIncreasing = isIncreasing;
-            _progress = progress;
-            _speed = (neededProgress - progress) / (milis / 17);
-
-            if (isIncreasing)
-            {
-                _maxVal = neededProgress;
-                _minVal = progress;
-            }
-            else
-            {
-                _maxVal = progress;
-                _minVal = neededProgress;
-            }
-
             if (!Enabled)
+            {
+                _speed = (neededProgress - _progress) / (milis / (1000 / _displayRefreshRate));
+                _progress = progress;
+            }
+
+            setValueRange(neededProgress, milis, start);
+        }
+
+        public void setValueRange(int neededProgress, int milis, bool start)
+        {
+            if (!Enabled)
+            {
+                Debug.WriteLine("Interval: " + (neededProgress - _progress));
+                float a = (milis / (1000 / _displayRefreshRate));
+                float b = (neededProgress - _progress);
+                _speed = (b / a);
+            }
+            else _speed = -_speed;
+            _neededValue = neededProgress;
+
+            if (!Enabled && start)
                 Start();
         }
 
