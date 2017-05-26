@@ -1,126 +1,108 @@
 ﻿using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
+using System;
+using System.Diagnostics;
 
-public partial class DropDown_WOC : Control
+namespace LimitlessUI
 {
-    private float _textDistance = 35;
-    private float _thikness = 2;
-
-    private Image _downImage;
-    private Image _upImage;
-    private SizeF _arrowSize = new SizeF(10, 10);
-    private Control _panel;
-    private int _expandedPanelHeight;
-    private bool _pointsDown = true;
-
-    protected override void OnMouseClick(MouseEventArgs e)
+    public partial class DropDown_WOC : Control
     {
-        base.OnMouseClick(e);
-        _pointsDown = !_pointsDown;
-        if (!_pointsDown)
+        private float _textDistance = 35;
+
+        private int _expandedControlHeight;
+        private int _arrowSize = 25;
+        private int _aniationLength = 300;
+        private int _value;
+
+        private bool _isExpanded = true;
+        private bool _justUpdated = false;
+        private Image _image;
+        private Control _control;
+        private AnimatorTimer_WOC _animationTimer;
+        private float _proportion;
+        private float _arrowAngle;
+
+        public DropDown_WOC()
         {
-            _expandedPanelHeight = _panel.Height;
-            _panel.Height = 0;
-        }
-        else
-            _panel.Height = _expandedPanelHeight;
-        Invalidate();
-    }
+            DoubleBuffered = true;
+            _animationTimer = new AnimatorTimer_WOC();
+            _animationTimer.onAnimationTimerTick += (int value) =>
+            {
+                _control.FindForm().SuspendLayout();
+                _value = value;
+                _control.Height = value;
+                _control.FindForm().ResumeLayout();
+                _justUpdated = true;
+                Invalidate();
+            };
 
-    private void drawArrow(PaintEventArgs pe, float x, float y, float height, float width, bool pointsDown)
-    {
-        y = y - height / 2;
-        if (!pointsDown)
+            Click += click;
+            DoubleClick += click;
+        }
+
+        private void click(object sender, EventArgs e)
         {
-            pe.Graphics.DrawLine(new Pen(ForeColor, _thikness), x, y + height / 2, x + width / 2, y + height);
-            pe.Graphics.DrawLine(new Pen(ForeColor, _thikness), x + width / 2, y + height, x + width, y + height / 2);
+            _animationTimer.setValueRange(_isExpanded ? 0 : _expandedControlHeight, _control.Height, _aniationLength, true);
+            _isExpanded = !_isExpanded;
         }
-        else
+
+        protected override void OnPaint(PaintEventArgs pe)
         {
-            pe.Graphics.DrawLine(new Pen(ForeColor, _thikness), x, y + height, x + width / 2, y + height / 2);
-            pe.Graphics.DrawLine(new Pen(ForeColor, _thikness), x + width / 2, y + height / 2, x + width, y + height);
+            base.OnPaint(pe);
+            SizeF textSize = pe.Graphics.MeasureString(Text, Font);
+            pe.Graphics.DrawString(Text, Font, new SolidBrush(ForeColor), _textDistance, Height / 2 - (textSize.Height / 2));
+
+            if (_justUpdated)
+            {
+                _justUpdated = false;
+                _arrowAngle = 180 - (_value / _proportion);
+            }
+
+            pe.Graphics.TranslateTransform(Height / 2, Height / 2);
+            pe.Graphics.RotateTransform(_arrowAngle);
+            pe.Graphics.TranslateTransform(-Height / 2, -Height / 2);
+
+            if (_image != null)
+                pe.Graphics.DrawImage(_image, (Height - _arrowSize) / 2, (Height - _arrowSize) / 2, _arrowSize, _arrowSize);
         }
-    }
 
-    protected override void OnPaint(PaintEventArgs pe)
-    {
-        base.OnPaint(pe);
-        SizeF textSize = pe.Graphics.MeasureString(Text, Font);
-        //float padding = (Height - textSize.Height) / 2;
-        pe.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
+        #region Getters and Setters
 
-        pe.Graphics.DrawString(Text, Font, new SolidBrush(ForeColor), _textDistance, Height / 2 - (textSize.Height / 2));
-        if (_downImage != null && _upImage != null)
+        public int AnimationLength
         {
-            if (_pointsDown)
-                pe.Graphics.DrawImage(_downImage, (Height - _arrowSize.Width) / 2, (Height - _arrowSize.Height) / 2, _arrowSize.Width, _arrowSize.Height);
-            else
-                pe.Graphics.DrawImage(_upImage, (Height - _arrowSize.Width) / 2, (Height - _arrowSize.Height) / 2, _arrowSize.Width, _arrowSize.Height);
+            get { return _aniationLength; }
+            set { _aniationLength = value; }
         }
-        else
-            drawArrow(pe, (Height - _arrowSize.Width) / 2,       (Height - _arrowSize.Height/2) / 2      , _arrowSize.Height, _arrowSize.Width, _pointsDown);
-    }
 
-
-    public bool PointsDown { 
-        get { return _pointsDown; }
-        set { _pointsDown = value; Invalidate(); }
-    }
-
-    public Image DownImage
-    {
-        get { return _downImage; }
-        set { _downImage = value; Invalidate(); }
-    }
-
-    public Image UpImage
-    {
-        get { return _upImage; }
-        set { _upImage = value; Invalidate(); }
-    }
-
-    public SizeF ArrowSize
-    {
-        get
+        public Image Image
         {
-            return _arrowSize;
+            get { return _image; }
+            set { _image = value; Invalidate(); }
         }
-        set
-        {
-            _arrowSize = value;
-            Invalidate();
-        }
-    }
 
-    public float ArrowThinkness
-    {
-        get { return _thikness; }
-        set
+        public int ArrowSize
         {
-            _thikness = value;
-            Invalidate();
+            get { return _arrowSize; }
+            set
+            {
+                _arrowSize = value;
+                Invalidate();
+            }
         }
-    }
 
-    public float TextDistance
-    {
-        get { return _textDistance; }
-        set
+        public Control Control
         {
-            _textDistance = value;
-            Invalidate();
+            get { return _control; }
+            set
+            {
+                _control = value;
+                _expandedControlHeight = _control.Height;
+                _proportion = _expandedControlHeight / 180F;
+                Invalidate();
+            }
         }
-    }
-
-    public Control SetLayout
-    {
-        get { return _panel; }
-        set
-        {
-            _panel = value;
-            Invalidate();
-        }
+        #endregion
     }
 }
 
