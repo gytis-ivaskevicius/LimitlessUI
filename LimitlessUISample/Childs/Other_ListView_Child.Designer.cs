@@ -1,4 +1,6 @@
-﻿namespace LimitlessUISample.Childs
+﻿using LimitlessUI;
+
+namespace LimitlessUISample.Childs
 {
     partial class Other_ListView_Child
     {

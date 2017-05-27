@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Threading;
 
 namespace LimitlessUISample.Childs
 {
@@ -29,7 +30,6 @@ namespace LimitlessUISample.Childs
             int val = r.Next(100);
             chart_WOC2.addValue(0, val);
             chart_WOC2.addValue(1, val + 10);
-
         }
     }
 }

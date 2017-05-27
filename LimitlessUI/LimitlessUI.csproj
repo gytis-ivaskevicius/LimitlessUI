@@ -42,9 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AnimatorTimer_WOC.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="AnimatorTimer_WOC.cs" />
     <Compile Include="Animator_WOC.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -107,6 +105,7 @@
     <Compile Include="TextBox_WOC.Designer.cs">
       <DependentUpon>TextBox_WOC.cs</DependentUpon>
     </Compile>
+    <Compile Include="Utils_WOC.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="MaterialTextBox_WOC.resx">

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LimitlessUI;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -16,7 +17,8 @@ namespace LimitlessUISample
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainForm());
+            Form form = new MainForm();
+            Application.Run(form);
         }
     }
 }

@@ -70,7 +70,6 @@ namespace LimitlessUISample.Tabs
             // 
             this.animator_WOC1.Animation = Animator_WOC.Animations.ChangeWidth;
             this.animator_WOC1.Controls = null;
-            this.animator_WOC1.Delay = 17;
             // 
             // listView_WOC1
             // 

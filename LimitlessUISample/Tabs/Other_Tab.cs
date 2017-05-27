@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using LimitlessUISample.Childs;
 using System.Diagnostics;
+using LimitlessUI;
 
 namespace LimitlessUISample.Tabs
 {

@@ -1,4 +1,5 @@
-﻿using LimitlessUISample.Tabs;
+﻿using LimitlessUI;
+using LimitlessUISample.Tabs;
 using System;
 using System.Diagnostics;
 using System.Drawing;
@@ -13,6 +14,7 @@ namespace LimitlessUISample
         public MainForm()
         {
             InitializeComponent();
+            Utils_WOC._threadsForm = this;
 
             tabs_holder.Controls.Add(ArchProgressBar_Tab.getInstance());
             ArchProgressBar_Tab.getInstance().Dock = DockStyle.Fill;

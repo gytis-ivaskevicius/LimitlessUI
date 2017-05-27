@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Diagnostics;
+using LimitlessUI;
 
 namespace LimitlessUISample.Tabs
 {
@@ -34,12 +35,14 @@ namespace LimitlessUISample.Tabs
             Debug.WriteLine("Showing Gradient_Tab");
         }
 
-        private void panel1_Click(object sender, EventArgs e)
+        private void panel1_Click_1(object sender, EventArgs e)
         {
             animator_WOC1.animate(500,_expanded ? 50: 200);
             _expanded = !_expanded;
 
             Debug.WriteLine("click" + (_expanded ? 50 : 200));
         }
+
+
     }
 }
