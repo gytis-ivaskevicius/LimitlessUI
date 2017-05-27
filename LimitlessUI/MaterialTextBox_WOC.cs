@@ -64,7 +64,7 @@ namespace LimitlessUI
             InitializeComponent();
 
             DoubleBuffered = true;
-            _animationTimer = new AnimatorTimer_WOC();
+            _animationTimer = new AnimatorTimer_WOC(Utils_WOC.getFormForThreading());
 
             _animationTimer.onAnimationTimerTick += (int progress) =>
             {

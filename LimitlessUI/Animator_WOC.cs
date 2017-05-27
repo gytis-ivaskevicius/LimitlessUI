@@ -69,25 +69,27 @@ namespace LimitlessUI
 
         public Animator_WOC()
         {
-            _animatorTimer = new AnimatorTimer_WOC();
+            _animatorTimer = new AnimatorTimer_WOC(Utils_WOC.getFormForThreading());
             _animatorTimer.onAnimationTimerTick += animationTimer_Tick;
 
         }
         private void animationTimer_Tick(int progress)
         {
-            switch (_animation)
-            {
-                case Animations.ChangeWidth:
-                    _control.Width = progress;
-                    if (_onWidthChanged_del != null)
-                        _onWidthChanged_del.Invoke(_control, progress);
-                    break;
-                case Animations.ChangeHeight:
-                    _control.Height = progress;
-                    if (_onHeightChanged_del != null)
-                        _onHeightChanged_del.Invoke(_control, progress);
-                    break;
-            }
+            if (_control != null)
+                switch (_animation)
+                {
+                    case Animations.ChangeWidth:
+                        _control.Width = progress;
+                        if (_onWidthChanged_del != null)
+                            _onWidthChanged_del.Invoke(_control, progress);
+                        break;
+                    case Animations.ChangeHeight:
+                        _control.Height = progress;
+                        if (_onHeightChanged_del != null)
+                            _onHeightChanged_del.Invoke(_control, progress);
+                        break;
+                }
+            else Debug.WriteLine("Animator_WOC CONTROL IS EQUAL NULL!!!!!!!!!!!!!!!!!!!!!!");
             if (_onAnimationTick_del != null)
                 _onAnimationTick_del.Invoke(_control);
         }
@@ -115,7 +117,6 @@ namespace LimitlessUI
         public int Delay
         {
             get { return (int)_animatorTimer.Interval; }
-            set { _animatorTimer.Interval = value; }
         }
     }
 }
