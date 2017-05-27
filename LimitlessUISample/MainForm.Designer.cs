@@ -1,4 +1,6 @@
-﻿namespace LimitlessUISample
+﻿using LimitlessUI;
+
+namespace LimitlessUISample
 {
     partial class MainForm
     {

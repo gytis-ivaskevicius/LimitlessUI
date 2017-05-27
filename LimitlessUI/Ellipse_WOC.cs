@@ -4,47 +4,84 @@ using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
-public partial class Elipse_WOC : Component
+
+/*
+End-User Licence Agreement (EULA) for WithoutCaps Software 
+
+This version is current as of May 27, 2017. Please consult withoutcapsdev@gmail.com for new versions of this EULA.
+
+You can only use software made by the WithoutCaps Team after you agree to this licence. By using this software, you agree to 
+all of the clauses in the WithoutCaps Software EULA.
+
+PLEASE READ CAREFULLY BEFORE USING THIS PRODUCT: This End-User Licence Agreement(EULA) is a legal agreement between you 
+(either an individual or as a single entity) and the entity is known as the WithoutCaps Team.
+
+(a) Introduction. This is the End-User Licence Agreement (EULA) for this software which is produced by the WithoutCaps Team. 
+This EULA outlines the clauses of the licence that the WithoutCapsTeam is willing to grant you (the user) to use this software. 
+
+(b) Licence. The entity known as the WithoutCaps Team will grant a free of charge, fully-revocable, non-exclusive, non-transferable 
+licence to any person obtaining a copy of this software as well as the associated documentation. The aforementioned documentation 
+consists of the End-User Licence Agreement (EULA) for products made by the WithoutCaps Team. This licence permits you to use, modify 
+and re-distribute this software non-commercially so long as you (either an individual or as a single entity) has permission from the 
+WithoutCaps Team to do so. If the user wants to re-distribute software made by the WithoutCaps Team this EULA must be included in the 
+software package.
+
+(c) Ownership. Software produced by the WithoutCaps Team is licenced, not sold, to you (either an individual or as a single entity) 
+and as such the WithoutCaps Software Team reserves any rights not expressly granted to you (either an individual or as a single entity).
+
+The WithoutCaps Team reserves the right to revoke any persons (either an individual or as a single entity) licence without previous notification or agreements.
+
+Notwithstanding the terms and conditions of this EULA, any part of the software contained with product by the WithoutCaps Team which 
+constitutes Third Party Software and as such now owned is licenced to you subject to the terms and conditions of the software licence 
+agreement accompanying such Third Party Software. Whatever the form of the licence, whether it be in the form of a discrete agreement, 
+shrink wrap licence or electronic licence terms are accepted at the time of download or purchase of any software made by the WithoutCaps Team.
+
+(d) Limitation of Liability. THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO 
+THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS 
+BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION 
+WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+Copyright (c) 2017 WithoutCaps
+*/
+
+namespace LimitlessUI
 {
-    [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
-    private static extern IntPtr CreateRoundRectRgn
-    (
-        int nLeftRect, // x-coordinate of upper-left corner
-        int nTopRect, // y-coordinate of upper-left corner
-        int nRightRect, // x-coordinate of lower-right corner
-        int nBottomRect, // y-coordinate of lower-right corner
-        int nWidthEllipse, // height of ellipse
-        int nHeightEllipse // width of ellipse
-    );
-
-    private Control _control;
-    private int _cornerRadius = 20;
-
-    private void ControlOnSizeChanged(object sender, EventArgs eventArgs)
+    public partial class Elipse_WOC : Component
     {
-        if (_control != null)
-            _control.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, _control.Width, _control.Height, _cornerRadius, _cornerRadius));
-    }
+        [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
+        private static extern IntPtr CreateRoundRectRgn
+        (
+            int nLeftRect, // x-coordinate of upper-left corner
+            int nTopRect, // y-coordinate of upper-left corner
+            int nRightRect, // x-coordinate of lower-right corner
+            int nBottomRect, // y-coordinate of lower-right corner
+            int nWidthEllipse, // height of ellipse
+            int nHeightEllipse // width of ellipse
+        );
 
-    public Control TargetControl
-    {
-        get { return _control; }
-        set
+        private Control _control;
+        private int _cornerRadius = 20;
+
+
+        public Control TargetControl
         {
-            _control = value;
-            _control.SizeChanged += ControlOnSizeChanged;
-            _control.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, _control.Width, _control.Height, _cornerRadius, _cornerRadius));
+            get { return _control; }
+            set
+            {
+                _control = value;
+                _control.SizeChanged += (object sender, EventArgs eventArgs) => _control.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, _control.Width, _control.Height, _cornerRadius, _cornerRadius));
+            }
         }
-    }
 
-    public int CornerRadius
-    {
-        get { return _cornerRadius; }
-        set
+        public int CornerRadius
         {
-            _cornerRadius = value;
-            if (_control != null)
-                _control.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, _control.Width, _control.Height, _cornerRadius, _cornerRadius));
+            get { return _cornerRadius; }
+            set
+            {
+                _cornerRadius = value;
+                if (_control != null)
+                    _control.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, _control.Width, _control.Height, _cornerRadius, _cornerRadius));
+            }
         }
     }
 }

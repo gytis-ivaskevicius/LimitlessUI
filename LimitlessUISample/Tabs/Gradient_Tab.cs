@@ -19,7 +19,7 @@ namespace LimitlessUISample.Tabs
         public Gradient_Tab()
         {
             InitializeComponent();
-
+            
         }
 
         public static Gradient_Tab getInstance()

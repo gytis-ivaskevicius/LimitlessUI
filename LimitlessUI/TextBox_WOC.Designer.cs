@@ -1,4 +1,4 @@
-﻿namespace LimitlessUISample
+﻿namespace LimitlessUI
 {
     partial class TextBox_WOC
     {

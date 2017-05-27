@@ -1,4 +1,6 @@
-﻿namespace LimitlessUISample.Childs
+﻿using LimitlessUI;
+
+namespace LimitlessUISample.Childs
 {
     partial class Chart_UC
     {
@@ -30,8 +32,8 @@
         {
             this.components = new System.ComponentModel.Container();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.legend_WOC2 = new LimitlessUISample.Legend_WOC();
-            this.chart_WOC2 = new LimitlessUISample.Chart_WOC();
+            this.legend_WOC2 = new Legend_WOC();
+            this.chart_WOC2 = new Chart_WOC();
             this.SuspendLayout();
             // 
             // timer1

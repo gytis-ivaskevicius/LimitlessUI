@@ -1,4 +1,6 @@
-﻿namespace LimitlessUISample.Tabs
+﻿using LimitlessUI;
+
+namespace LimitlessUISample.Tabs
 {
     partial class DropDown_Tab
     {
