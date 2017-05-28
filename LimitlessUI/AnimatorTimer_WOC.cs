@@ -65,8 +65,6 @@ namespace LimitlessUI
         private float _progress;
         private float _speed = 0;
 
-        private Stopwatch s = new Stopwatch();
-        private Stopwatch s2 = new Stopwatch();
 
         AutoResetEvent reset = new AutoResetEvent(false);
         private Form _invokeControl;
@@ -78,29 +76,21 @@ namespace LimitlessUI
             {
                 _isFrequencyChecked = true;
                 int frequency = Utils_WOC.getMonitorFrequency();
-                Debug.WriteLine("REFRESH RATE: " + frequency);
                 _displayRefreshRate = frequency != -1 ? frequency : 60;
             }
-
             _interval = (int)Math.Round(1000 / _displayRefreshRate);
-            Debug.WriteLine("INTERVAL: " + _interval);
-
         }
 
         public void start()
         {
             Enabled = true;
-            s.Restart();
-
+            
             new Thread(() =>
             {
                 while (_isEnabled)
                 {
-                    s2.Restart();
                     reset.Set();
                     Thread.Sleep(_interval);
-                    Debug.WriteLine("FRAME LENGTH: " + s2.ElapsedMilliseconds);
-
                 }
             }).Start();
 
@@ -115,7 +105,6 @@ namespace LimitlessUI
 
                         if (_speed < 0 ? _progress <= _neededValue : _progress >= _neededValue)
                         {
-                            Debug.WriteLine("ANIMATION TOOK: " + s.ElapsedMilliseconds);
                             _progress = _neededValue;
                             Enabled = false;
                         }
