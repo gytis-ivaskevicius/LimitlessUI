@@ -19,7 +19,7 @@ namespace LimitlessUISample.Childs
         {
             InitializeComponent();
             _random = new Random(Convert.ToInt32(Regex.Match(Guid.NewGuid().ToString(), @"\d+").Value));
-            textBox_WOC1.TextBox.Text = text;
+            textBox_WOC1.Text = text;
             textBox_WOC1.AnimationColor = getRandomColor();
         }
 

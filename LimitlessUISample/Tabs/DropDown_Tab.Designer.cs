@@ -35,8 +35,8 @@ namespace LimitlessUISample.Tabs
             this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.chart_UC1 = new LimitlessUISample.Childs.Chart_UC();
             this.dropDown_WOC1 = new LimitlessUI.DropDown_WOC();
-            this.animator_WOC1 = new Animator_WOC();
-            this.listView_WOC1 = new ListView_WOC();
+            this.animator_WOC1 = new LimitlessUI.Animator_WOC();
+            this.listView_WOC1 = new LimitlessUI.ListView_WOC();
             this.SuspendLayout();
             // 
             // timer2
@@ -65,10 +65,11 @@ namespace LimitlessUISample.Tabs
             this.dropDown_WOC1.Size = new System.Drawing.Size(803, 39);
             this.dropDown_WOC1.TabIndex = 5;
             this.dropDown_WOC1.Text = "DropDown demo";
+            this.dropDown_WOC1.TextOffset = new System.Drawing.Point(0, 0);
             // 
             // animator_WOC1
             // 
-            this.animator_WOC1.Animation = Animator_WOC.Animations.ChangeWidth;
+            this.animator_WOC1.Animation = LimitlessUI.Animator_WOC.Animations.ChangeWidth;
             this.animator_WOC1.Controls = null;
             // 
             // listView_WOC1

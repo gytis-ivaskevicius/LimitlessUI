@@ -8,7 +8,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>LimitlessUI</RootNamespace>
-    <AssemblyName>LimitlessUI_1.5.0</AssemblyName>
+    <AssemblyName>LimitlessUI_1.6.0</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

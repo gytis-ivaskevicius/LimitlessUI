@@ -31,10 +31,10 @@ namespace LimitlessUISample.Childs
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.switch_WOC1 = new LimitlessUI.Switch_WOC();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.separator_WOC1 = new Separator_WOC();
             this.textBox_WOC1 = new LimitlessUI.MaterialTextBox_WOC();
-            this.switch_WOC1 = new Switch_WOC();
+            this.separator_WOC1 = new LimitlessUI.Separator_WOC();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -47,38 +47,6 @@ namespace LimitlessUISample.Childs
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(81, 50);
             this.panel1.TabIndex = 1;
-            // 
-            // panel2
-            // 
-            this.panel2.Controls.Add(this.textBox_WOC1);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel2.Location = new System.Drawing.Point(0, 0);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(259, 50);
-            this.panel2.TabIndex = 4;
-            // 
-            // separator_WOC1
-            // 
-            this.separator_WOC1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.separator_WOC1.LineThickness = 1;
-            this.separator_WOC1.Location = new System.Drawing.Point(259, 0);
-            this.separator_WOC1.Name = "separator_WOC1";
-            this.separator_WOC1.Size = new System.Drawing.Size(463, 50);
-            this.separator_WOC1.TabIndex = 5;
-            this.separator_WOC1.Text = "separator_WOC1";
-            this.separator_WOC1.Vertical = false;
-            // 
-            // textBox_WOC1
-            // 
-            this.textBox_WOC1.AnimationColor = System.Drawing.Color.Purple;
-            this.textBox_WOC1.AnimationLength = 300;
-            this.textBox_WOC1.Font = new System.Drawing.Font("Segoe UI", 10.5F);
-            this.textBox_WOC1.LineThickness = 3;
-            this.textBox_WOC1.Location = new System.Drawing.Point(20, 12);
-            this.textBox_WOC1.Name = "textBox_WOC1";
-            this.textBox_WOC1.Padding = new System.Windows.Forms.Padding(0, 0, 0, 3);
-            this.textBox_WOC1.Size = new System.Drawing.Size(172, 27);
-            this.textBox_WOC1.TabIndex = 0;
             // 
             // switch_WOC1
             // 
@@ -95,6 +63,38 @@ namespace LimitlessUISample.Childs
             this.switch_WOC1.TabIndex = 0;
             this.switch_WOC1.Text = "switch_WOC1";
             this.switch_WOC1.TextEnabled = true;
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.textBox_WOC1);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel2.Location = new System.Drawing.Point(0, 0);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(259, 50);
+            this.panel2.TabIndex = 4;
+            // 
+            // textBox_WOC1
+            // 
+            this.textBox_WOC1.AnimationColor = System.Drawing.Color.Purple;
+            this.textBox_WOC1.AnimationLength = 300;
+            this.textBox_WOC1.Font = new System.Drawing.Font("Segoe UI", 10.5F);
+            this.textBox_WOC1.LineThickness = 3;
+            this.textBox_WOC1.Location = new System.Drawing.Point(20, 12);
+            this.textBox_WOC1.Name = "textBox_WOC1";
+            this.textBox_WOC1.Padding = new System.Windows.Forms.Padding(0, 0, 0, 3);
+            this.textBox_WOC1.Size = new System.Drawing.Size(172, 27);
+            this.textBox_WOC1.TabIndex = 0;
+            // 
+            // separator_WOC1
+            // 
+            this.separator_WOC1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.separator_WOC1.LineThickness = 1;
+            this.separator_WOC1.Location = new System.Drawing.Point(259, 0);
+            this.separator_WOC1.Name = "separator_WOC1";
+            this.separator_WOC1.Size = new System.Drawing.Size(463, 50);
+            this.separator_WOC1.TabIndex = 5;
+            this.separator_WOC1.Text = "separator_WOC1";
+            this.separator_WOC1.Vertical = false;
             // 
             // Other_ListView_Child
             // 

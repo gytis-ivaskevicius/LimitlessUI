@@ -1,6 +1,25 @@
 # EULA:
-You are allowed to change/modify/update and use this library as long as it is not used for commercial use.
+End-User Licence Agreement (EULA) for WithoutCaps Software 
 
+This version is current as of May 27, 2017. Please consult withoutcapsdev@gmail.com for any new versions of this EULA.
+
+You can only use the software known as "LimitlessUI" which is currently maintained by the WithoutCaps Team after you agree to this licence. By using this software, you agree to all of the clauses in the WithoutCaps Software EULA.
+
+PLEASE READ CAREFULLY BEFORE USING THIS PRODUCT: This End-User Licence Agreement(EULA) is a legal agreement between you (either an individual or as a single entity) and the entity that is known as the WithoutCaps Team.
+
+(a) Introduction. This is the End-User Licence Agreement (EULA) for the software known as "LimitlessUI" which is currently maintained by the WithoutCaps Team. This EULA outlines the clauses of the licence that the WithoutCaps Team is willing to grant you (either as an individual or as a single entity) to use this software.
+
+(b) Licence. The entity known as the WithoutCaps Team will grant a free of charge, fully-revocable, non-exclusive, non-transferable licence to any person obtaining a copy of the software known as "LimitlessUI" as well as the associated documentation. The aforementioned documentation consists of the End-User Licence Agreement (EULA) for the product known as "LimitlessUI" which is currently maintained by the WithoutCaps Team. This licence permits you to use, modify and re-distribute this software non-commercially so long as you (either an individual or as a single entity) has permission from the WithoutCaps Team to do so. If the user wants to re-distribute software made by the WithoutCaps Team this EULA must be included in the software package.
+
+(c) Ownership. The software known as "LimitlessUI" and produced by the WithoutCaps Team is licenced, not sold, to you (either an individual or as a single entity) and as such the WithoutCaps Software Team reserves any rights not explicitly granted to you (either an individual or as a single entity).
+
+The WithoutCaps Team also reserves the right to revoke any persons (either an individual or as a single entity) licence without previous notification or agreements as long as said the person (either an individual or as a single entity) didn't adhere to the End-User Licence Agreement (EULA) distributed with this software.
+
+Notwithstanding the terms and conditions of this EULA, any part of the software contained within the product known as "LimitlessUI" which is currently maintained by the WithoutCaps Team which constitutes Third Party Software and as such now is licenced to you subject to the terms and conditions of the software licence agreement accompanying such Third Party Software. Whatever the form of the licence, whether it be in the form of a discrete agreement, shrink wrap licence or electronic licence terms are accepted at the time of acceptance of the End-User Licence Agreement for the software known as "LimitlessUI" which is currently maintained by the WithoutCaps Team.
+
+(d) Limitation of Liability. THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+Copyright (c) 2017 WithoutCaps
 <br>
 <br>
 
@@ -10,214 +29,201 @@ You are allowed to change/modify/update and use this library as long as it is no
 
 ## ArchProgressBar:
 ### Description:
-Nearly the same thing as CircularProgressBar just more customisible, has several styles (That determen labels positions and count).
+It's a progress bar in the shape of an arch. It's very customisable in that it has several styles that determine label positions and count.
 ### Properties:
-1. Angle - Determens angle of the arch (360 - Full circle, 180 - Half a circle)
-2. BackLineThikness - Thikness of back line.
-3. ProgressLineThikness - Thikness of line that shows progress.
-4. ProgressBackCollor - Color of a back line (Gray - By default).
-5. ProgressColor - Collor of line that shows progress (Lime - By default).
-6. Style - Styles that changes labels layout (Style1, Style2, Style3, None)
-7. Text1, Text2, Text3 - Text of labels.
-8. Text1Color, Text2Color, Text3Color - Colors of labels.
-9. Font1, Font2, Font3 - Fonts of labels.
-10. IgnoreHeight - If False: "Increase progressBar radius as long as height allows".
+1. Angle - It determines the angle of the arch (360 - Full Circle, 180 - Half a circle etc.)
+2. BackLineThickness - It determines the thickness of the back line.
+3. ProgressLineThickness - It determines the thickness of progress line.
+4. ProgressBackCollor - It determines the color of a back line (It's grey by default).
+5. ProgressColor - It determines the color of the line that shows progress (It's lime-green by default).
+6. Style - It determines which style is in use. Styles change mostly labels' layouts.
+7. Text1, Text2, Text3 - The text of the labels.
+8. Text1Color, Text2Color, Text3Color - The color of the text inside the labels.
+9. Font1, Font2, Font3 - It determines the font used for the text inside of the labels.
+10. IgnoreHeight - If it's set to false then feel free to increase progressBar radius as long as the height allows.
 ### Notes:
-For updating labels method "UpdateText" should be used UNLESS there is a need to update only one label.
+For updating labels the method "UpdateText" should be used unless there is only the need to update one label.
 
 <br>
 
 ## DragControl:
 ### Description:
-A way to drag borderless forms. Has double left click functionality to maximise form.
+A way to drag borderless forms. It also has double-click functionality which is currently used to maximise the form.
 ### Properties:
-1. Fixed - True - to drag the form, False - to drag it withing the form. (if that makes sense)
-2. MaximiseOnDoubleClick - If setted to true - maximises form on double-click.
-3. TargetControl -  Control that is your grip.
-4. DraggableInnerControls - Makes so you can use conntrols withing pane to drag the form. (tho, it disables buttons)
+1. Fixed - If set to true it will drag the entire form and if set to false it will drag its TargetControl within the current form only (not moving the form itself).
+2. MaximiseOnDoubleClick - If set to true it will maximise the form with a double-click and if set to false then it won't do anything.
+3. TargetControl -  What the DragControl is using as it's grip.
+4. DraggableInnerControls - If there are any buttons, controls etc. contained within the TargetControl if set to true it will make it so you can use said controls to drag the form. It also seems to disable the buttons.
 
 <br>
 
 ## DropDown:
 ### Description:
-Really simple DropDown.
+A simple drop down arrow to either show or hide controls.
 ### Properties:
-1. ArrowSize - Size of the arrow. 
-2. ArrowThikness - Thikness of arrow.
-3. SetLayout - Control that supposed to be Dropped down.
-4. TextDistance - Changes drawn text distance from  the left.
-5. PointsDown - sets arrow pointing direction
-6. UpImage, DownImage - Custom image of the arrow
+1. ArrowSize - It determines the size of the arrow.
+2. Control - It determines the control that is supposed to be either shown or minimised.
+3. TextOffset - Offsets text position by specified amount of pixels.
+4. Image - It allows you to set a custom image for the arrow pointing down.
+
 <br>
 
-## Elipse:
+## Ellipse:
 ### Description:
-A way to round the conners of something, usualy used for borderless forms.
+A way to round the corners of something, usually used for borderless forms.
 ### Properties:
-ConnerRadius - Conner radius...
-TargetControl - Control that supposed to have rounded conners.
+CornerRadius - It determines the corner radius.
+TargetControl - It determines which control that supposed to have rounded corners.
 
 <br>
 
 ## FlatButton:
 ### Description:
-Flat button that works as a tab, usualy used for navigations.
+A flat theme button that works as a way of changing tabs hence why it's usually used for navigations around a form.
 ### Properties:
-1. ActiveColor - Color that background changes whenever button is pressed.
-2. ActiveTextColor -  Color that text changes to whenever button is pressed.
+1. ActiveColor - The color that the background changes to whenever the button is pressed.
+2. ActiveTextColor -  A color that the text changes to whenever the button is pressed.
 3. Image - Image that gets placed to the right of the text.
 4. ImageSize - Size of the image.
-5. OnHoverColor - Color of the background whenever mouse is hovering it.
-6. OnHoverTextColor - Color of the text whenever mouse is hovering it.
-7. Selected - If setted to true - default text and backgroud collor will be set to "active".
-8. TextAligment - Aligment of the text.
-9. ActiveImage - Image that shows whenever button is active
-10. DefaultBack(Fore)Color - needed to be set to default one if button is selected by default
-11. DrawImage - If setted to true - draws Image (if avalible)
-12. DrawText - If setted to true - draws image, if false - then button can be used as basic pictureBox
-13. IsTab - Sets button as a tab
-14. TextOffset - Offsets text by specified amout of pixels
-15. UseActiveImageWhileHovering - Does what is says. (goash its a long name :D)
+5. OnHoverColor - It determines the color of the background whenever the mouse is hovering over it.
+6. OnHoverTextColor - It determines the color of the text whenever the mouse is hovering over it.
+7. Selected - If set to true the default text and background color will be set to active.
+8. TextAligment - It determines which was the text will be aligned on the button, TopLeft, MiddleRight etc.
+9. ActiveImage - It determines the image that will be shown whenever the button is active.
+10. DefaultBack(Fore)Color - It needs to be set to the default one if the button is selected.
+11. DrawImage - It determines whether to draw the image. if provided.
+12. DrawText - It determines whether to render the text. If set to false the button can be used as basic picture box.
+13. IsTab - It determines whether the button is used to navigate to a tab.
+14. TextOffset - It determines the distance that the text is supposed to be offset by a specified amount of pixels, for example, 5px on the x scale and 8px on the y scale would be "5, 7".
+15. UseActiveImageWhileHovering - It determines whether the button uses the active image when the mouse is hovering over the button.
 
 <br>
 
 ## GradientPanel:
 ### Description:
-Panel with gradient drawn on top of it.
+It's a panel that has a background of a gradient.
 ### Properties:
-1. Angle - Gradient angle.
-2. StartColor - Color that gradient starts with.
-3. EndColor - color that gradient ends with.
+1. Angle - It determines at which angle the gradient is drawn.
+2. StartColor - It determines the color that at the beginning of the gradient.
+3. EndColor - It determines the color at the end of the gradient.
 
 <br>
+
 ## ListView:
 ### Description:
-ListView that accepts UserControls as its childs
+It's a panel that accepts "UserControl" objects as its childs.
 ### Properties:
-1. AutoExpang - If setted to true, ListView changes its Height instead of having scrollbars.
-2. Vertical - If setted to true, it adds childs verticly (From top to bottom), if setted to false - adds childs horizoticly - from left to right.
+1. AutoExpand - It determines whether the ListView will change its height instead of having scrollbars.
+2. Vertical - It determines whether the ListView stacks items vertically or horizontally.
 ### Methods:
 1. Add();
 2. Clear();
 3. Remove();
+
 <br>
 
 ## ProgressBar:
 ### Description:
-Basic ProgressBar.
+It's just a basic progress bar.
 ### Properties:
-1. BackLineThikness - Thikness of back line.
-2. FrontLineThikness - Thikness of front line.
-3. ProgressBackColor - Color of back line.
-4. ForeColor - Color of front line.
-5. Rounded - Rounds lines endings.
-6. Smooth - enables anti-alias.
-7. Value - value of the progressBar.
+1. BackLineThikness - It determines the thickness of the back line.
+2. FrontLineThikness - It determines the thickness of the front line.
+3. ProgressBackColor - It determines the color of the back line.
+4. ForeColor - It determines the color of the front line.
+5. Rounded - It determines whether the back and front lines are rounded.
+6. Smooth - It determines whether to use anti-aliasing for drawing the lines.
+7. Value - It determines the currently filled percentage of the ProgressBar.
 
 <br>
 
-## Seperator:
+## Separator:
 ### Description:
-Line that is usually used to seperate components or parts of UI.
-Recently added animation that is implemented in TextBox_WOC.cs
+A simple line which can be used to separate parts of the user interface.
 ### Properties:
-1. LineColor - Color of the line.
-2. LineThikness - Thikness of hte line.
-3. AnimationEnabled - If setted to false - animatoin will not be drawn.
-4. Angle - Angle of the line.
-5. AnimationColor - Color of the animation.
-6. Val - Value of the animation.
-7. Vertical - On this parameter depends how line size is calculated.
-### Methods:
-1. StartAnimating - Params: interval - How often should animation be drawn(16 for full 60fps), progress - how much should animation be changed each frame, startValue - value from which animation should be started drawn (-1 for current value)
-### Notes:
-  Compatible with Left and right paddings. :)
-  
-  
+1. LineThickness - It determines the thickness of the line.
+2. Vertical - It determines lines angle.
+
 <br>
 
 ## Slider:
 ### Description:
-Slider - aka trakbar.
+It's a bar with a slider on it for user input.
 ### Properties:
-1. BackLineThikness - Thikness of back line.
-2. CircleSize - Diameter of a circle.
-3. DrawCircle - if setted to true - draws circle, false othervise.
-4. FrontLineThikness - Thikness of front line.
-5. MaxValue - Slider max value.
-6. Value - Value.
-
+1. BackLineThickness - It determines the thickness of the back line.
+2. CircleSize - It determines the diameter of the circle.
+3. DrawCircle - It determines whether to draw the circle.
+4. FrontLineThickness - It determines the thickness of the front line.
+5. MaxValue - It determines the maximum value of the slider.
+6. Value - It determines the current value of the slider.
 
 <br>
 
 ## Switch:
 ### Description:
-Basic switch.
+It's a switch which can be set to either true or false with customisable text for the states.
 ### Properties:
-1. IsOn - If setted to true - on by default.
-2. OnColor -  Color of switch while its on.
-3. OffColor - Same but while off.
-4. OnText - Text that shows while switch is on.
-5. OffText - Same but while Switch is off.
-6. TextEnable - If setted to true, shows text.
+1. IsOn - It determines whether the switch is set to on by default.
+2. OnColor -  It determines the color of the switch while it's on.
+3. OffColor - It determines the color of the switch while it's off.
+4. OnText - It determines the text that is shown while the switch is on.
+5. OffText - It determines the text that is shown while the switch is off.
+6. TextEnable - It determines whether the text is shown.
 
 <br>
 
 ## TabsAdapter:
 ### Description:
-Component that helps to manage "tabs" (using UserControls as tabs).
+It's a component that helps manage "tabs". A tab is UserControl which is added dynamically. It works with the "Tab_WOC" class.
 ### Properties:
-1. Control - Control that works as "Tab Holder"
+1. Control - It determines where the tabs will be drawn when they are toggled to be rendered.
 ### Methods:
 1. addTab()
 2. showTab()
-<br>
-
-## Tab_WOC.cs(Class):
-### Description:
-Interface that adds OnShow method IF used with TabsAdapter
 
 <br>
 
-## Form_WOC.cs (Class):
+## Tab:
 ### Description:
-Class that adds resisible grip to borderless forms edges. 
+It's an interface that adds the onShowTab method but only if used with a TabsAdapter. Basically, it triggers an event when a tab is opened.
+### Methods:
+1. onShowTab();
+
+<br>
+
+## Form:
+### Description:
+A class that adds resizable grips to borderless form's edges. It also adds Windows 7 style shadow to the form.
 ### How to use it:
-  1. Change forms inharance from "Form" to "Form_WOC".
-  2. Add padding of ur choice (Reccomended 2-3).
+1. Change form's inheritance from "Form" to "Form_WOC".
+2. Add a padding of your choice (My recommendation is 2 to 4).
 ### Notes:
-  Grip is drawn on the edges of the form, that means that form needs to have small padding (3-4). To hide that padding - drawLine method was created, view sample code to learn more
-  
-  
+The grip will be drawn on the edge of the form, this means that form needs to have small padding (around 2-4). To hide that padding the drawLine method was created, please view the sample code to learn more about it.
+
 <br>
 
-### TextBox:
+### MaterialTextBox:
 ### Description:
-Material styled TextBox with animation
+A material-styled text box with an animation.
 ### How to use it:
-  1. TextBoxText - Text of the TextBox.
-  2. AnimationColor - Color of animation.
-  3. TextBox - Returns TextBox itself.
-  4. Underline - Returns underline(that is seperator).
+1. AnimationColor - It determines the color of the animation.
+2. TextBox - It the text box object itself.
+3. AnimationLength - It determines how long animation takes, in milliseconds.
 
 <br>
-
 
 ### Animator:
 ### Description:
-Allows to animate controls. As of right now - it is only able to change size of them
+It allows more functionality for animating controls. Unfortunately, as of now it's only able to change their size.
 ### Properties:
-1. Control - Control that you wish to animate
-2. Delay - Number that determens how often should it be updated. (lower number == higher cpu usage)
+1. Control - It determines which control you wish to animate.
+2. Animation - It determines the type of animation.
 ### How to use it:
-1. Add it
-2. Set animation(s) of your choice (programaticly - by using method). (as of right now - only "changeSize(int speed, int x, int y)" is avalible.
-3. Use "startAnimation()" to start an animation.
-### Listeners:
+1. Add it to the form.
+2. Set animation and "Control" per your choice. 
+3. Use "animate(int animationLengthInMiliseconds, int value)" to start the animation.
+### Delegates:
 1. onWidthChanged(Control control, int change, bool isExpanding);
 2. onHeightChanged(Control control, int change, bool isExpanding);
 3. onAnimationTick(Control control);
-
-
-
-
+### Methods:
+1. animate(int animationLengthInMiliseconds, int value);
