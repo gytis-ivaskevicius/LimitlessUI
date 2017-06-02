@@ -50,11 +50,11 @@ namespace LimitlessUI
         private float _progress;
         private float _speed = 0;
 
+        private AutoResetEvent reset = new AutoResetEvent(false);
+        private Control _invokeControl;
 
-        AutoResetEvent reset = new AutoResetEvent(false);
-        private Form _invokeControl;
 
-        public AnimatorTimer_WOC(Form control)
+        public AnimatorTimer_WOC(Control control)
         {
             _invokeControl = control;
             if (!_isFrequencyChecked)
@@ -124,6 +124,13 @@ namespace LimitlessUI
             _neededValue = neededProgress;
 
             if (start) this.start();
+        }
+
+
+        public float Speed
+        {
+            get { return _speed; }
+            set { _speed = value; }
         }
 
 

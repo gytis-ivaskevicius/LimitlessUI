@@ -36,13 +36,17 @@ namespace LimitlessUI
         private Control _control;
         private Animations _animation = Animations.ChangeWidth;
 
-        public delegate void onWidthChanged(Control control, int change);
-        public delegate void onHeightChanged(Control control, int change);
+        public delegate void onWidthChanged(Control control, float change, int progress);
+        public delegate void onHeightChanged(Control control, float change, int progress);
         public delegate void onAnimationTick(Control control);
+        public delegate void onAnimationStart(Control control);
+        public delegate void onAnimationEnd(Control control);
 
         public event onWidthChanged _onWidthChanged_del;
         public event onHeightChanged _onHeightChanged_del;
         public event onAnimationTick _onAnimationTick_del;
+        public event onAnimationStart _onAnimationStart_del;
+        public event onAnimationEnd _onAnimationEnd_del;
 
 
 
@@ -54,27 +58,31 @@ namespace LimitlessUI
 
         public Animator_WOC()
         {
-            _animatorTimer = new AnimatorTimer_WOC(Utils_WOC.getFormForThreading());
-            _animatorTimer.onAnimationTimerTick += animationTimer_Tick;
+           
 
         }
         private void animationTimer_Tick(int progress)
         {
             if (_control != null)
+            {
+               // _control.FindForm().SuspendLayout();
+
                 switch (_animation)
                 {
                     case Animations.ChangeWidth:
                         _control.Width = progress;
                         if (_onWidthChanged_del != null)
-                            _onWidthChanged_del.Invoke(_control, progress);
+                            _onWidthChanged_del.Invoke(_control, _animatorTimer.Speed, progress);
                         break;
                     case Animations.ChangeHeight:
                         _control.Height = progress;
                         if (_onHeightChanged_del != null)
-                            _onHeightChanged_del.Invoke(_control, progress);
+                            _onHeightChanged_del.Invoke(_control, _animatorTimer.Speed, progress);
                         break;
                 }
-            else Debug.WriteLine("Animator_WOC CONTROL IS EQUAL NULL!!!!!!!!!!!!!!!!!!!!!!");
+             //   _control.FindForm().ResumeLayout();
+            }
+            else Debug.WriteLine("Animator_WOC CONTROL IS EQUAL TO NULL!!!!!!!!!!!!!!!!!!!!!!");
             if (_onAnimationTick_del != null)
                 _onAnimationTick_del.Invoke(_control);
         }
@@ -96,7 +104,10 @@ namespace LimitlessUI
         public Control Controls
         {
             get { return _control; }
-            set { _control = value; }
+            set { _control = value;
+                _animatorTimer = new AnimatorTimer_WOC(_control);
+                _animatorTimer.onAnimationTimerTick += animationTimer_Tick;
+            }
         }
 
         public int Delay
