@@ -49,6 +49,9 @@
     <Compile Include="ArchProgressBar_WOC.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Button_WOC.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Chart_WOC.cs">
       <SubType>Component</SubType>
     </Compile>

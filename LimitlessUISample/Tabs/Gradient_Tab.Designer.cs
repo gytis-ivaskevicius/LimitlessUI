@@ -31,14 +31,16 @@ namespace LimitlessUISample.Tabs
         private void InitializeComponent()
         {
             this.gradientPanel_WOC1 = new LimitlessUI.GradientPanel_WOC();
-            this.animator_WOC1 = new LimitlessUI.Animator_WOC();
+            this.button_WOC1 = new LimitlessUI.Button_WOC();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.animator_WOC1 = new LimitlessUI.Animator_WOC();
             this.gradientPanel_WOC1.SuspendLayout();
             this.SuspendLayout();
             // 
             // gradientPanel_WOC1
             // 
             this.gradientPanel_WOC1.Angle = 0F;
+            this.gradientPanel_WOC1.Controls.Add(this.button_WOC1);
             this.gradientPanel_WOC1.Controls.Add(this.panel1);
             this.gradientPanel_WOC1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gradientPanel_WOC1.EndColor = System.Drawing.Color.White;
@@ -49,10 +51,14 @@ namespace LimitlessUISample.Tabs
             this.gradientPanel_WOC1.TabIndex = 0;
             this.gradientPanel_WOC1.Text = "gradientPanel_WOC1";
             // 
-            // animator_WOC1
+            // button_WOC1
             // 
-            this.animator_WOC1.Animation = LimitlessUI.Animator_WOC.Animations.ChangeWidth;
-            this.animator_WOC1.Controls = this.panel1;
+            this.button_WOC1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_WOC1.Location = new System.Drawing.Point(67, 35);
+            this.button_WOC1.Name = "button_WOC1";
+            this.button_WOC1.Size = new System.Drawing.Size(373, 120);
+            this.button_WOC1.TabIndex = 1;
+            this.button_WOC1.Text = "Ugly button";
             // 
             // panel1
             // 
@@ -61,6 +67,11 @@ namespace LimitlessUISample.Tabs
             this.panel1.Size = new System.Drawing.Size(200, 501);
             this.panel1.TabIndex = 0;
             this.panel1.Click += new System.EventHandler(this.panel1_Click_1);
+            // 
+            // animator_WOC1
+            // 
+            this.animator_WOC1.Animation = LimitlessUI.Animator_WOC.Animations.ChangeWidth;
+            this.animator_WOC1.Controls = this.panel1;
             // 
             // Gradient_Tab
             // 
@@ -79,5 +90,6 @@ namespace LimitlessUISample.Tabs
         private GradientPanel_WOC gradientPanel_WOC1;
         private Animator_WOC animator_WOC1;
         private System.Windows.Forms.Panel panel1;
+        private Button_WOC button_WOC1;
     }
 }
