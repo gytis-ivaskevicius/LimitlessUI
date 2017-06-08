@@ -130,10 +130,13 @@ namespace LimitlessUI
             get { return _control; }
             set
             {
-                _control = value;
-                _expandedControlHeight = _control.Height;
-                _proportion = _expandedControlHeight / 180F;
-                Invalidate();
+                if (value != null)
+                {
+                    _control = value;
+                    _expandedControlHeight = value.Height;
+                    _proportion = _expandedControlHeight / 180F;
+                    Invalidate();
+                }
             }
         }
         #endregion
