@@ -63,7 +63,7 @@ namespace LimitlessUI
         }
 
         //-------------------------------------[Legendary Child :D ]-------------------------------------//
-        private class LegendChild_WOC : Control
+        public class LegendChild_WOC : Control
         {
             private int _recSize = 10;
             private Color _textColor;
