@@ -69,7 +69,7 @@ namespace LimitlessUI
         {
             _chartArea.X = Width - Padding.Right - Padding.Left;
             _chartArea.Y = Height - Padding.Top - Padding.Bottom;
-            _xLineIncrement = _chartArea.X / _chartLength;
+            _xLineIncrement = (float)Math.Round(_chartArea.X / _chartLength);
         }
 
         private void drawChartArea(Graphics g, Pen pen1, float chartAreaLength, float labelsCountY)
@@ -98,6 +98,8 @@ namespace LimitlessUI
             {
                 pen.Color = ForeColor;
                 pen.Width = 1F;
+
+                g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.None;
                 g.DrawLine(pen, cor.X - Padding.Left, 0, cor.X - Padding.Left, -_chartArea.Y);
 
                 float lastY = -_chartArea.Y;
@@ -115,7 +117,7 @@ namespace LimitlessUI
                         pen.Width = 1;
 
                         g.DrawLine(pen, mouseXPos, lastY + labelSizeByTwo, mouseXPos - 10, lastY + labelSizeByTwo);
-                        g.DrawString(s, Font, new SolidBrush(Color.Black), mouseXPos - 12 - strSize.Width, lastY);
+                        g.DrawString(s, Font, new SolidBrush(ForeColor), mouseXPos - 12 - strSize.Width, lastY);
 
                         pen.Color = serie.lineColor;
                         pen.Width = 2;
@@ -134,8 +136,8 @@ namespace LimitlessUI
             drawChartArea(g, pen1, _chartArea.X, (_maxYValue - _minYValue) / _valueInterval);
 
             g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;                 //check
-            pen1.Width = _chartLineThikness;
-            foreach (Serie serie in series)
+            pen1.Width = _chartLineThikness; 
+            foreach (Serie serie in series) 
             {
                 pen1.Color = serie.lineColor;
                 float xLineCord = 0;
@@ -147,6 +149,7 @@ namespace LimitlessUI
                         PointF point = new PointF(xLineCord, -yVal);
                         g.DrawLine(pen1, lastPoint, point);
                         lastPoint = point;
+                        lastPoint.X = lastPoint.X-1 ;
                         xLineCord += _xLineIncrement;
                     }
                 }
@@ -165,9 +168,9 @@ namespace LimitlessUI
         {
             List<int> values = series.ElementAt(serie).values;
             values.Add(value);
-            Invalidate();
-            if (_chartLength < values.Count)
+            while (_chartLength <= values.Count-2)
                 values.Remove(values.First());
+            Invalidate();
         }
         #region Getters and Setters
 
@@ -193,7 +196,8 @@ namespace LimitlessUI
         public int MaxYValue
         {
             get { return _maxYValue; }
-            set { _maxYValue = value; Invalidate(); }
+            set { _maxYValue = value;
+                Invalidate(); }
         }
 
         public int ValueInterval
@@ -205,7 +209,7 @@ namespace LimitlessUI
         public int ChartLength
         {
             get { return _chartLength; }
-            set { _chartLength = value; Invalidate(); }
+            set { _chartLength = value; calculateConsts(); Invalidate(); }
         }
         #endregion
         //-----------------------------------[Serie Class]-----------------------------------//
