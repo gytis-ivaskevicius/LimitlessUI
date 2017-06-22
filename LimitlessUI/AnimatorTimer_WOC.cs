@@ -47,12 +47,13 @@ namespace LimitlessUI
 
         private int _interval;
         private int _neededValue;
+        private int _animationFps = 30;
         private float _progress;
         private float _speed = 0;
 
         private AutoResetEvent reset = new AutoResetEvent(false);
         private Control _invokeControl;
-
+        private bool _checkFps = false;
 
         public AnimatorTimer_WOC(Control control)
         {
@@ -63,13 +64,13 @@ namespace LimitlessUI
                 int frequency = Utils_WOC.getMonitorFrequency();
                 _displayRefreshRate = frequency != -1 ? frequency : 60;
             }
-            _interval = (int)Math.Round(1000 / _displayRefreshRate);
+            _interval = 1000 / _animationFps;
         }
 
         public void start()
         {
             Enabled = true;
-            
+
             new Thread(() =>
             {
                 while (_isEnabled)
@@ -105,7 +106,7 @@ namespace LimitlessUI
         {
             if (!Enabled)
             {
-                _speed = (neededProgress - _progress) / (milis / (1000 / _displayRefreshRate));
+                _speed = (neededProgress - _progress) / (milis / (1000 / _animationFps));
                 _progress = progress;
             }
 
@@ -116,7 +117,7 @@ namespace LimitlessUI
         {
             if (!Enabled)
             {
-                float a = (milis / (1000 / _displayRefreshRate));
+                float a = (milis / (1000 / _animationFps));
                 float b = (neededProgress - _progress);
                 _speed = (b / a);
             }
@@ -139,6 +140,15 @@ namespace LimitlessUI
             get { return _isEnabled; }
             set { _isEnabled = value; }
         }
-        public int Interval { get { return _interval; } }
+
+        public bool CheckMonitorFps
+        {
+            get { return _checkFps; }
+            set
+            {
+                _checkFps = value;
+                _animationFps = _checkFps ? (int)_displayRefreshRate : 30;
+            }
+        }
     }
 }

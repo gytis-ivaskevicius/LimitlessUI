@@ -58,14 +58,15 @@ namespace LimitlessUI
 
         public Animator_WOC()
         {
-           
+
 
         }
         private void animationTimer_Tick(int progress)
         {
             if (_control != null)
             {
-               // _control.FindForm().SuspendLayout();
+                if (_onAnimationStart_del != null)
+                    _onAnimationStart_del.Invoke(_control);
 
                 switch (_animation)
                 {
@@ -80,7 +81,8 @@ namespace LimitlessUI
                             _onHeightChanged_del.Invoke(_control, _animatorTimer.Speed, progress);
                         break;
                 }
-             //   _control.FindForm().ResumeLayout();
+                if (_onAnimationEnd_del != null)
+                    _onAnimationEnd_del.Invoke(_control);
             }
             else Debug.WriteLine("Animator_WOC CONTROL IS EQUAL TO NULL!!!!!!!!!!!!!!!!!!!!!!");
             if (_onAnimationTick_del != null)
@@ -100,19 +102,26 @@ namespace LimitlessUI
             set { _animation = value; }
         }
 
+        public bool CheckMonitorFps
+        {
+            get { return _animatorTimer != null ? _animatorTimer.CheckMonitorFps : false; }
+            set
+            {
+                if (_animatorTimer != null)
+                    _animatorTimer.CheckMonitorFps = value;
+            }
+        }
+
 
         public Control Controls
         {
             get { return _control; }
-            set { _control = value;
+            set
+            {
+                _control = value;
                 _animatorTimer = new AnimatorTimer_WOC(_control);
                 _animatorTimer.onAnimationTimerTick += animationTimer_Tick;
             }
-        }
-
-        public int Delay
-        {
-            get { return (int)_animatorTimer.Interval; }
         }
     }
 }
