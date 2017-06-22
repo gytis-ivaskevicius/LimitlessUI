@@ -54,6 +54,7 @@ namespace LimitlessUI
         private List<Line> _lines = new List<Line>();
         private int _gripSize = 10;     // Thickness of form grip which allows you to resize it
         private bool _drawShadow = true;
+        private bool _formLevelBuffering = true;
 
         private const int
             HTLEFT = 10,
@@ -65,18 +66,16 @@ namespace LimitlessUI
             HTBOTTOMLEFT = 16,
             HTBOTTOMRIGHT = 17;
 
-
-
         protected override CreateParams CreateParams
         {
             get
             {
                 CreateParams cp = base.CreateParams;
                 if (_drawShadow)
-                {
-                    const int CS_DROPSHADOW = 0x20000;
-                    cp.ClassStyle |= CS_DROPSHADOW;
-                }
+                    cp.ClassStyle |= 0x20000;
+                if (_formLevelBuffering && !DesignMode)
+                    cp.ExStyle |= 0x02000000;
+                
                 return cp;
             }
         }
@@ -142,6 +141,12 @@ namespace LimitlessUI
             set { _drawShadow = value; }
         }
 
+
+        public bool BufferApplication
+        {
+            get { return _formLevelBuffering; }
+            set { _formLevelBuffering = value; }
+        }
 
         class Line
         {
