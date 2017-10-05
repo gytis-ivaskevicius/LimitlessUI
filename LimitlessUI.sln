@@ -1,11 +1,14 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26430.6
+VisualStudioVersion = 15.0.26730.16
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LimitlessUI", "LimitlessUI\LimitlessUI.csproj", "{EE394A8D-F664-4D66-8E28-35F075FDC79D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LimitlessUISample", "LimitlessUISample\LimitlessUISample.csproj", "{8E36C57A-A1E0-45BA-AA8B-4FE41C76D2E6}"
+	ProjectSection(ProjectDependencies) = postProject
+		{EE394A8D-F664-4D66-8E28-35F075FDC79D} = {EE394A8D-F664-4D66-8E28-35F075FDC79D}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -24,5 +27,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4B136B30-D435-40E4-AACE-04B7FDE15336}
 	EndGlobalSection
 EndGlobal

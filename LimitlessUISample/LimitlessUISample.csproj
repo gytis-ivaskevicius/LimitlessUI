@@ -33,9 +33,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="LimitlessUI_1.6.0">
-      <HintPath>..\LimitlessUI\bin\Debug\LimitlessUI_1.6.0.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.DirectoryServices" />
@@ -158,13 +155,16 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="bin\Debug\PIC\progressIcon.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\expand_ic.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\ic_expand.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\LimitlessUI\LimitlessUI.csproj">
+      <Project>{ee394a8d-f664-4d66-8e28-35f075fdc79d}</Project>
+      <Name>LimitlessUI</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
