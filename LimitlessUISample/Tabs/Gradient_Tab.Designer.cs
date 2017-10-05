@@ -71,7 +71,7 @@ namespace LimitlessUISample.Tabs
             // animator_WOC1
             // 
             this.animator_WOC1.Animation = LimitlessUI.Animator_WOC.Animations.ChangeWidth;
-            this.animator_WOC1.Controls = this.panel1;
+            this.animator_WOC1.Control = this.panel1;
             // 
             // Gradient_Tab
             // 

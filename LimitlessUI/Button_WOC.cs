@@ -4,7 +4,7 @@ using System.Windows.Forms;
 
 namespace LimitlessUI
 {
-    public partial class Button_WOC : Control
+    public class Button_WOC : Control
     {
         private Color _borderColor = Color.Silver;
         private Color _onHoverBorderColor = Color.Gray;
@@ -21,12 +21,12 @@ namespace LimitlessUI
         public Button_WOC()
         {
             DoubleBuffered = true;
-            MouseEnter += (object sender, EventArgs e) =>
+            MouseEnter += (sender, e) =>
             {
                 _isHovering = true;
                 Invalidate();
             };
-            MouseLeave += (object sender, EventArgs e) =>
+            MouseLeave += (sender, e) =>
             {
                 _isHovering = false;
                 Invalidate();

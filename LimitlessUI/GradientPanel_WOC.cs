@@ -37,34 +37,34 @@ namespace LimitlessUI
 
         float _angle = 90;
 
-        public GradientPanel_WOC()
-        {
-            DoubleBuffered = true;
-        }
+        public GradientPanel_WOC() => DoubleBuffered = true;
+
 
         protected override void OnPaintBackground(PaintEventArgs e)
         {
-            LinearGradientBrush brush = new LinearGradientBrush(this.ClientRectangle,
-                                                                        _startColor,
-                                                                        _endColor,
-                                                                        _angle);
+            var brush = new LinearGradientBrush(this.ClientRectangle,
+                _startColor,
+                _endColor,
+                _angle);
             e.Graphics.FillRectangle(brush, this.ClientRectangle);
         }
 
 
         #region Getters and Setters
+
         public float Angle
         {
-            get { return _angle; }
+            get => _angle;
             set
             {
                 _angle = value;
                 Invalidate();
             }
         }
+
         public Color StartColor
         {
-            get { return _startColor; }
+            get => _startColor;
             set
             {
                 _startColor = value;
@@ -74,13 +74,14 @@ namespace LimitlessUI
 
         public Color EndColor
         {
-            get { return _endColor; }
+            get => _endColor;
             set
             {
                 _endColor = value;
                 Invalidate();
             }
         }
+
         #endregion
     }
 }

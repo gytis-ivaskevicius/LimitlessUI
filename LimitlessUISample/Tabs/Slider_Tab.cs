@@ -29,7 +29,7 @@ namespace LimitlessUISample.Tabs
         }
 
 
-        public void onShowTab()
+        public void OnShowTab()
         {
             Debug.WriteLine("Showing Slider_Tab");
         }

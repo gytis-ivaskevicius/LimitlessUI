@@ -2,7 +2,6 @@
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 using System;
-using System.Diagnostics;
 
 
 /*
@@ -22,92 +21,98 @@ Copyright (c) 2017 WithoutCaps
 
 namespace LimitlessUI
 {
-    public partial class DropDown_WOC : Control
+    public class DropDown_WOC : Control
     {
         private float _textDistance = 35;
+        private float _proportion;
+        private float _arrowAngle;
 
         private int _expandedControlHeight;
         private int _arrowSize = 25;
-        private int _aniationLength = 300;
         private int _value;
 
         private bool _isExpanded = true;
-        private bool _justUpdated = false;
+        private bool _updated;
         private Image _image;
         private Control _control;
-        private AnimatorTimer_WOC _animationTimer;
-        private float _proportion;
-        private float _arrowAngle;
-        private Point _textOffset = new Point();
+        private readonly AnimatorTimer_WOC _animationTimer;
+        private Point _textOffset;
 
         public DropDown_WOC()
         {
             DoubleBuffered = true;
             _animationTimer = new AnimatorTimer_WOC(Utils_WOC.getFormForThreading());
-            _animationTimer.onAnimationTimerTick += (int value) =>
+            _animationTimer.OnAnimationTimerTick += (value) =>
             {
                 _control.FindForm().SuspendLayout();
                 _value = value;
                 _control.Height = value;
                 _control.FindForm().ResumeLayout();
-                _justUpdated = true;
+                _updated = true;
                 Invalidate();
             };
 
-            Click += click;
-            DoubleClick += click;
+            DoubleClick += (s, e) => OnClick(e);
         }
 
-        private void click(object sender, EventArgs e)
+        protected override void OnClick(EventArgs e)
         {
-            _animationTimer.setValueRange(_isExpanded ? 0 : _expandedControlHeight, _control.Height, _aniationLength, true);
+            base.OnClick(e);
+            _animationTimer.SetValueRange(_isExpanded ? 0 : _expandedControlHeight, _control.Height, AnimationLength,
+                true);
             _isExpanded = !_isExpanded;
         }
+
 
         protected override void OnPaint(PaintEventArgs pe)
         {
             base.OnPaint(pe);
-            SizeF textSize = pe.Graphics.MeasureString(Text, Font);
-            pe.Graphics.DrawString(Text, Font, new SolidBrush(ForeColor), TextOffset.X + _textDistance, Height / 2 - (textSize.Height / 2) + TextOffset.Y);
+            var textSize = pe.Graphics.MeasureString(Text, Font);
+            pe.Graphics.DrawString(Text, Font, new SolidBrush(ForeColor), TextOffset.X + _textDistance,
+                Height / 2f - (textSize.Height / 2) + TextOffset.Y);
 
-            if (_justUpdated)
+            if (_updated)
             {
-                _justUpdated = false;
+                _updated = false;
                 _arrowAngle = 180 - (_value / _proportion);
             }
 
-            pe.Graphics.TranslateTransform(Height / 2, Height / 2);
+            pe.Graphics.TranslateTransform(Height / 2f, Height / 2f);
             pe.Graphics.RotateTransform(_arrowAngle);
-            pe.Graphics.TranslateTransform(-Height / 2, -Height / 2);
+            pe.Graphics.TranslateTransform(-Height / 2f, -Height / 2f);
 
             if (_image != null)
-                pe.Graphics.DrawImage(_image, (Height - _arrowSize) / 2, (Height - _arrowSize) / 2, _arrowSize, _arrowSize);
+                pe.Graphics.DrawImage(_image, (Height - _arrowSize) / 2, (Height - _arrowSize) / 2, _arrowSize,
+                    _arrowSize);
         }
 
         #region Getters and Setters
 
-
         public Point TextOffset
         {
-            get { return _textOffset; }
-            set { _textOffset = value; Invalidate(); }
+            get => _textOffset;
+            set
+            {
+                _textOffset = value;
+                Invalidate();
+            }
         }
 
-        public int AnimationLength
-        {
-            get { return _aniationLength; }
-            set { _aniationLength = value; }
-        }
+        public int AnimationLength { get; set; } = 300;
 
         public Image Image
         {
-            get { return _image; }
-            set { _image = value; Invalidate(); }
+            get => _image;
+            set
+            {
+                _image = value;
+                Invalidate();
+            }
         }
 
         public int ArrowSize
         {
-            get { return _arrowSize; }
+            get => _arrowSize;
             set
             {
                 _arrowSize = value;
@@ -117,7 +122,7 @@ namespace LimitlessUI
 
         public Control Control
         {
-            get { return _control; }
+            get => _control;
             set
             {
                 if (value != null)
@@ -129,6 +134,7 @@ namespace LimitlessUI
                 }
             }
         }
+
         #endregion
     }
 }

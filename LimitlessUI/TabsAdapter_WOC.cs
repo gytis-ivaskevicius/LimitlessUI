@@ -1,9 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
-using System.Diagnostics;
 using System.Linq;
 using System.Windows.Forms;
-
 
 
 /*
@@ -32,45 +30,30 @@ Copyright (c) 2017 WithoutCaps
 
 namespace LimitlessUI
 {
-    public partial class TabsAdapter_WOC : Component
+    public class TabsAdapter_WOC : Component
     {
-        private Control _control;
-        private List<UserControl> _tabs = new List<UserControl>();
-
-        public void addTab(UserControl tab, bool isOnTop)
+        public void AddTab(UserControl tab, bool isOnTop)
         {
-            _control.Controls.Add(tab);
+            Control.Controls.Add(tab);
             tab.Dock = DockStyle.Fill;
             if (isOnTop)
-                showTab(tab);
-            _tabs.Add(tab);
+                ShowTab(tab);
+            Tabs.Add(tab);
         }
 
-        public void showTab(int tab)
-        {
-            showTab(_tabs.ElementAt(tab));
-        }
+        public void ShowTab(int tab) => ShowTab(Tabs.ElementAt(tab));
 
-        public void showTab(UserControl tab)
+        public void ShowTab(UserControl tab)
         {
-            if (_tabs.Contains(tab))
+            if (Tabs.Contains(tab))
             {
-                if (tab is Tab_WOC)
-                    ((Tab_WOC)tab).onShowTab();
+                (tab as Tab_WOC)?.OnShowTab();
                 tab.BringToFront();
             }
         }
 
-        public List<UserControl> Tabs
-        {
-            get { return _tabs; }
-        }
+        public List<UserControl> Tabs { get; } = new List<UserControl>();
 
-        public Control Control
-        {
-            get { return _control; }
-            set { _control = value; }
-        }
+        public Control Control { get; set; }
     }
 }
-

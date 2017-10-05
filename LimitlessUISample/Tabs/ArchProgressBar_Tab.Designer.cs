@@ -12,7 +12,7 @@ namespace LimitlessUISample.Tabs
         /// <summary> 
         /// Clean up any resources being used.
         /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        /// <param Name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -74,7 +74,7 @@ namespace LimitlessUISample.Tabs
             this.archProgressBar_WOC11.ProgressColor = System.Drawing.Color.SeaGreen;
             this.archProgressBar_WOC11.ProgressLineThikness = 15F;
             this.archProgressBar_WOC11.Size = new System.Drawing.Size(200, 192);
-            this.archProgressBar_WOC11.Style = ArchProgressBar_WOC.styleEnum.Style3;
+            this.archProgressBar_WOC11.Style = ArchProgressBar_WOC.StyleEnum.Style3;
             this.archProgressBar_WOC11.TabIndex = 10;
             this.archProgressBar_WOC11.Text = "archProgressBar_WOC11";
             this.archProgressBar_WOC11.Text1 = "CPU";
@@ -101,7 +101,7 @@ namespace LimitlessUISample.Tabs
             this.archProgressBar_WOC10.ProgressColor = System.Drawing.Color.SeaGreen;
             this.archProgressBar_WOC10.ProgressLineThikness = 15F;
             this.archProgressBar_WOC10.Size = new System.Drawing.Size(200, 200);
-            this.archProgressBar_WOC10.Style = ArchProgressBar_WOC.styleEnum.Style3;
+            this.archProgressBar_WOC10.Style = ArchProgressBar_WOC.StyleEnum.Style3;
             this.archProgressBar_WOC10.TabIndex = 9;
             this.archProgressBar_WOC10.Text = "archProgressBar_WOC10";
             this.archProgressBar_WOC10.Text1 = "CPU";
@@ -128,7 +128,7 @@ namespace LimitlessUISample.Tabs
             this.archProgressBar_WOC8.ProgressColor = System.Drawing.Color.SeaGreen;
             this.archProgressBar_WOC8.ProgressLineThikness = 45F;
             this.archProgressBar_WOC8.Size = new System.Drawing.Size(200, 113);
-            this.archProgressBar_WOC8.Style = ArchProgressBar_WOC.styleEnum.Style4;
+            this.archProgressBar_WOC8.Style = ArchProgressBar_WOC.StyleEnum.Style4;
             this.archProgressBar_WOC8.TabIndex = 7;
             this.archProgressBar_WOC8.Text = "archProgressBar_WOC8";
             this.archProgressBar_WOC8.Text1 = "CPU";
@@ -155,7 +155,7 @@ namespace LimitlessUISample.Tabs
             this.archProgressBar_WOC9.ProgressColor = System.Drawing.Color.SeaGreen;
             this.archProgressBar_WOC9.ProgressLineThikness = 45F;
             this.archProgressBar_WOC9.Size = new System.Drawing.Size(200, 113);
-            this.archProgressBar_WOC9.Style = ArchProgressBar_WOC.styleEnum.None;
+            this.archProgressBar_WOC9.Style = ArchProgressBar_WOC.StyleEnum.None;
             this.archProgressBar_WOC9.TabIndex = 6;
             this.archProgressBar_WOC9.Text = "archProgressBar_WOC9";
             this.archProgressBar_WOC9.Text1 = "CPU";
@@ -182,7 +182,7 @@ namespace LimitlessUISample.Tabs
             this.archProgressBar_WOC4.ProgressColor = System.Drawing.Color.SeaGreen;
             this.archProgressBar_WOC4.ProgressLineThikness = 9F;
             this.archProgressBar_WOC4.Size = new System.Drawing.Size(200, 192);
-            this.archProgressBar_WOC4.Style = ArchProgressBar_WOC.styleEnum.Style3;
+            this.archProgressBar_WOC4.Style = ArchProgressBar_WOC.StyleEnum.Style3;
             this.archProgressBar_WOC4.TabIndex = 5;
             this.archProgressBar_WOC4.Text = "archProgressBar_WOC4";
             this.archProgressBar_WOC4.Text1 = "CPU";
@@ -209,7 +209,7 @@ namespace LimitlessUISample.Tabs
             this.archProgressBar_WOC5.ProgressColor = System.Drawing.Color.SeaGreen;
             this.archProgressBar_WOC5.ProgressLineThikness = 9F;
             this.archProgressBar_WOC5.Size = new System.Drawing.Size(200, 192);
-            this.archProgressBar_WOC5.Style = ArchProgressBar_WOC.styleEnum.Style2;
+            this.archProgressBar_WOC5.Style = ArchProgressBar_WOC.StyleEnum.Style2;
             this.archProgressBar_WOC5.TabIndex = 4;
             this.archProgressBar_WOC5.Text = "archProgressBar_WOC5";
             this.archProgressBar_WOC5.Text1 = "CPU";
@@ -236,7 +236,7 @@ namespace LimitlessUISample.Tabs
             this.archProgressBar_WOC6.ProgressColor = System.Drawing.Color.SeaGreen;
             this.archProgressBar_WOC6.ProgressLineThikness = 9F;
             this.archProgressBar_WOC6.Size = new System.Drawing.Size(200, 192);
-            this.archProgressBar_WOC6.Style = ArchProgressBar_WOC.styleEnum.Style1;
+            this.archProgressBar_WOC6.Style = ArchProgressBar_WOC.StyleEnum.Style1;
             this.archProgressBar_WOC6.TabIndex = 3;
             this.archProgressBar_WOC6.Text = "archProgressBar_WOC6";
             this.archProgressBar_WOC6.Text1 = "CPU";
@@ -263,7 +263,7 @@ namespace LimitlessUISample.Tabs
             this.archProgressBar_WOC3.ProgressColor = System.Drawing.Color.SeaGreen;
             this.archProgressBar_WOC3.ProgressLineThikness = 9F;
             this.archProgressBar_WOC3.Size = new System.Drawing.Size(200, 200);
-            this.archProgressBar_WOC3.Style = ArchProgressBar_WOC.styleEnum.Style3;
+            this.archProgressBar_WOC3.Style = ArchProgressBar_WOC.StyleEnum.Style3;
             this.archProgressBar_WOC3.TabIndex = 2;
             this.archProgressBar_WOC3.Text = "archProgressBar_WOC3";
             this.archProgressBar_WOC3.Text1 = "CPU";
@@ -290,7 +290,7 @@ namespace LimitlessUISample.Tabs
             this.archProgressBar_WOC2.ProgressColor = System.Drawing.Color.SeaGreen;
             this.archProgressBar_WOC2.ProgressLineThikness = 9F;
             this.archProgressBar_WOC2.Size = new System.Drawing.Size(200, 200);
-            this.archProgressBar_WOC2.Style = ArchProgressBar_WOC.styleEnum.Style2;
+            this.archProgressBar_WOC2.Style = ArchProgressBar_WOC.StyleEnum.Style2;
             this.archProgressBar_WOC2.TabIndex = 1;
             this.archProgressBar_WOC2.Text = "archProgressBar_WOC2";
             this.archProgressBar_WOC2.Text1 = "CPU";
@@ -317,7 +317,7 @@ namespace LimitlessUISample.Tabs
             this.archProgressBar_WOC1.ProgressColor = System.Drawing.Color.SeaGreen;
             this.archProgressBar_WOC1.ProgressLineThikness = 9F;
             this.archProgressBar_WOC1.Size = new System.Drawing.Size(200, 200);
-            this.archProgressBar_WOC1.Style = ArchProgressBar_WOC.styleEnum.Style1;
+            this.archProgressBar_WOC1.Style = ArchProgressBar_WOC.StyleEnum.Style1;
             this.archProgressBar_WOC1.TabIndex = 0;
             this.archProgressBar_WOC1.Text = "archProgressBar_WOC1";
             this.archProgressBar_WOC1.Text1 = "CPU";

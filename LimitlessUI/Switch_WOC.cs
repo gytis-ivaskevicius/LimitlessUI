@@ -29,7 +29,7 @@ Copyright (c) 2017 WithoutCaps
 
 namespace LimitlessUI
 {
-    public partial class Switch_WOC : Control
+    public class Switch_WOC : Control
     {
         private bool _textEnabled = true;
         private bool _isOn = true;
@@ -42,8 +42,7 @@ namespace LimitlessUI
 
         public Switch_WOC()
         {
-            Click += click;
-            DoubleClick += click;
+            DoubleClick += (s, e) => OnClick(e);
 
             BackColor = Color.FromArgb(64, 64, 64);
             ForeColor = Color.FromArgb(224, 224, 224);
@@ -52,16 +51,16 @@ namespace LimitlessUI
             DoubleBuffered = true;
         }
 
-        private void click(object sender, EventArgs e)
+        protected override void OnClick(EventArgs e)
         {
             _isOn = !_isOn;
             Invalidate();
         }
 
-        private void drawString(PaintEventArgs pe, bool isOn)
+        private void DrawString(PaintEventArgs pe, bool isOn)
         {
             SizeF stringSize = pe.Graphics.MeasureString(isOn ? _onText : _offText, Font);
-            float drawHeight = Height / 2 - stringSize.Height / 2;
+            float drawHeight = Height / 2f - stringSize.Height / 2;
 
             if (isOn)
             {
@@ -74,12 +73,13 @@ namespace LimitlessUI
                 pe.Graphics.DrawString(_offText, Font, new SolidBrush(ForeColor), drawWidth, drawHeight);
             }
         }
+
         protected override void OnPaint(PaintEventArgs pe)
         {
             base.OnPaint(pe);
 
-            Pen pen1 = new Pen(BackColor, Height);
-            Pen pen2 = new Pen(_isOn ? _onColor : _offColor, Height);
+            var pen1 = new Pen(BackColor, Height);
+            var pen2 = new Pen(_isOn ? _onColor : _offColor, Height);
 
             pe.Graphics.DrawLine(pen1, 0, Height / 2, Width, Height / 2);
             if (_isOn)
@@ -88,16 +88,17 @@ namespace LimitlessUI
                 pe.Graphics.DrawLine(pen2, Width / 2, Height / 2, Width, Height / 2);
 
             if (_textEnabled)
-                drawString(pe, _isOn);
+                DrawString(pe, _isOn);
 
             pen1.Dispose();
             pen2.Dispose();
         }
 
         #region Getters and Setters
+
         public bool IsOn
         {
-            get { return _isOn; }
+            get => _isOn;
             set
             {
                 _isOn = value;
@@ -107,7 +108,7 @@ namespace LimitlessUI
 
         public bool TextEnabled
         {
-            get { return _textEnabled; }
+            get => _textEnabled;
             set
             {
                 _textEnabled = value;
@@ -117,7 +118,7 @@ namespace LimitlessUI
 
         public Color OnColor
         {
-            get { return _onColor; }
+            get => _onColor;
             set
             {
                 _onColor = value;
@@ -127,7 +128,7 @@ namespace LimitlessUI
 
         public Color OffColor
         {
-            get { return _offColor; }
+            get => _offColor;
             set
             {
                 _offColor = value;
@@ -137,7 +138,7 @@ namespace LimitlessUI
 
         public string OnText
         {
-            get { return _onText; }
+            get => _onText;
             set
             {
                 _onText = value;
@@ -147,13 +148,14 @@ namespace LimitlessUI
 
         public string OffText
         {
-            get { return _offText; }
+            get => _offText;
             set
             {
                 _offText = value;
                 Invalidate();
             }
         }
+
         #endregion
     }
 }

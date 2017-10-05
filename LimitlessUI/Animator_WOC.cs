@@ -1,8 +1,5 @@
-﻿using LimitlessUI;
-using System;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Diagnostics;
-using System.Drawing;
 using System.Windows.Forms;
 
 /*
@@ -30,24 +27,26 @@ Copyright (c) 2017 WithoutCaps
 */
 namespace LimitlessUI
 {
-    public partial class Animator_WOC : Component
+    public class Animator_WOC : Component
     {
-        public AnimatorTimer_WOC _animatorTimer;
+        public AnimatorTimer_WOC AnimatorTimer;
         private Control _control;
-        private Animations _animation = Animations.ChangeWidth;
 
-        public delegate void onWidthChanged(Control control, float change, int progress);
-        public delegate void onHeightChanged(Control control, float change, int progress);
-        public delegate void onAnimationTick(Control control);
-        public delegate void onAnimationStart(Control control);
-        public delegate void onAnimationEnd(Control control);
+        public delegate void OnWidthChanged(Control control, float change, int progress);
 
-        public event onWidthChanged _onWidthChanged_del;
-        public event onHeightChanged _onHeightChanged_del;
-        public event onAnimationTick _onAnimationTick_del;
-        public event onAnimationStart _onAnimationStart_del;
-        public event onAnimationEnd _onAnimationEnd_del;
+        public delegate void OnHeightChanged(Control control, float change, int progress);
 
+        public delegate void OnAnimationTick(Control control);
+
+        public delegate void OnAnimationStart(Control control);
+
+        public delegate void OnAnimationEnd(Control control);
+
+        public event OnWidthChanged OnWidthChangedDel;
+        public event OnHeightChanged OnHeightChangedDel;
+        public event OnAnimationTick OnAnimationTickDel;
+        public event OnAnimationStart OnAnimationStartDel;
+        public event OnAnimationEnd OnAnimationEndDel;
 
 
         public enum Animations
@@ -56,73 +55,58 @@ namespace LimitlessUI
             ChangeHeight
         }
 
-        public Animator_WOC()
-        {
-
-
-        }
         private void animationTimer_Tick(int progress)
         {
             if (_control != null)
             {
-                if (_onAnimationStart_del != null)
-                    _onAnimationStart_del.Invoke(_control);
+                OnAnimationStartDel?.Invoke(_control);
 
-                switch (_animation)
+                switch (Animation)
                 {
                     case Animations.ChangeWidth:
                         _control.Width = progress;
-                        if (_onWidthChanged_del != null)
-                            _onWidthChanged_del.Invoke(_control, _animatorTimer.Speed, progress);
+                        OnWidthChangedDel?.Invoke(_control, AnimatorTimer.Speed, progress);
                         break;
                     case Animations.ChangeHeight:
                         _control.Height = progress;
-                        if (_onHeightChanged_del != null)
-                            _onHeightChanged_del.Invoke(_control, _animatorTimer.Speed, progress);
+                        OnHeightChangedDel?.Invoke(_control, AnimatorTimer.Speed, progress);
                         break;
                 }
-                if (_onAnimationEnd_del != null)
-                    _onAnimationEnd_del.Invoke(_control);
+                OnAnimationEndDel?.Invoke(_control);
             }
             else Debug.WriteLine("Animator_WOC CONTROL IS EQUAL TO NULL!!!!!!!!!!!!!!!!!!!!!!");
-            if (_onAnimationTick_del != null)
-                _onAnimationTick_del.Invoke(_control);
+            OnAnimationTickDel?.Invoke(_control);
         }
 
 
-        public void animate(int animationLength, int value)
+        public void Animate(int animationLength, int value)
         {
-            _animatorTimer.setValueRange(value, _animation == Animations.ChangeWidth ? _control.Width : _control.Height, animationLength, true);
+            AnimatorTimer.SetValueRange(value, Animation == Animations.ChangeWidth ? _control.Width : _control.Height,
+                animationLength, true);
         }
 
-
-        public Animations Animation
-        {
-            get { return _animation; }
-            set { _animation = value; }
-        }
+        public Animations Animation { get; set; } = Animations.ChangeWidth;
 
         public bool CheckMonitorFps
         {
-            get { return _animatorTimer != null ? _animatorTimer.CheckMonitorFps : false; }
+            get => AnimatorTimer?.CheckMonitorFps ?? false;
             set
             {
-                if (_animatorTimer != null)
-                    _animatorTimer.CheckMonitorFps = value;
+                if (AnimatorTimer != null)
+                    AnimatorTimer.CheckMonitorFps = value;
             }
         }
 
 
-        public Control Controls
+        public Control Control
         {
-            get { return _control; }
+            get => _control;
             set
             {
                 _control = value;
-                _animatorTimer = new AnimatorTimer_WOC(_control);
-                _animatorTimer.onAnimationTimerTick += animationTimer_Tick;
+                AnimatorTimer = new AnimatorTimer_WOC(_control);
+                AnimatorTimer.OnAnimationTimerTick += animationTimer_Tick;
             }
         }
     }
 }
-

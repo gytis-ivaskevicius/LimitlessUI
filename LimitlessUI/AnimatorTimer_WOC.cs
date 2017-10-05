@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 
@@ -37,21 +31,19 @@ namespace LimitlessUI
 {
     public class AnimatorTimer_WOC
     {
+        public delegate void OnAnimationTick(int progress);
 
-        public delegate void onAnimationTick(int progress);
-        public event onAnimationTick onAnimationTimerTick;
+        public event OnAnimationTick OnAnimationTimerTick;
 
-        public static float _displayRefreshRate;
-        private static bool _isFrequencyChecked = false;
-        private bool _isEnabled = false;
+        public static float DisplayRefreshRate;
+        private float _progress;
+        private static bool _isFrequencyChecked;
 
         private int _interval;
-        private int _neededValue;
+        private float _neededValue;
         private int _animationFps = 30;
-        private float _progress;
-        private float _speed = 0;
 
-        private AutoResetEvent reset = new AutoResetEvent(false);
+        private readonly AutoResetEvent _timerResetEvent = new AutoResetEvent(false);
         private Control _invokeControl;
         private bool _checkFps = false;
 
@@ -62,92 +54,89 @@ namespace LimitlessUI
             {
                 _isFrequencyChecked = true;
                 int frequency = Utils_WOC.getMonitorFrequency();
-                _displayRefreshRate = frequency != -1 ? frequency : 60;
+                DisplayRefreshRate = frequency != -1 ? frequency : 60;
             }
             _interval = 1000 / _animationFps;
         }
 
-        public void start()
+        public void Start()
         {
             Enabled = true;
 
-            new Thread(() =>
+            var t2 = new Thread(() =>
             {
-                while (_isEnabled)
+                while (Enabled)
                 {
-                    reset.Set();
+                    _timerResetEvent.Set();
                     Thread.Sleep(_interval);
                 }
-            }).Start();
+            });
+            t2.Start();
 
             new Thread(() =>
             {
-                while (_isEnabled)
+                try
                 {
-                    reset.WaitOne();
-                    _invokeControl.Invoke(new MethodInvoker(() =>
+                    while (Enabled)
                     {
-                        _progress += _speed;
-
-                        if (_speed < 0 ? _progress <= _neededValue : _progress >= _neededValue)
+                        _timerResetEvent.WaitOne();
+                        _invokeControl.Invoke(new MethodInvoker(() =>
                         {
-                            _progress = _neededValue;
-                            Enabled = false;
-                        }
+                            _progress += Speed;
 
-                        if (onAnimationTimerTick != null)
-                            onAnimationTimerTick.Invoke((int)_progress);
-                    }));
+                            if (Speed < 0 ? _progress <= _neededValue : _progress >= _neededValue)
+                            {
+                                _progress = _neededValue;
+                                Enabled = false;
+                            }
+                            OnAnimationTimerTick?.Invoke((int) _progress);
+                        }));
+                    }
+                }
+                catch
+                {
+                    Enabled = false;
                 }
             }).Start();
         }
 
-        public void setValueRange(int neededProgress, Int32 progress, int milis, bool start)
+        public void SetValueRange(int neededProgress, int progress, int milis, bool start)
         {
             if (!Enabled)
             {
-                _speed = (neededProgress - _progress) / (milis / (1000 / _animationFps));
+                Speed = (neededProgress - _progress) / (milis / (1000f / _animationFps));
                 _progress = progress;
             }
 
-            setValueRange(neededProgress, milis, start);
+            SetValueRange(neededProgress, milis, start);
         }
 
-        public void setValueRange(int neededProgress, int milis, bool start)
+        public void SetValueRange(float neededProgress, int milis, bool start)
         {
             if (!Enabled)
             {
-                float a = (milis / (1000 / _animationFps));
+                float a = (milis / (1000f / _animationFps));
                 float b = (neededProgress - _progress);
-                _speed = (b / a);
+                Speed = (b / a);
             }
-            else _speed = -_speed;
+            else Speed = -Speed;
             _neededValue = neededProgress;
 
-            if (start) this.start();
+            if (start) Start();
         }
 
 
-        public float Speed
-        {
-            get { return _speed; }
-            set { _speed = value; }
-        }
+        public float Speed { get; set; }
 
-
-        public bool Enabled
-        {
-            get { return _isEnabled; }
-            set { _isEnabled = value; }
-        }
+        public bool Enabled { get; set; }
 
         public bool CheckMonitorFps
         {
-            get { return _checkFps; }
+            get => _checkFps;
             set
             {
                 _checkFps = value;
-                _animationFps = _checkFps ? (int)_displayRefreshRate : 30;
+                _animationFps = _checkFps ? (int) DisplayRefreshRate : 30;
             }
         }
     }

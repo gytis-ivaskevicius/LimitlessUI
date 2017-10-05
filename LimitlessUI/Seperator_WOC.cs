@@ -29,10 +29,10 @@ Copyright (c) 2017 WithoutCaps
 
 namespace LimitlessUI
 {
-    public partial class Separator_WOC : Control
+    public class Separator_WOC : Control
     {
         private int _thickness = 1;
-        private bool _vertical = false;
+        private bool _vertical;
 
 
         protected override void OnPaddingChanged(EventArgs e)
@@ -44,26 +44,30 @@ namespace LimitlessUI
         protected override void OnPaint(PaintEventArgs pe)
         {
             base.OnPaint(pe);
-            int size = _vertical ? Height / 2 : Width / 2;
-            pe.Graphics.TranslateTransform(Width / 2, Height / 2);
+            var size = _vertical ? Height / 2 : Width / 2;
+            pe.Graphics.TranslateTransform(Width / 2f, Height / 2f);
 
-            using (Pen pen = new Pen(ForeColor, _thickness))
+            using (var pen = new Pen(ForeColor, _thickness))
                 if (!_vertical)
                     pe.Graphics.DrawLine(pen, -size + Padding.Left, 0, size - Padding.Right, 0);
                 else pe.Graphics.DrawLine(pen, 0, -size + Padding.Top, 0, size - Padding.Bottom);
-
         }
 
         #region Getters and Setters
+
         public bool Vertical
         {
-            get { return _vertical; }
-            set { _vertical = value; Invalidate(); }
+            get => _vertical;
+            set
+            {
+                _vertical = value;
+                Invalidate();
+            }
         }
 
         public int LineThickness
         {
-            get { return _thickness; }
+            get => _thickness;
             set
             {
                 _thickness = value;
@@ -73,6 +77,7 @@ namespace LimitlessUI
                     Invalidate();
             }
         }
+
         #endregion
     }
 }

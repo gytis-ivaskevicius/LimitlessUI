@@ -29,52 +29,40 @@ Copyright (c) 2017 WithoutCaps
 
 namespace LimitlessUI
 {
-    public partial class ListView_WOC : ScrollableControl
+    public class ListView_WOC : ScrollableControl
     {
-        private bool _vertical = true;
-        private bool _autoExpand = false;
-        public List<Control> items = new List<Control>();
+        public List<Control> Items = new List<Control>();
 
-        public ListView_WOC()
-        {
-            AutoScroll = true;
-        }
+        public ListView_WOC() => AutoScroll = true;
 
-        public void add(Control item)
+
+        public void Add(Control item)
         {
-            item.Dock = _vertical ? DockStyle.Top : DockStyle.Left;
-            items.Add(item);
-            this.Controls.Add(item);
+            item.Dock = Vertical ? DockStyle.Top : DockStyle.Left;
+            Items.Add(item);
+            Controls.Add(item);
             item.BringToFront();
 
-            if (_autoExpand && _vertical)
-                Height = items.Last().Location.Y + items.Last().Size.Height;
-            else if (_autoExpand && !_vertical)
-                Width = items.Last().Location.X + items.Last().Size.Width;
+            if (AutoExpand && Vertical)
+                Height = Items.Last().Location.Y + Items.Last().Size.Height;
+            else if (AutoExpand && !Vertical)
+                Width = Items.Last().Location.X + Items.Last().Size.Width;
         }
 
-        public void remove(int index)
+        public void Remove(int index)
         {
-            this.Controls.Remove(items.ElementAt(index));
-            items.RemoveAt(index);
+            Controls.Remove(Items.ElementAt(index));
+            Items.RemoveAt(index);
         }
 
-        public void clear()
+        public void Clear()
         {
-            items.Clear();
-            this.Controls.Clear();
+            Items.Clear();
+            Controls.Clear();
         }
 
-        public bool Vertical
-        {
-            get { return _vertical; }
-            set { _vertical = value; }
-        }
+        public bool Vertical { get; set; } = true;
 
-        public bool AutoExpand
-        {
-            get { return _autoExpand; }
-            set { _autoExpand = value; }
-        }
+        public bool AutoExpand { get; set; } = false;
     }
 }

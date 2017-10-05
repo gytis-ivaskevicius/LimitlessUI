@@ -22,29 +22,29 @@ namespace LimitlessUISample
 
 
 
-            drawLine(LinePositions.LEFT, Color.FromArgb(41, 53, 65), 65, Height);
-            drawLine(LinePositions.LEFT, Color.SeaGreen, 0, 65);
-            drawLine(LinePositions.TOP, Color.SeaGreen, 0, 204);
-            drawLine(LinePositions.BOTTOM, Color.FromArgb(41, 53, 65), 0, 203);
+            DrawLine(LinePositions.Left, Color.FromArgb(41, 53, 65), 65, Height);
+            DrawLine(LinePositions.Left, Color.SeaGreen, 0, 65);
+            DrawLine(LinePositions.Top, Color.SeaGreen, 0, 204);
+            DrawLine(LinePositions.Bottom, Color.FromArgb(41, 53, 65), 0, 203);
             Invalidate();
-            setupNavigation();
+            SetupNavigation();
         }
 
 
-        private void setupNavigation()
+        private void SetupNavigation()
         {
-            nav_adapter.addTab(new ArchProgressBar_Tab(), true);
-            nav_adapter.addTab(new ProgressBar_Tab(), false);
-            nav_adapter.addTab(new DropDown_Tab(), false);
-            nav_adapter.addTab(new Gradient_Tab(), false);
-            nav_adapter.addTab(new Slider_Tab(), false);
-            nav_adapter.addTab(new Other_Tab(), false);
+            nav_adapter.AddTab(new ArchProgressBar_Tab(), true);
+            nav_adapter.AddTab(new ProgressBar_Tab(), false);
+            nav_adapter.AddTab(new DropDown_Tab(), false);
+            nav_adapter.AddTab(new Gradient_Tab(), false);
+            nav_adapter.AddTab(new Slider_Tab(), false);
+            nav_adapter.AddTab(new Other_Tab(), false);
         }
 
         protected override void OnSizeChanged(EventArgs e)
         {
             base.OnSizeChanged(e);
-            drawLine(LinePositions.LEFT, Color.FromArgb(41, 53, 65), 65, Height);
+            DrawLine(LinePositions.Left, Color.FromArgb(41, 53, 65), 65, Height);
             Invalidate();
         }
 
@@ -52,7 +52,7 @@ namespace LimitlessUISample
         //-----------------------------------------[Form Handling]--------------------------------------------------//
         private void navigation_click(object sender, EventArgs e)
         {
-            nav_adapter.showTab(((FlatButton_WOC)sender).TabIndex);
+            nav_adapter.ShowTab(((FlatButton_WOC)sender).TabIndex);
         }
         private void exitLabel_Click(object sender, EventArgs e)
         {

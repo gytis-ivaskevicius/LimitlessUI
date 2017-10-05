@@ -29,7 +29,7 @@ namespace LimitlessUISample.Tabs
             return _instance;
         }
 
-        public void onShowTab()
+        public void OnShowTab()
         {
             Debug.WriteLine("Showing ProgressBar_Tab");
         }

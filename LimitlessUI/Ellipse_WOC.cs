@@ -31,7 +31,7 @@ Copyright (c) 2017 WithoutCaps
 
 namespace LimitlessUI
 {
-    public partial class Elipse_WOC : Component
+    public class Elipse_WOC : Component
     {
         [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
         private static extern IntPtr CreateRoundRectRgn
@@ -50,24 +50,26 @@ namespace LimitlessUI
 
         public Control TargetControl
         {
-            get { return _control; }
+            get => _control;
             set
             {
                 _control = value;
-                _control.SizeChanged += (object sender, EventArgs eventArgs) => _control.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, _control.Width, _control.Height, _cornerRadius, _cornerRadius));
+                _control.SizeChanged += (sender, eventArgs) => _control.Region =
+                    Region.FromHrgn(CreateRoundRectRgn(0, 0, _control.Width, _control.Height, _cornerRadius,
+                        _cornerRadius));
             }
         }
 
         public int CornerRadius
         {
-            get { return _cornerRadius; }
+            get => _cornerRadius;
             set
             {
                 _cornerRadius = value;
                 if (_control != null)
-                    _control.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, _control.Width, _control.Height, _cornerRadius, _cornerRadius));
+                    _control.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, _control.Width, _control.Height,
+                        _cornerRadius, _cornerRadius));
             }
         }
     }
 }
-

@@ -4,7 +4,6 @@ using System.Windows.Forms;
 using static LimitlessUI.Chart_WOC;
 
 
-
 /*
 End-User Licence Agreement (EULA) for WithoutCaps Software 
 
@@ -32,35 +31,22 @@ Copyright (c) 2017 WithoutCaps
 
 namespace LimitlessUI
 {
-    public partial class Legend_WOC : ListView_WOC
+    public class Legend_WOC : ListView_WOC
     {
-        private Chart_WOC _chart;
-        private Color _textColor = Color.Empty;
+        public Legend_WOC() => Vertical = false;
 
-        public Legend_WOC()
-        {
-            Vertical = false;
-        }
 
-        public void notifySeriesChanged()
+        public void NotifySeriesChanged()
         {
-            clear();
-            foreach (Serie s in _chart.series)
-                add(new LegendChild_WOC(s, Font, _textColor, Height, _chart));
+            Clear();
+            foreach (Serie s in Chart.Series)
+                Add(new LegendChild_WOC(s, Font, TextColor, Chart));
         }
 
 
-        public Color TextColor
-        {
-            get { return _textColor; }
-            set { _textColor = value; }
-        }
+        public Color TextColor { get; set; } = Color.Empty;
 
-        public Chart_WOC Chart
-        {
-            get { return _chart; }
-            set { _chart = value; }
-        }
+        public Chart_WOC Chart { get; set; }
 
         //-------------------------------------[Legendary Child :D ]-------------------------------------//
         public class LegendChild_WOC : Control
@@ -68,27 +54,25 @@ namespace LimitlessUI
             private int _recSize = 10;
             private Color _textColor;
             private Serie _serie;
-            private Chart_WOC _chart;
 
-            public LegendChild_WOC(Serie serie, Font font, Color textColor, int height, Chart_WOC chart)
+            public LegendChild_WOC(Serie serie, Font font, Color textColor, Chart_WOC chart)
             {
-                Text = serie.name;
+                Text = serie.Name;
                 Font = font;
-                ForeColor = serie.lineColor;
+                ForeColor = serie.LineColor;
                 Width = 100;
-                _chart = chart;
                 _serie = serie;
                 _textColor = textColor == Color.Empty ? ForeColor : textColor;
-                Font = new Font(Font, _serie.selected ? FontStyle.Bold : FontStyle.Regular);
+                Font = new Font(Font, _serie.Selected ? FontStyle.Bold : FontStyle.Regular);
 
-                Click += click;
-                DoubleClick += click;
+                DoubleClick += (s, e) => OnClick(e);
             }
 
-            private void click(object sender, EventArgs e)
+            protected override void OnClick(EventArgs e)
             {
-                _serie.selected = !_serie.selected;
-                Font = new Font(Font, _serie.selected ? FontStyle.Bold : FontStyle.Regular);
+                base.OnClick(e);
+                _serie.Selected = !_serie.Selected;
+                Font = new Font(Font, _serie.Selected ? FontStyle.Bold : FontStyle.Regular);
             }
 
             protected override void OnPaint(PaintEventArgs pe)
@@ -96,19 +80,20 @@ namespace LimitlessUI
                 base.OnPaint(pe);
                 Graphics g = pe.Graphics;
                 Pen p = new Pen(ForeColor);
-                drawLabel(g, p);
+                DrawLabel(g);
 
                 p.Dispose();
             }
 
-            private void drawLabel(Graphics g, Pen p)
+            private void DrawLabel(Graphics g)
             {
                 SizeF labelSize = g.MeasureString(Text, Font);
                 SolidBrush s = new SolidBrush(ForeColor);
+
                 g.FillRectangle(s, (Height - _recSize) / 2, (Height - _recSize) / 2, _recSize, _recSize);
                 s.Color = _textColor;
                 g.DrawString(Text, Font, s, Height - 5, (Height - labelSize.Height) / 2);
-                Width = Height + (int)labelSize.Width;
+                Width = Height + (int) labelSize.Width;
             }
         }
     }

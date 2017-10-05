@@ -30,21 +30,21 @@ Copyright (c) 2017 WithoutCaps
 
 namespace LimitlessUI
 {
-    public partial class ProgressBar_WOC : Control
+    public class ProgressBar_WOC : Control
     {
         private Color _progressBackColor = Color.Silver;
         private int _progress = 50;
 
         private float _line1Thikness = 10;
         private float _line2Thikness = 20;
-        private float _extraPadding = 0;
+        private float _extraPadding;
 
         private bool _rounded = true;
         private bool _smoothing = true;
 
         public ProgressBar_WOC()
         {
-            this.DoubleBuffered = true;
+            DoubleBuffered = true;
             ForeColor = Color.Chartreuse;
         }
 
@@ -54,13 +54,13 @@ namespace LimitlessUI
             if (_smoothing)
                 pe.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
 
-            float progressWidth = this.Width;
-            float progressToDraw = ((progressWidth - Padding.Left - Padding.Right) / 100) * _progress;
-            float progressNotToDraw = (progressWidth - Padding.Left - Padding.Right) - progressToDraw;
-            float drawHeight = this.Height / 2;
+            var progressWidth = Width;
+            var progressToDraw = ((progressWidth - Padding.Left - Padding.Right) / 100) * _progress;
+            var progressNotToDraw = (progressWidth - Padding.Left - Padding.Right) - progressToDraw;
+            var drawHeight = Height / 2;
 
-            Pen penOne = new Pen(_progressBackColor, _line1Thikness);
-            Pen penTwo = new Pen(ForeColor, _line2Thikness);
+            var penOne = new Pen(_progressBackColor, _line1Thikness);
+            var penTwo = new Pen(ForeColor, _line2Thikness);
 
             if (_rounded)
             {
@@ -75,9 +75,11 @@ namespace LimitlessUI
             else
                 _extraPadding = 0;
 
-            pe.Graphics.DrawLine(penOne, ((float)Padding.Left) + _extraPadding, drawHeight, ((float)this.Width - Padding.Right) - _extraPadding, drawHeight);
+            pe.Graphics.DrawLine(penOne, Padding.Left + _extraPadding, drawHeight,
+                ((float) Width - Padding.Right) - _extraPadding, drawHeight);
             if (Value != 0)
-                pe.Graphics.DrawLine(penTwo, Padding.Left + _extraPadding, drawHeight, this.Width - ((float)Padding.Right) - progressNotToDraw - _extraPadding, drawHeight);
+                pe.Graphics.DrawLine(penTwo, Padding.Left + _extraPadding, drawHeight,
+                    Width - ((float) Padding.Right) - progressNotToDraw - _extraPadding, drawHeight);
 
             penOne.Dispose();
             penTwo.Dispose();
@@ -91,7 +93,7 @@ namespace LimitlessUI
 
         public int Value
         {
-            get { return _progress; }
+            get => _progress;
             set
             {
                 if (value != _progress)
@@ -104,7 +106,7 @@ namespace LimitlessUI
 
         public Color ProgressBackColor
         {
-            get { return _progressBackColor; }
+            get => _progressBackColor;
             set
             {
                 _progressBackColor = value;
@@ -114,7 +116,7 @@ namespace LimitlessUI
 
         public bool Rounded
         {
-            get { return _rounded; }
+            get => _rounded;
             set
             {
                 _rounded = value;
@@ -124,7 +126,7 @@ namespace LimitlessUI
 
         public bool Smooth
         {
-            get { return _smoothing; }
+            get => _smoothing;
             set
             {
                 _smoothing = value;
@@ -134,7 +136,7 @@ namespace LimitlessUI
 
         public float BackLineThikness
         {
-            get { return _line1Thikness; }
+            get => _line1Thikness;
             set
             {
                 _line1Thikness = value;
@@ -144,7 +146,7 @@ namespace LimitlessUI
 
         public float FrontLineThikness
         {
-            get { return _line2Thikness; }
+            get => _line2Thikness;
             set
             {
                 _line2Thikness = value;

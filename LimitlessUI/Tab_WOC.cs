@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-
-
-/*
+﻿/*
 End-User Licence Agreement (EULA) for WithoutCaps Software 
 
 This version is current as of May 27, 2017. Please consult withoutcapsdev@gmail.com for any new versions of this EULA.
@@ -35,7 +27,6 @@ namespace LimitlessUI
 {
     public interface Tab_WOC
     {
-        void onShowTab();
+        void OnShowTab();
     }
 }
-

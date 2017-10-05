@@ -3,7 +3,6 @@ using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 
 
-
 /*
 End-User Licence Agreement (EULA) for WithoutCaps Software 
 
@@ -30,10 +29,10 @@ Copyright (c) 2017 WithoutCaps
 
 namespace LimitlessUI
 {
-    public partial class Slider_WOC : Control
+    public class Slider_WOC : Control
     {
-        public delegate void onValueChangedEvent(Slider_WOC slider, float value);
-        public event onValueChangedEvent onValueChanged;
+        public delegate void OnValueChangedEvent(Slider_WOC slider, float value);
+        public event OnValueChangedEvent OnValueChanged;
 
         private float _circleSize = 20;
         private float _backLineThikness = 10;
@@ -41,9 +40,9 @@ namespace LimitlessUI
         private float _xCord = 50;
         private float _maxValue = 100;
 
-        private bool _drag = false;
+        private bool _drag;
         private bool _drawCircle = true;
-        private bool _rounded = false;
+        private bool _rounded;
 
         private int _increament = 10;
         private Color _backgroundColor = Color.Silver;
@@ -52,13 +51,13 @@ namespace LimitlessUI
         {
             ForeColor = Color.SeaGreen;
             DoubleBuffered = true;
-            MouseDown += onClick;
-            MouseUp += onMouseUp;
-            MouseMove += onMouseMove;
-            MouseWheel += onScroll;
+            MouseDown += OnClick;
+            MouseUp += OnMouseUp;
+            MouseMove += OnMouseMove;
+            MouseWheel += OnScroll;
         }
 
-        private void onScroll(object sender, MouseEventArgs e)
+        private void OnScroll(object sender, MouseEventArgs e)
         {
             if (e.Delta != 0)
             {
@@ -72,17 +71,14 @@ namespace LimitlessUI
                 else if (_xCord < _circleSize / 2)
                     _xCord = 0;
                 Invalidate();
-                if (onValueChanged != null)
-                    onValueChanged.Invoke(this, Value);
+                OnValueChanged?.Invoke(this, Value);
             }
         }
 
-        private void onMouseUp(object sender, MouseEventArgs e)
-        {
-            _drag = false;
-        }
+        public void OnMouseUp(object sender, MouseEventArgs e) => _drag = false;
 
-        private void onMouseMove(object sender, MouseEventArgs e)
+
+        public void OnMouseMove(object sender, MouseEventArgs e)
         {
             if (_drag && e.X >= _circleSize / 2 && e.X <= Width - _circleSize / 2)
                 _xCord = e.X - _circleSize / 2;
@@ -91,13 +87,12 @@ namespace LimitlessUI
             else if (_drag && e.X > Width - _circleSize / 2)
                 _xCord = Width - _circleSize;
 
-            if (onValueChanged != null)
-                onValueChanged.Invoke(this, Value);
+            OnValueChanged?.Invoke(this, Value);
 
             Invalidate();
         }
 
-        private void onClick(object sender, MouseEventArgs e)
+        private void OnClick(object sender, MouseEventArgs e)
         {
             _drag = true;
             _xCord = e.X;
@@ -107,9 +102,9 @@ namespace LimitlessUI
         protected override void OnPaint(PaintEventArgs pe)
         {
             base.OnPaint(pe);
-            pe.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
-            Pen penOne = new Pen(_backgroundColor, _backLineThikness);
-            Pen penTwo = new Pen(ForeColor, _frontLineThikness);
+            pe.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
+            var penOne = new Pen(_backgroundColor, _backLineThikness);
+            var penTwo = new Pen(ForeColor, _frontLineThikness);
 
             if (_rounded)
             {
@@ -119,38 +114,40 @@ namespace LimitlessUI
                 penOne.StartCap = LineCap.Round;
                 penOne.EndCap = LineCap.Round;
             }
-            pe.Graphics.DrawLine(penOne, _circleSize / 2, Height / 2, Width - _circleSize / 2, Height / 2);
-            pe.Graphics.DrawLine(penTwo, _circleSize / 2, Height / 2, _circleSize / 2 + _xCord, Height / 2);
+            pe.Graphics.DrawLine(penOne, _circleSize / 2, Height / 2f, Width - _circleSize / 2, Height / 2f);
+            pe.Graphics.DrawLine(penTwo, _circleSize / 2, Height / 2f, _circleSize / 2 + _xCord, Height / 2f);
             if (_drawCircle)
-                pe.Graphics.FillEllipse(new SolidBrush(ForeColor), _xCord, Height / 2 - _circleSize / 2, _circleSize, _circleSize);
+                pe.Graphics.FillEllipse(new SolidBrush(ForeColor), _xCord, Height / 2f - _circleSize / 2, _circleSize,
+                    _circleSize);
             penOne.Dispose();
             penTwo.Dispose();
         }
 
         #region Getters and Setters
+
         public Color BackLineColor
         {
-            get { return _backgroundColor; }
+            get => _backgroundColor;
             set
             {
-                this._backgroundColor = value;
+                _backgroundColor = value;
                 Invalidate();
             }
         }
 
         public float Value
         {
-            get { return _xCord / ((Width - _circleSize) / _maxValue); }
+            get => _xCord / ((Width - _circleSize) / _maxValue);
             set
             {
-                this._xCord = value * ((Width - _circleSize) / _maxValue);
+                _xCord = value * ((Width - _circleSize) / _maxValue);
                 Invalidate();
             }
         }
 
         public bool Rounded
         {
-            get { return _rounded; }
+            get => _rounded;
             set
             {
                 _rounded = value;
@@ -160,7 +157,7 @@ namespace LimitlessUI
 
         public bool DrawCircle
         {
-            get { return _drawCircle; }
+            get => _drawCircle;
             set
             {
                 _drawCircle = value;
@@ -170,7 +167,7 @@ namespace LimitlessUI
 
         public float MaxValue
         {
-            get { return _maxValue; }
+            get => _maxValue;
             set
             {
                 _maxValue = value;
@@ -180,7 +177,7 @@ namespace LimitlessUI
 
         public float CircleSize
         {
-            get { return _circleSize; }
+            get => _circleSize;
             set
             {
                 _circleSize = value;
@@ -190,7 +187,7 @@ namespace LimitlessUI
 
         public float BackLineThikness
         {
-            get { return _backLineThikness; }
+            get => _backLineThikness;
             set
             {
                 _backLineThikness = value;
@@ -200,13 +197,14 @@ namespace LimitlessUI
 
         public float FrontLineThikness
         {
-            get { return _frontLineThikness; }
+            get => _frontLineThikness;
             set
             {
                 _frontLineThikness = value;
                 Invalidate();
             }
         }
+
         #endregion
     }
 }

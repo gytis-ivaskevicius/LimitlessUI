@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -36,25 +35,22 @@ namespace LimitlessUI
     {
         public enum LinePositions
         {
-            TOP,
-            BOTTOM,
-            LEFT,
-            RIGHT
+            Top,
+            Bottom,
+            Left,
+            Right
         }
-        private Rectangle TopGrip { get { return new Rectangle(0, 0, this.ClientSize.Width, _gripSize); } }
-        private Rectangle LeftGrip { get { return new Rectangle(0, 0, _gripSize, this.ClientSize.Height); } }
-        private Rectangle BottomGrip { get { return new Rectangle(0, this.ClientSize.Height - _gripSize, this.ClientSize.Width, _gripSize); } }
-        private Rectangle RightGrip { get { return new Rectangle(this.ClientSize.Width - _gripSize, 0, _gripSize, this.ClientSize.Height); } }
 
-        private Rectangle TopLeftGrip { get { return new Rectangle(0, 0, _gripSize, _gripSize); } }
-        private Rectangle TopRightGrip { get { return new Rectangle(this.ClientSize.Width - _gripSize, 0, _gripSize, _gripSize); } }
-        private Rectangle BottomLeftGrip { get { return new Rectangle(0, this.ClientSize.Height - _gripSize, _gripSize, _gripSize); } }
-        private Rectangle BottomRightGrip { get { return new Rectangle(this.ClientSize.Width - _gripSize, this.ClientSize.Height - _gripSize, _gripSize, _gripSize); } }
+        private Rectangle TopGrip => new Rectangle(0, 0, ClientSize.Width, GripSize);
+        private Rectangle LeftGrip => new Rectangle(0, 0, GripSize, ClientSize.Height);
+        private Rectangle BottomGrip => new Rectangle(0, ClientSize.Height - GripSize, ClientSize.Width, GripSize);
+        private Rectangle RightGrip => new Rectangle(ClientSize.Width - GripSize, 0, GripSize, ClientSize.Height);
+        private Rectangle TopLeftGrip => new Rectangle(0, 0, GripSize, GripSize);
+        private Rectangle TopRightGrip => new Rectangle(ClientSize.Width - GripSize, 0, GripSize, GripSize);
+        private Rectangle BottomLeftGrip => new Rectangle(0, ClientSize.Height - GripSize, GripSize, GripSize);
+        private Rectangle BottomRightGrip => new Rectangle(ClientSize.Width - GripSize, ClientSize.Height - GripSize, GripSize, GripSize);
 
-        private List<Line> _lines = new List<Line>();
-        private int _gripSize = 10;     // Thickness of form grip which allows you to resize it
-        private bool _drawShadow = true;
-        private bool _formLevelBuffering = true;
+        private readonly List<Line> _lines = new List<Line>();
 
         private const int
             HTLEFT = 10,
@@ -71,44 +67,39 @@ namespace LimitlessUI
             get
             {
                 CreateParams cp = base.CreateParams;
-                if (_drawShadow)
+                if (DrawShadow)
                     cp.ClassStyle |= 0x20000;
-                if (_formLevelBuffering && !DesignMode)
+                if (BufferApplication && !DesignMode)
                     cp.ExStyle |= 0x02000000;
-                
+
                 return cp;
             }
         }
 
 
-
         protected override void WndProc(ref Message message)
         {
             base.WndProc(ref message);
-            if (message.Msg == 0x84)    // WM_NCHITTEST
+            if (message.Msg == 0x84) // WM_NCHITTEST
             {
-                var cursor = this.PointToClient(Cursor.Position);
+                var cursor = PointToClient(Cursor.Position);
 
-                if (TopLeftGrip.Contains(cursor)) message.Result = (IntPtr)HTTOPLEFT;
-                else if (TopRightGrip.Contains(cursor)) message.Result = (IntPtr)HTTOPRIGHT;
-                else if (BottomLeftGrip.Contains(cursor)) message.Result = (IntPtr)HTBOTTOMLEFT;
-                else if (BottomRightGrip.Contains(cursor)) message.Result = (IntPtr)HTBOTTOMRIGHT;
+                if (TopLeftGrip.Contains(cursor)) message.Result = (IntPtr) HTTOPLEFT;
+                else if (TopRightGrip.Contains(cursor)) message.Result = (IntPtr) HTTOPRIGHT;
+                else if (BottomLeftGrip.Contains(cursor)) message.Result = (IntPtr) HTBOTTOMLEFT;
+                else if (BottomRightGrip.Contains(cursor)) message.Result = (IntPtr) HTBOTTOMRIGHT;
 
-                else if (TopGrip.Contains(cursor)) message.Result = (IntPtr)HTTOP;
-                else if (LeftGrip.Contains(cursor)) message.Result = (IntPtr)HTLEFT;
-                else if (RightGrip.Contains(cursor)) message.Result = (IntPtr)HTRIGHT;
-                else if (BottomGrip.Contains(cursor)) message.Result = (IntPtr)HTBOTTOM;
+                else if (TopGrip.Contains(cursor)) message.Result = (IntPtr) HTTOP;
+                else if (LeftGrip.Contains(cursor)) message.Result = (IntPtr) HTLEFT;
+                else if (RightGrip.Contains(cursor)) message.Result = (IntPtr) HTRIGHT;
+                else if (BottomGrip.Contains(cursor)) message.Result = (IntPtr) HTBOTTOM;
             }
         }
-        public void drawLine(LinePositions pos, Color color, int point1, int point2)
-        {
-            _lines.Add(new Line(pos, color, point1, point2));
-        }
 
-        public void clearLines()
-        {
-            _lines.Clear();
-        }
+        public void DrawLine(LinePositions pos, Color color, int point1, int point2) =>
+            _lines.Add(new Line(pos, color, point1, point2));
+
+        public void ClearLines() => _lines.Clear();
 
         protected override void OnPaint(PaintEventArgs e)
         {
@@ -118,68 +109,48 @@ namespace LimitlessUI
             {
                 pen.Color = line.Color;
 
-                if (line.LinePosition == LinePositions.BOTTOM)
+                if (line.LinePosition == LinePositions.Bottom)
                     e.Graphics.DrawLine(pen, line.X1, Height, line.X2, Height);
-                else if (line.LinePosition == LinePositions.TOP)
+                else if (line.LinePosition == LinePositions.Top)
                     e.Graphics.DrawLine(pen, line.X1, 0, line.X2, 0);
-                else if (line.LinePosition == LinePositions.RIGHT)
+                else if (line.LinePosition == LinePositions.Right)
                     e.Graphics.DrawLine(pen, Width, line.Y1, Width, line.Y2);
                 else
                     e.Graphics.DrawLine(pen, 0, line.Y1, 0, line.Y2);
             }
         }
 
-        public int GripSize
+        public int GripSize { get; set; } = 10;
+
+        public bool DrawShadow { get; set; } = true;
+
+        public bool BufferApplication { get; set; } = true;
+
+        public class Line
         {
-            get { return _gripSize; }
-            set { _gripSize = value; }
-        }
-
-        public bool DrawShadow
-        {
-            get { return _drawShadow; }
-            set { _drawShadow = value; }
-        }
-
-
-        public bool BufferApplication
-        {
-            get { return _formLevelBuffering; }
-            set { _formLevelBuffering = value; }
-        }
-
-        class Line
-        {
-            private int _x1;
-            private int _x2;
-            private int _y1;
-            private int _y2;
-            private Color _color;
-            private LinePositions _position;
-
             public Line(LinePositions position, Color color, int point1, int point2)
             {
-                if (position == LinePositions.TOP || position == LinePositions.BOTTOM)
+                if (position == LinePositions.Top || position == LinePositions.Bottom)
                 {
-                    _x1 = point1;
-                    _x2 = point2;
+                    X1 = point1;
+                    X2 = point2;
                 }
                 else
                 {
-                    _y1 = point1;
-                    _y2 = point2;
+                    Y1 = point1;
+                    Y2 = point2;
                 }
-                _color = color;
-                _position = position;
+                Color = color;
+                LinePosition = position;
             }
 
-            public Color Color { get { return _color; } }
-            public int X1 { get { return _x1; } }
-            public int X2 { get { return _x2; } }
-            public int Y1 { get { return _y1; } }
-            public int Y2 { get { return _y2; } }
-            public LinePositions LinePosition { get { return _position; } }
+            public Color Color { get; }
+            public LinePositions LinePosition { get; }
+
+            public int X1 { get; }
+            public int X2 { get; }
+            public int Y1 { get; }
+            public int Y2 { get; }
         }
     }
 }
-

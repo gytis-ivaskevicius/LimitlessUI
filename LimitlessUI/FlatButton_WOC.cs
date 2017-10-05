@@ -32,7 +32,7 @@ namespace LimitlessUI
 {
     public partial class FlatButton_WOC : Control
     {
-        ContentAlignment _textAligment = ContentAlignment.MiddleLeft;
+        private ContentAlignment _textAligment = ContentAlignment.MiddleLeft;
         private Image _image;
         private Image _selectedImage;
         private Point _offset = new Point(0, 0);
@@ -43,14 +43,11 @@ namespace LimitlessUI
         private bool _drawText = true;
         private bool _mouseHovering = false;
         private bool _useActiveImageWhileHovering = false;
-        private bool _isTab = true;
 
         private Color _selectedBackColor;
         private Color _selectedForeColor;
         private Color _onHoverColor;
         private Color _onHoverTextColor;
-        private Color _defaultBackColor;
-        private Color _defaultForeColor;
 
         public FlatButton_WOC()
         {
@@ -60,57 +57,56 @@ namespace LimitlessUI
             Height = 50;
             Width = 220;
 
-            MouseEnter += onMouseEnter;
-            MouseLeave += onMouseExit;
-            MouseClick += onClick;
+            MouseEnter += OnMouseEnter;
+            MouseLeave += OnMouseExit;
+            MouseClick += OnClick;
         }
 
-        private void onClick(object sender, MouseEventArgs e)
+        private void OnClick(object sender, MouseEventArgs e)
         {
-            if (!_selected && _isTab)
+            if (!_selected && IsTab)
             {
-                BackColor = _selectedBackColor != null ? _selectedBackColor : BackColor;
-                ForeColor = _selectedForeColor != null ? _selectedForeColor : ForeColor;
+                BackColor = _selectedBackColor;
+                ForeColor = _selectedForeColor;
 
                 if (Parent != null)
                     foreach (Control control in Parent.Controls)
-                        if (control is FlatButton_WOC)
-                            ((FlatButton_WOC)control).unselect();
+                        (control as FlatButton_WOC)?.Unselect();
+
                 _selected = true;
             }
         }
 
-        public void unselect()
+        public void Unselect()
         {
-            if (_selected)
-            {
-                _selected = false;
-                BackColor = _defaultBackColor;
-                ForeColor = _defaultForeColor;
-            }
+            if (!_selected) return;
+
+            _selected = false;
+            BackColor = DefaultBackColor;
+            ForeColor = DefaultForeColor;
         }
 
-        private void onMouseExit(object sender, EventArgs e)
+        private void OnMouseExit(object sender, EventArgs e)
         {
             _mouseHovering = false;
             if (!_selected)
             {
-                BackColor = _defaultBackColor;
-                ForeColor = _defaultForeColor;
+                BackColor = DefaultBackColor;
+                ForeColor = DefaultForeColor;
                 Invalidate();
             }
         }
 
-        private void onMouseEnter(object sender, EventArgs e)
+        private void OnMouseEnter(object sender, EventArgs e)
         {
             _mouseHovering = true;
             if (!_selected)
             {
-                _defaultBackColor = BackColor;
-                BackColor = OnHoverColor != null ? _onHoverColor : BackColor;
+                DefaultBackColor = BackColor;
+                BackColor = _onHoverColor;
 
-                _defaultForeColor = ForeColor;
-                ForeColor = OnHoverTextColor != null ? _onHoverTextColor : ForeColor;
+                DefaultForeColor = ForeColor;
+                ForeColor = _onHoverTextColor;
                 Invalidate();
             }
         }
@@ -119,17 +115,21 @@ namespace LimitlessUI
         {
             base.OnPaint(pe);
             if (_drawText)
-                drawString(pe.Graphics, Text, Font, _textAligment.ToString());
+                DrawString(pe.Graphics, _textAligment.ToString());
             if (_drawImage && _image != null)
             {
                 float drawHeight = Height / 2 - _imageSize.Height / 2;
-                pe.Graphics.DrawImage(_selected || (_mouseHovering && _useActiveImageWhileHovering) ? (_selectedImage ?? _image) : _image, drawHeight, drawHeight, _imageSize.Width, _imageSize.Height);
+                pe.Graphics.DrawImage(_selected ||
+                                      (_mouseHovering && _useActiveImageWhileHovering)
+                        ? (_selectedImage ?? _image)
+                        : _image,
+                    drawHeight, drawHeight, _imageSize.Width, _imageSize.Height);
             }
         }
 
-        private void drawString(Graphics g, string text, Font font, string textAligment)
+        private void DrawString(Graphics g, string textAligment)
         {
-            SizeF stringSize = g.MeasureString(Text, Font);
+            var stringSize = g.MeasureString(Text, Font);
             float drawX = _drawImage ? Height + _offset.X : _offset.X;
             float drawY = _offset.Y;
 
@@ -147,72 +147,71 @@ namespace LimitlessUI
         }
 
 
-
         #region Getters and setters
 
         public bool Selected
         {
-            get { return _selected; }
+            get => _selected;
             set
             {
-                if (_selected = value)
+                if (_selected = value) //Intended
                 {
-                    BackColor = _selectedBackColor != null ? _selectedBackColor : BackColor;
-                    ForeColor = _selectedForeColor != null ? _selectedForeColor : ForeColor;
+                    BackColor = _selectedBackColor;
+                    ForeColor = _selectedForeColor;
                 }
                 else
                 {
-                    BackColor = _defaultBackColor;
-                    ForeColor = _defaultForeColor;
+                    BackColor = DefaultBackColor;
+                    ForeColor = DefaultForeColor;
                 }
             }
         }
 
-        public Color DefaultForeColor
-        {
-            get { return _defaultForeColor; }
-            set { _defaultForeColor = value; }
-        }
+        public new Color DefaultForeColor { get; set; }
 
-        public Color DefaultBackColor
-        {
-            get { return _defaultBackColor; }
-            set { _defaultBackColor = value; }
-        }
+        public new Color DefaultBackColor { get; set; }
 
         public Point TextOffset
         {
-            get { return _offset; }
-            set { _offset = value; Invalidate(); }
+            get => _offset;
+            set
+            {
+                _offset = value;
+                Invalidate();
+            }
         }
 
         public bool UseActiveImageWhileHovering
         {
-            get { return _useActiveImageWhileHovering; }
-            set { _useActiveImageWhileHovering = value; }
+            get => _useActiveImageWhileHovering;
+            set => _useActiveImageWhileHovering = value;
         }
 
         public bool DrawText
         {
-            get { return _drawText; }
-            set { _drawText = value; Invalidate(); }
+            get => _drawText;
+            set
+            {
+                _drawText = value;
+                Invalidate();
+            }
         }
 
-        public bool IsTab
-        {
-            get { return _isTab; }
-            set { _isTab = value; }
-        }
+        public bool IsTab { get; set; } = true;
 
         public bool DrawImage
         {
-            get { return _drawImage; }
-            set { _drawImage = value; }
+            get => _drawImage;
+            set
+            {
+                _drawImage = value;
+                Invalidate();
+            }
         }
 
         public ContentAlignment TextAligment
         {
-            get { return _textAligment; }
+            get => _textAligment;
             set
             {
                 _textAligment = value;
@@ -222,7 +221,7 @@ namespace LimitlessUI
 
         public Image ActiveImage
         {
-            get { return _selectedImage; }
+            get => _selectedImage;
             set
             {
                 _selectedImage = value;
@@ -232,7 +231,7 @@ namespace LimitlessUI
 
         public Image Image
         {
-            get { return _image; }
+            get => _image;
             set
             {
                 _image = value;
@@ -242,7 +241,7 @@ namespace LimitlessUI
 
         public Color OnHoverColor
         {
-            get { return _onHoverColor; }
+            get => _onHoverColor;
             set
             {
                 _onHoverColor = value;
@@ -252,7 +251,7 @@ namespace LimitlessUI
 
         public Color OnHoverTextColor
         {
-            get { return _onHoverTextColor; }
+            get => _onHoverTextColor;
             set
             {
                 _onHoverTextColor = value;
@@ -262,7 +261,7 @@ namespace LimitlessUI
 
         public Color ActiveColor
         {
-            get { return _selectedBackColor; }
+            get => _selectedBackColor;
             set
             {
                 _selectedBackColor = value;
@@ -272,7 +271,7 @@ namespace LimitlessUI
 
         public Color ActiveTextColor
         {
-            get { return _selectedForeColor; }
+            get => _selectedForeColor;
             set
             {
                 _selectedForeColor = value;
@@ -280,16 +279,26 @@ namespace LimitlessUI
             }
         }
 
-        public override string Text { get => base.Text; set { base.Text = value; Invalidate(); } }
+        public override string Text
+        {
+            get => base.Text;
+            set
+            {
+                base.Text = value;
+                Invalidate();
+            }
+        }
+
         public SizeF ImageSize
         {
-            get { return _imageSize; }
+            get => _imageSize;
             set
             {
                 _imageSize = value;
                 Invalidate();
             }
         }
+
         #endregion
     }
 }

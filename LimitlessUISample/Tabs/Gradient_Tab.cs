@@ -25,19 +25,17 @@ namespace LimitlessUISample.Tabs
 
         public static Gradient_Tab getInstance()
         {
-            if (_instance == null)
-                _instance = new Gradient_Tab();
-            return _instance;
+            return _instance ?? (_instance = new Gradient_Tab());
         }
 
-        public void onShowTab()
+        public void OnShowTab()
         {
             Debug.WriteLine("Showing Gradient_Tab");
         }
 
         private void panel1_Click_1(object sender, EventArgs e)
         {
-            animator_WOC1.animate(500,_expanded ? 50: 200);
+            animator_WOC1.Animate(500,_expanded ? 50: 200);
             _expanded = !_expanded;
 
             Debug.WriteLine("click" + (_expanded ? 50 : 200));
