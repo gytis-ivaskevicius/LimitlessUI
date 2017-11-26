@@ -40,6 +40,8 @@ namespace LimitlessUI
         private string _onText = "On";
         private string _offText = "Off";
 
+        public event EventHandler StateChanged;
+
         public Switch_WOC()
         {
             DoubleClick += (s, e) => OnClick(e);
@@ -55,6 +57,8 @@ namespace LimitlessUI
         {
             _isOn = !_isOn;
             Invalidate();
+            OnStateChanged();
+            
         }
 
         private void DrawString(PaintEventArgs pe, bool isOn)
@@ -157,5 +161,10 @@ namespace LimitlessUI
         }
 
         #endregion
+
+        protected virtual void OnStateChanged()
+        {
+            StateChanged?.Invoke(this, EventArgs.Empty);
+        }
     }
 }
